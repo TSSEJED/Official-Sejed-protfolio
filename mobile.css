@@ -1,19 +1,33 @@
-body {
-    background: url('mobile.css') no-repeat center center fixed;
-    background-size: cover;
+@media (max-width: 480px) {
+    body {
+        padding: 1rem;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    .btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
+
+    .skill-card, .project-card {
+        padding: 1rem;
+    }
+
+    .contact-info a {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
 }
 
-/* Hide video background on mobile */
-.video-container {
-    display: none;
-}
-
-.app-box {
-    background-color: #111;
-    padding: 30px;
-    border: 2px solid #FFD700;
-    border-radius: 10px;
-    text-align: center;
-    width: 300px;
-    transition: 0.3s;
+@media (max-width: 480px) {
+    #myskills > div {
+        width: calc(0% - 0.5rem);
+    }
 }

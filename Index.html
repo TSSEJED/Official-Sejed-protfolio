@@ -3,68 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arizona State Roleplay</title>
+    <title>Sejed TRABELSSI | official Website</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="mobile.css">
+    <link rel="icon" href="pngwing.com.png" type="image/png">
+    
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+    
+    <style>
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 20px;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 1000;
+    max-width: 300px;
+    word-wrap: break-word;
+}
+
+.notification.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.notification.success {
+    background-color: #2ecc71;
+}
+
+.notification.error {
+    background-color: #e74c3c;
+}
+</style>
 </head>
 <body>
-    <section id="welcome">
-        <h1>Welcome to Arizona State Roleplay Official Website</h1>
-        <p>Scroll down to explore</p>
-    </section>
+    <main>
+        <section id="about" class="container" data-parallax-speed="0.3">
+            <h1 class="animate-fadeInUp">Hello, I'm Sejed TRABELSSI 👋</h1>
+            <p class="animate-fadeInUp">I'm a passionate developer 💻 currently studying for more than 5 years (5+ experience). With a strong foundation in various programming languages and technologies, I'm dedicated to expanding my knowledge in the tech industry and creating innovative solutions. 🚀</p>
+            <a href="#contact" class="btn animate-fadeInUp">Get in Touch 📬</a>
+        </section>
 
-    <div class="container">
-        <section>        <div class="app-box">
-            <p>Join the Arizona State Roleplay Discord Server</p>
-            <a href="https://discord.gg/yNV5v7mC" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/3670/3670157.png" width="50" alt="Join Our Discord">
-            </a>  
-        </div>
-        <div>   
-            <h1 id="custom">.................................................</h1>
-        </div>
-        <section>
-        <div class="app-box">
-            <p>Join Phenix Police Department | PPD Discord Server</p>
-            <a href="https://discord.gg/qpEBPCTQ" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/3670/3670157.png" width="50" alt="Join Our Discord">
-            </a>  
-            <p>Click The Button Below To Join The PPD As An Officer:</p>
-            <a href="PPD.html"><button>Phenix Police Department | PPD Application</button></a>
+        <section id="skills" class="container">
+            <h2>My Skills 🛠️</h2>
+            <div class="skills-grid" id="skills-grid">
+            </div>
+        </section>
 
+        <section id="projects" class="container">
+            <h2>My Projects 🏗️</h2>
+            <div class="project-card animate-fadeInUp">   
+                <h3>LPM IN STEM CLUB's WEBSITE</h3>
+                <p>I developed a responsive website for LPM in STEM Club, It's a club for Science, Engineering, Mathematics and Technology. The website contains several pages like Home, About, Contact, and more. This project showcases my ability to create visually appealing and user-friendly websites using the technologies mentioned below.</p>
+                <a href="https://lpminstemclub.pages.dev/" target="_blank">View Live Website ➜</a>
+                <div></div>
+                <p>Technologies used: HTML, CSS, JavaScript</p>
 
+            </div>
+            <div class="project-card animate-fadeInUp">
+                <h3>A Full HTML & CSS Course For beginners</h3>
+                <p>A complete course made by me for beginners to learn web development. It includes HTML, CSS, JavaScript, and a project to create a responsive website.</p>
+                <a href="https://drive.google.com/uc?export=download&id=1aQvB5nSR0SBEwsTU_lX01FOw5rNeXJhg" target="_blank                ">Download The Full course ➜</a>
+                <p>Technologies used: HTML, CSS, JavaScript</p>
+            </div>
+            <div class="project-card animate-fadeInUp">
+                <h3>Full-Stack Development Book for Experts</h3>
+                <p>A comprehensive book for web developers to learn the fundamentals of full-stack development. It covers HTML, CSS, JavaScript,etc...</p></p>
+                <a href="https://drive.google.com/uc?export=download&id=1kmWBIIJXGzGh_TxdDEvktpByZSaq1Myf" target="_blank                ">Download The Book ➜</a>
+                <p>Technologies used: Many</p>
+            </div>
+            <div class="project-card animate-fadeInUp">
+                <h3>Expert Comptable Site</h3>
+                <p>I developed a comprehensive website for expert comptables, featuring advanced tools for managing client information and a resource center with downloadable materials for accounting cabinets. This project showcases my ability to create practical, user-friendly solutions for specific industry needs.</p>
+                <p>Technologies used: HTML, CSS, JavaScript, Node.js, Express.js, MongoDB</p>
+            </div>
 
-                    </div>
-        <div>   
-            <h1 id="custom">.................................................</h1>
-        </div>
-        <div class="app-box">
-            <p>Join The ADPS Discord Server :</p>
-            <a href="https://discord.gg/ZPHmEDbK" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/3670/3670157.png" width="50" alt="Join Our Discord">
-            </a>  
-            <p>Click The Button Below To Join The ADPS  As A Cadet:</p>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdcSKi8pWu9zXh3K3yY_g3kMM2dvAFfmi1O4PmJvCEZFChzkA/viewform"><button>Arizona Department of Public Safety Application</button></a>
+            <div class="project-card animate-fadeInUp">
+                <h3>Contact Management System</h3>
+                <p>A web application that allows users to add, delete, and update contact information using a database backend. This project demonstrates CRUD operations and database integration.</p>
+                <ul>
+                    <li>Add new contacts with details like name, phone, email, etc.</li>
+                    <li>View a list of all contacts</li>
+                    <li>Update existing contact information</li>
+                    <li>Delete contacts from the database</li>
+                    <li>Responsive design for mobile and desktop use</li>
+                </ul>
+                <p>Technologies used: HTML, CSS, JavaScript, Node.js, Express, MongoDB & PGAdmin</p>
+            </div>
 
+        </section>
 
+        <section id="contact" class="container">
+            <h2>Get in Touch 📱</h2>
+            <div class="contact-info">
+                <a href="https://www.facebook.com/TSSEJED/" target="_blank" rel="noopener"><i class="fab fa-facebook"></i> Facebook</a>
+                <a href="https://www.instagram.com/http.sejed.official/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i> Instagram</a>
+                <a href="https://wa.me/21694155000" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                </div>
+           
+        </section>
+    </main>
 
-                    </div>
-        <div>  
-        <div>   
-            <h1 id="custom">.................................................</h1>
-        </div>
-        <div class="app-box">
-            <p>Join The Federal Bureau of Investigation Discord Server</p>
-            <a href="https://discord.gg/pWQ6NgR2" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/3670/3670157.png" width="50" alt="Join Our Discord">
-            </a>  
-            <p>Click The Button Below To Join FBI  As A Cadet (FBI):</p>
-            <a href="coming-soon.html"><button>Federal Bureau of Investigation Application</button></a>
+    <footer>
+        <p>&copy; 2025 Sejed TRABELSSI. All rights reserved.</p>
+    </footer>
 
+    <script src="script.js"></script>
 
+<script>
+const API_BASE_URL = 'http://localhost:9999';
 
-                    </div>
-    </section>
-    </div>
+document.getElementById("contactform").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const objetdata = {
+        nom: document.getElementById("firstName").value,
+        prenom: document.getElementById("lastName").value,
+        phone_nummber: document.getElementById("phone").value,
+        email: document.getElementById("email").value,
+    };
+
+    try {
+        const response = await fetch('http://localhost:9999/contact/addcontact', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(objetdata)
+        });
+
+        const result = await response.json();
+        console.log("Response:", result);
+
+        if (!response.ok) {
+            throw new Error(result.message || 'Failed to add contact');
+        }
+
+        alert('Contact added successfully!');
+        document.getElementById("contactform").reset();
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Failed to add contact: ' + error.message);
+    }
+});
+</script>
 </body>
-
 </html>
