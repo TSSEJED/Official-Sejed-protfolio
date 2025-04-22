@@ -1,33 +1,227 @@
-@media (max-width: 480px) {
-    body {
-        padding: 1rem;
+/* Tablet Styles */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 1.5rem;
+    }
+
+    .hero {
+        min-height: 80vh;
+    }
+
+    .hero-content {
+        max-width: 600px;
+    }
+
+    .lead {
+        font-size: 1.125rem;
+    }
+
+    .section-header {
+        margin-bottom: 3rem;
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .project-card {
+        padding: 1.5rem;
+    }
+}
+
+/* Mobile Landscape */
+@media (max-width: 768px) {
+    .nav ul {
+        gap: 1.5rem;
+    }
+
+    .hero {
+        padding: 3rem 0;
+        min-height: auto;
     }
 
     h1 {
-        font-size: 2.5rem;
+        font-size: clamp(2rem, 3.5vw, 2.5rem);
     }
 
-    h2 {
-        font-size: 1.8rem;
+    .lead {
+        font-size: 1rem;
+        margin: 1rem 0 1.5rem;
+    }
+
+    .cta-group {
+        flex-direction: column;
+        gap: 1rem;
+        max-width: 300px;
+        margin: 2rem auto 0;
     }
 
     .btn {
-        padding: 0.5rem 1rem;
-        font-size: 0.8rem;
+        width: 100%;
+        justify-content: center;
     }
 
-    .skill-card, .project-card {
-        padding: 1rem;
+    section {
+        padding: 4rem 0;
     }
 
-    .contact-info a {
-        padding: 0.5rem 1rem;
+    .section-header {
+        margin-bottom: 2.5rem;
+    }
+
+    .section-description {
+        font-size: 1rem;
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 1rem;
+    }
+
+    .project-card {
+        padding: 1.25rem;
+    }
+
+    .project-card h3 {
+        font-size: 1.25rem;
+    }
+
+    .contact-info {
+        gap: 1rem;
+    }
+
+    .contact-link {
+        padding: 0.875rem 1.5rem;
         font-size: 0.9rem;
     }
 }
 
+/* Mobile Portrait */
 @media (max-width: 480px) {
-    #myskills > div {
-        width: calc(0% - 0.5rem);
+    .nav {
+        padding: 1rem 0;
+    }
+
+    .nav ul {
+        gap: 1rem;
+        font-size: 0.875rem;
+    }
+
+    .hero {
+        padding: 2rem 0;
+    }
+
+    h1 {
+        font-size: clamp(1.75rem, 3vw, 2rem);
+    }
+
+    .lead {
+        font-size: 0.9375rem;
+        line-height: 1.6;
+    }
+
+    .section-header h2 {
+        font-size: 1.75rem;
+    }
+
+    .section-description {
+        font-size: 0.9375rem;
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        margin-top: 1.5rem;
+    }
+
+    .skill-card {
+        padding: 1.25rem;
+    }
+
+    .project-card {
+        padding: 1.25rem;
+    }
+
+    .project-tech {
+        gap: 0.375rem;
+    }
+
+    .project-tech span {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.5rem;
+    }
+
+    .contact-info {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .contact-link {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Very Small Screens */
+@media (max-width: 320px) {
+    .container {
+        padding: 0 1rem;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .section-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Landscape Mode Fixes */
+@media (max-height: 480px) and (orientation: landscape) {
+    .hero {
+        min-height: auto;
+        padding: 2rem 0;
+    }
+
+    .cta-group {
+        flex-direction: row;
+        max-width: none;
+    }
+
+    .btn {
+        width: auto;
+    }
+
+    section {
+        padding: 3rem 0;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: #0f172a;
+        --text-color: #e2e8f0;
+        --heading-color: #f8fafc;
+        --card-background: #1e293b;
+        --border-color: #334155;
+    }
+
+    .hero,
+    .section-contact {
+        background: linear-gradient(135deg, rgba(37,99,235,0.05) 0%, rgba(14,165,233,0.05) 100%);
+    }
+
+    .project-tech span {
+        background: rgba(37,99,235,0.15);
+    }
+
+    .highlight::after {
+        background-color: rgba(37,99,235,0.3);
     }
 }

@@ -3,157 +3,405 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sejed TRABELSSI | official Website</title>
+    <title>Sejed TRABELSSI - Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="mobile.css">
-    <link rel="icon" href="pngwing.com.png" type="image/png">
-    
-    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
-    
-    <style>
-.notification {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    padding: 15px 20px;
-    border-radius: 4px;
-    color: white;
-    font-weight: bold;
-    opacity: 0;
-    transform: translateY(-20px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    z-index: 1000;
-    max-width: 300px;
-    word-wrap: break-word;
-}
-
-.notification.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.notification.success {
-    background-color: #2ecc71;
-}
-
-.notification.error {
-    background-color: #e74c3c;
-}
-</style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
+    <div class="scroll-progress"></div>
+    <nav class="nav">
+        <div class="container">
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <main>
-        <section id="about" class="container" data-parallax-speed="0.3">
-            <h1 class="animate-fadeInUp">Hello, I'm Sejed TRABELSSI 👋</h1>
-            <p class="animate-fadeInUp">I'm a passionate developer 💻 currently studying for more than 5 years (5+ experience). With a strong foundation in various programming languages and technologies, I'm dedicated to expanding my knowledge in the tech industry and creating innovative solutions. 🚀</p>
-            <a href="#contact" class="btn animate-fadeInUp">Get in Touch 📬</a>
-        </section>
-
-        <section id="skills" class="container">
-            <h2>My Skills 🛠️</h2>
-            <div class="skills-grid" id="skills-grid">
-            </div>
-        </section>
-
-        <section id="projects" class="container">
-            <h2>My Projects 🏗️</h2>
-            <div class="project-card animate-fadeInUp">   
-                <h3>LPM IN STEM CLUB's WEBSITE</h3>
-                <p>I developed a responsive website for LPM in STEM Club, It's a club for Science, Engineering, Mathematics and Technology. The website contains several pages like Home, About, Contact, and more. This project showcases my ability to create visually appealing and user-friendly websites using the technologies mentioned below.</p>
-                <a href="https://lpminstemclub.pages.dev/" target="_blank">View Live Website ➜</a>
-                <div></div>
-                <p>Technologies used: HTML, CSS, JavaScript</p>
-
-            </div>
-            <div class="project-card animate-fadeInUp">   
-                <h3>Arizona State Roleplay | ASRP</h3>
-                <p>I developed a responsive website for ASRP, It's a private <a href="https://www.roblox.com/games/2534724415/Emergency-Response-Liberty-County">ERLC</a> Server. The website contains several pages like Home & Applications Pages. This project showcases my ability to create visually appealing and user-friendly websites using the technologies mentioned below.</p>
-                <a href="https://arizona-state-rp.pages.dev/" target="_blank">View Live Website ➜</a>
-                <div></div>
-                <p>Technologies used: HTML, CSS, JavaScript</p>
-
-            </div>
- 
-            <div class="project-card animate-fadeInUp">
-                <h3>Full-Stack Development Book for Experts</h3>
-                <p>A comprehensive book for web developers to learn the fundamentals of full-stack development. It covers HTML, CSS, JavaScript,etc...</p></p>
-                <a href="https://drive.google.com/uc?export=download&id=1kmWBIIJXGzGh_TxdDEvktpByZSaq1Myf" target="_blank                ">Download The Book ➜</a>
-                <p>Technologies used: Many</p>
-            </div>
-            <div class="project-card animate-fadeInUp">
-                <h3>Expert Comptable Site</h3>
-                <p>I developed a comprehensive website for expert comptables, featuring advanced tools for managing client information and a resource center with downloadable materials for accounting cabinets. This project showcases my ability to create practical, user-friendly solutions for specific industry needs.</p>
-                <p>Technologies used: HTML, CSS, JavaScript, Node.js, Express.js, MongoDB</p>
-            </div>
-
-            <div class="project-card animate-fadeInUp">
-                <h3>Contact Management System</h3>
-                <p>A web application that allows users to add, delete, and update contact information using a database backend. This project demonstrates CRUD operations and database integration.</p>
-                <ul>
-                    <li>Add new contacts with details like name, phone, email, etc.</li>
-                    <li>View a list of all contacts</li>
-                    <li>Update existing contact information</li>
-                    <li>Delete contacts from the database</li>
-                    <li>Responsive design for mobile and desktop use</li>
-                </ul>
-                <p>Technologies used: HTML, CSS, JavaScript, Node.js, Express, MongoDB & PGAdmin</p>
-            </div>
-
-        </section>
-
-        <section id="contact" class="container">
-            <h2>Get in Touch 📱</h2>
-            <div class="contact-info">
-                <a href="https://www.facebook.com/TSSEJED/" target="_blank" rel="noopener"><i class="fab fa-facebook"></i> Facebook</a>
-                <a href="https://www.instagram.com/http.sejed.official/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i> Instagram</a>
-                <a href="https://wa.me/21694155000" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        <section id="about" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="animate-fadeInUp">Hello, I'm <span class="gradient-text">Sejed TRABELSSI</span> 👋</h1>
+                    <p class="lead animate-fadeInUp">I'm a passionate developer 💻 with over 5 years of experience crafting beautiful and functional web experiences.</p>
+                    <div class="cta-group">
+                        <a href="#contact" class="btn btn-primary">Get in Touch <i class="fas fa-arrow-right"></i></a>
+                        <a href="#projects" class="btn btn-secondary">View Projects <i class="fas fa-code"></i></a>
+                    </div>
                 </div>
-           
+            </div>
+        </section>
+
+        <section id="skills">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="gradient-text">Skills & Expertise</h2>
+                    <p class="section-description">A collection of technologies and tools I work with</p>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <i class="fab fa-html5 fa-3x"></i>
+                        <h3>HTML5</h3>
+                        <p>Semantic markup and modern web standards</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fab fa-css3-alt fa-3x"></i>
+                        <h3>CSS3</h3>
+                        <p>Responsive design and animations</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fab fa-js fa-3x"></i>
+                        <h3>JavaScript</h3>
+                        <p>ES6+, DOM manipulation, and modern frameworks</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fab fa-react fa-3x"></i>
+                        <h3>React</h3>
+                        <p>Component-based architecture and state management</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fab fa-node-js fa-3x"></i>
+                        <h3>Express.js</h3>
+                        <p>RESTful APIs and server-side development</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fas fa-code fa-3x"></i>
+                        <h3>TypeScript</h3>
+                        <p>Type-safe JavaScript development</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fab fa-react fa-3x"></i>
+                        <h3>Next.js</h3>
+                        <p>Server-side rendering and static generation</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fas fa-database fa-3x"></i>
+                        <h3>Databases</h3>
+                        <p>MongoDB, MySQL, PostgreSQL</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="gradient-text">Featured Projects</h2>
+                    <p class="section-description">Some of my recent work and contributions</p>
+                </div>
+                <div class="projects-grid">
+                    <article class="project-card">
+                        <div class="project-content">
+                            <h3>LPM IN STEM CLUB's WEBSITE</h3>
+                            <p>A responsive website for LPM in STEM Club, dedicated to Science, Engineering, Mathematics, and Technology. Features multiple pages including Home, About, and Contact sections.</p>
+                            <div class="project-tech">
+                                <span>HTML5</span>
+                                <span>CSS3</span>
+                                <span>JavaScript</span>
+                            </div>
+                            <ul class="project-features">
+                                <li>Responsive design</li>
+                                <li>Modern UI/UX</li>
+                                <li>Interactive elements</li>
+                            </ul>
+                            <a href="https://lpminstemclub.pages.dev/" class="project-link" target="_blank">
+                                View Live Website <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-content">
+                            <h3>Arizona State Roleplay | ASRP</h3>
+                            <p>Developed a dynamic website for ASRP, a private ERLC Server. The site includes comprehensive Home & Applications pages, showcasing modern web development practices.</p>
+                            <div class="project-tech">
+                                <span>HTML5</span>
+                                <span>CSS3</span>
+                                <span>JavaScript</span>
+                            </div>
+                            <ul class="project-features">
+                                <li>Dynamic content</li>
+                                <li>User authentication</li>
+                                <li>Application system</li>
+                            </ul>
+                            <a href="https://arizona-state-rp.pages.dev/" class="project-link" target="_blank">
+                                View Live Website <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-content">
+                            <h3>Full-Stack Development Book</h3>
+                            <p>A comprehensive guide for web developers covering the fundamentals of full-stack development, including detailed chapters on HTML, CSS, JavaScript, and more.</p>
+                            <div class="project-tech">
+                                <span>Technical Writing</span>
+                                <span>Web Development</span>
+                                <span>Programming</span>
+                            </div>
+                            <ul class="project-features">
+                                <li>Comprehensive guide</li>
+                                <li>Practical examples</li>
+                                <li>Best practices</li>
+                            </ul>
+                            <a href="https://drive.google.com/uc?export=download&id=1kmWBIIJXGzGh_TxdDEvktpByZSaq1Myf" class="project-link" target="_blank">
+                                Download Book <i class="fas fa-download"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-content">
+                            <h3>Expert Comptable Platform</h3>
+                            <p>A comprehensive platform for accounting professionals featuring advanced client management tools and a resource center.</p>
+                            <div class="project-tech">
+                                <span>Node.js</span>
+                                <span>Express</span>
+                                <span>MongoDB</span>
+                            </div>
+                            <ul class="project-features">
+                                <li>Client management</li>
+                                <li>Resource center</li>
+                                <li>Advanced analytics</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-content">
+                            <h3>Contact Management System</h3>
+                            <p>A full-featured web application for managing contact information with complete CRUD operations and database integration.</p>
+                            <div class="project-tech">
+                                <span>React</span>
+                                <span>Node.js</span>
+                                <span>MongoDB</span>
+                            </div>
+                            <ul class="project-features">
+                                <li>CRUD operations</li>
+                                <li>Real-time updates</li>
+                                <li>Search functionality</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section-contact">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="gradient-text">Let's Connect 📱</h2>
+                    <p class="section-description">Feel free to reach out through any of these platforms</p>
+                </div>
+
+        
+
+                <div class="contact-info">
+                    <a href="https://www.facebook.com/TSSEJED/" target="_blank" rel="noopener" class="btn btn-primary">
+                        <i class="fab fa-facebook"></i>
+                        <span>Facebook</span>
+                    </a>
+                    <a href="https://www.instagram.com/http.sejed.official/" target="_blank" rel="noopener" class="btn btn-primary">
+                        <i class="fab fa-instagram"></i>
+                        <span>Instagram</span>
+                    </a>
+                    <a href="https://wa.me/21694155000" target="_blank" rel="noopener" class="btn btn-primary">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>WhatsApp</span>
+                    </a>
+                </div>
+            </div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2025 Sejed TRABELSSI. All rights reserved.</p>
+        <div class="container">
+            <p>&copy; 2025 Sejed TRABELSSI. All rights reserved.</p>
+        </div>
     </footer>
 
-    <script src="script.js"></script>
+    <div class="loading-animation"></div>
+    <div class="custom-context-menu">
+        <div class="custom-context-menu-item" data-href="#about">
+            <i class="fas fa-user"></i> About
+        </div>
+        <div class="custom-context-menu-item" data-href="#skills">
+            <i class="fas fa-code"></i> Skills
+        </div>
+        <div class="custom-context-menu-item" data-href="#projects">
+            <i class="fas fa-project-diagram"></i> Projects
+        </div>
+        <div class="custom-context-menu-item" data-href="#contact">
+            <i class="fas fa-envelope"></i> Contact
+        </div>
+    </div>
 
-<script>
-const API_BASE_URL = 'http://localhost:9999';
+    <div class="notification"></div>
 
-document.getElementById("contactform").addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const objetdata = {
-        nom: document.getElementById("firstName").value,
-        prenom: document.getElementById("lastName").value,
-        phone_nummber: document.getElementById("phone").value,
-        email: document.getElementById("email").value,
-    };
-
-    try {
-        const response = await fetch('http://localhost:9999/contact/addcontact', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(objetdata)
+    <script>
+        // Disable right click with custom menu
+        document.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            const menu = document.querySelector('.custom-context-menu');
+            menu.style.top = `${e.clientY}px`;
+            menu.style.left = `${e.clientX}px`;
+            menu.classList.add('show');
         });
 
-        const result = await response.json();
-        console.log("Response:", result);
+        // Handle custom context menu clicks
+        document.querySelectorAll('.custom-context-menu-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const href = this.getAttribute('data-href');
+                document.querySelector(href).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                document.querySelector('.custom-context-menu').classList.remove('show');
+            });
+        });
 
-        if (!response.ok) {
-            throw new Error(result.message || 'Failed to add contact');
+        // Hide custom context menu on click outside
+        document.addEventListener('click', () => {
+            document.querySelector('.custom-context-menu').classList.remove('show');
+        });
+
+        // Disable text selection
+        document.body.classList.add('context-menu-disabled');
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Scroll progress indicator
+        window.addEventListener('scroll', () => {
+            const totalScroll = document.documentElement.scrollTop;
+            const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            document.querySelector('.scroll-progress').style.transform = `scaleX(${totalScroll / windowHeight})`;
+        });
+
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        // Observe all animated elements
+        document.querySelectorAll('.skill-card, .project-card, .section-header').forEach(el => {
+            observer.observe(el);
+            el.classList.add('animate-on-scroll');
+        });
+
+        // Add loading animation
+        window.addEventListener('load', () => {
+            document.querySelector('.loading-animation').style.display = 'none';
+            document.body.classList.add('loaded');
+        });
+
+        // Disable keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (
+                (e.ctrlKey && e.key === 'u') || // View source
+                (e.ctrlKey && e.key === 's') || // Save page
+                (e.ctrlKey && e.key === 'p') || // Print
+                (e.ctrlKey && e.shiftKey && e.key === 'i') || // Dev tools
+                (e.ctrlKey && e.shiftKey && e.key === 'c') || // Dev tools
+                (e.ctrlKey && e.shiftKey && e.key === 'j') // Dev tools
+            ) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        // Disable drag and drop
+        document.addEventListener('dragstart', (e) => {
+            e.preventDefault();
+        });
+
+        // Disable copy
+        document.addEventListener('copy', (e) => {
+            e.preventDefault();
+        });
+
+        // Add hover effect to cards
+        document.querySelectorAll('.skill-card, .project-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const angleX = (y - centerY) / 20;
+                const angleY = (centerX - x) / 20;
+                
+                card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) scale3d(1.02, 1.02, 1.02)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+            });
+        });
+
+        const API_BASE_URL = 'http://localhost:9999';
+
+        document.getElementById("contactform").addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const objetdata = {
+                nom: document.getElementById("firstName").value,
+                prenom: document.getElementById("lastName").value,
+                phone_nummber: document.getElementById("phone").value,
+                email: document.getElementById("email").value,
+            };
+
+            try {
+                const response = await fetch('http://localhost:9999/contact/addcontact', {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(objetdata)
+                });
+
+                const result = await response.json();
+                console.log("Response:", result);
+
+                if (!response.ok) {
+                    throw new Error(result.message || 'Failed to add contact');
+                }
+
+                showNotification('Contact added successfully!', 'success');
+                document.getElementById("contactform").reset();
+            } catch (error) {
+                console.error('Error:', error);
+                showNotification('Failed to add contact: ' + error.message, 'error');
+            }
+        });
+
+        function showNotification(message, type) {
+            const notification = document.querySelector('.notification');
+            notification.textContent = message;
+            notification.className = `notification ${type} show`;
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
         }
-
-        alert('Contact added successfully!');
-        document.getElementById("contactform").reset();
-    } catch (error) {
-        console.error('Error:', error);
-        alert('Failed to add contact: ' + error.message);
-    }
-});
-</script>
+    </script>
 </body>
 </html>
