@@ -207,6 +207,46 @@
                             </ul>
                         </div>
                     </article>
+                    
+                    <article class="project-card">
+                        <div class="project-content">
+                            <h3>FSRP Staff Portal</h3>
+                            <p>Developed a dedicated portal for Florida State Roleplay staff members with administrative tools, user management, and reporting dashboards.</p>
+                            <div class="project-tech">
+                                <span>HTML5</span>
+                                <span>CSS3</span>
+                                <span>JavaScript</span>
+                            </div>
+                            <ul class="project-features">
+                                <li>Admin dashboard</li>
+                                <li>User management</li>
+                                <li>Reporting tools</li>
+                            </ul>
+                            <a href="javascript:void(0)" class="project-link" onclick="showCodeAccessPopup('fsrp1')">
+                                View Staff Portal <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </article>
+                    
+                    <article class="project-card">
+                        <div class="project-content">
+                            <h3>FSRP Trainer Portal</h3>
+                            <p>Created a specialized portal for Florida State Roleplay trainers with training materials, assessment tools, and progress tracking features.</p>
+                            <div class="project-tech">
+                                <span>HTML5</span>
+                                <span>CSS3</span>
+                                <span>JavaScript</span>
+                            </div>
+                            <ul class="project-features">
+                                <li>Training modules</li>
+                                <li>Assessment tools</li>
+                                <li>Progress tracking</li>
+                            </ul>
+                            <a href="javascript:void(0)" class="project-link" onclick="showCodeAccessPopup('fsrp2')">
+                                View Trainer Portal <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </article>
                 </div>
             </div>
         </section>
@@ -261,6 +301,20 @@
     </div>
 
     <div class="notification"></div>
+    
+    <!-- Code Access Popup -->
+    <div class="code-access-popup" id="codeAccessPopup">
+        <div class="code-access-content">
+            <h3>Access Required</h3>
+            <p>Please enter the access code to view this content:</p>
+            <input type="password" id="accessCodeInput" placeholder="Enter access code">
+            <div class="code-access-buttons">
+                <button id="submitAccessCode" class="btn btn-primary">Submit</button>
+                <button id="cancelAccessCode" class="btn btn-secondary">Cancel</button>
+            </div>
+            <div id="accessError" class="access-error"></div>
+        </div>
+    </div>
 
     <script>
         // Disable right click with custom menu
@@ -379,39 +433,43 @@
 
         const API_BASE_URL = 'http://localhost:9999';
 
-        document.getElementById("contactform").addEventListener("submit", async (e) => {
-            e.preventDefault();
+        // Check if contactform exists before adding event listener
+        const contactForm = document.getElementById("contactform");
+        if (contactForm) {
+            contactForm.addEventListener("submit", async (e) => {
+                e.preventDefault();
 
-            const objetdata = {
-                nom: document.getElementById("firstName").value,
-                prenom: document.getElementById("lastName").value,
-                phone_nummber: document.getElementById("phone").value,
-                email: document.getElementById("email").value,
-            };
+                const objetdata = {
+                    nom: document.getElementById("firstName").value,
+                    prenom: document.getElementById("lastName").value,
+                    phone_nummber: document.getElementById("phone").value,
+                    email: document.getElementById("email").value,
+                };
 
-            try {
-                const response = await fetch('http://localhost:9999/contact/addcontact', {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(objetdata)
-                });
+                try {
+                    const response = await fetch('http://localhost:9999/contact/addcontact', {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(objetdata)
+                    });
 
-                const result = await response.json();
-                console.log("Response:", result);
+                    const result = await response.json();
+                    console.log("Response:", result);
 
-                if (!response.ok) {
-                    throw new Error(result.message || 'Failed to add contact');
+                    if (!response.ok) {
+                        throw new Error(result.message || 'Failed to add contact');
+                    }
+
+                    showNotification('Contact added successfully!', 'success');
+                    document.getElementById("contactform").reset();
+                } catch (error) {
+                    console.error('Error:', error);
+                    showNotification('Failed to add contact: ' + error.message, 'error');
                 }
-
-                showNotification('Contact added successfully!', 'success');
-                document.getElementById("contactform").reset();
-            } catch (error) {
-                console.error('Error:', error);
-                showNotification('Failed to add contact: ' + error.message, 'error');
-            }
-        });
+            });
+        }
 
         function showNotification(message, type) {
             const notification = document.querySelector('.notification');
@@ -422,6 +480,86 @@
                 notification.classList.remove('show');
             }, 3000);
         }
+
+        // Code Access Popup Functionality
+        // Make sure all elements exist before initializing the code access functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize code access popup elements
+            const codeAccessPopup = document.getElementById('codeAccessPopup');
+            const accessCodeInput = document.getElementById('accessCodeInput');
+            const submitAccessCode = document.getElementById('submitAccessCode');
+            const cancelAccessCode = document.getElementById('cancelAccessCode');
+            const accessError = document.getElementById('accessError');
+            
+            if (!codeAccessPopup || !accessCodeInput || !submitAccessCode || !cancelAccessCode || !accessError) {
+                console.error('Code access popup elements not found');
+                return;
+            }
+            
+            // Store project information with direct access codes
+            let currentProjectTarget = null;
+            
+            // Make showCodeAccessPopup available globally
+            window.showCodeAccessPopup = function(projectId) {
+                currentProjectTarget = projectId;
+                codeAccessPopup.classList.add('show');
+                accessCodeInput.focus();
+                accessError.textContent = '';
+                console.log('Showing popup for project:', projectId);
+            };
+            
+            // Function to hide the code access popup
+            function hideCodeAccessPopup() {
+                codeAccessPopup.classList.remove('show');
+                accessCodeInput.value = '';
+                accessError.textContent = '';
+                currentProjectTarget = null;
+            }
+            
+            // Handle submit button click
+            submitAccessCode.addEventListener('click', () => {
+                const enteredCode = accessCodeInput.value.trim();
+                console.log('Checking code for project:', currentProjectTarget);
+                
+                // Simple direct comparison with hardcoded values
+                if (currentProjectTarget === 'fsrp1' && enteredCode === '123456') {
+                    console.log('Valid code for Staff Portal');
+                    hideCodeAccessPopup();
+                    window.open('https://fsrp-staff-portal.pages.dev/', '_blank');
+                } 
+                else if (currentProjectTarget === 'fsrp2' && enteredCode === '654321') {
+                    console.log('Valid code for Trainer Portal');
+                    hideCodeAccessPopup();
+                    window.open('https://fsrp-trainer-portal.pages.dev/', '_blank');
+                } 
+                else {
+                    console.log('Invalid code entered');
+                    accessError.textContent = 'Invalid access code. Please try again.';
+                    accessCodeInput.value = '';
+                }
+            });
+            
+            // Handle cancel button click
+            cancelAccessCode.addEventListener('click', hideCodeAccessPopup);
+            
+            // Close popup when clicking outside
+            codeAccessPopup.addEventListener('click', (e) => {
+                if (e.target === codeAccessPopup) {
+                    hideCodeAccessPopup();
+                }
+            });
+            
+            // Handle Enter key press in the input field
+            accessCodeInput.addEventListener('keyup', (e) => {
+                if (e.key === 'Enter') {
+                    submitAccessCode.click();
+                } else if (e.key === 'Escape') {
+                    hideCodeAccessPopup();
+                }
+            });
+            
+            console.log('Code access popup functionality initialized');
+        });
     </script>
 </body>
 </html>
