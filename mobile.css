@@ -483,27 +483,3 @@
         grid-template-columns: repeat(2, 1fr);
     }
 }
-
-/* Dark Mode Support */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --background-color: #0f172a;
-        --text-color: #e2e8f0;
-        --heading-color: #f8fafc;
-        --card-background: #1e293b;
-        --border-color: #334155;
-    }
-
-    .hero,
-    .section-contact {
-        background: linear-gradient(135deg, rgba(37,99,235,0.05) 0%, rgba(14,165,233,0.05) 100%);
-    }
-
-    .project-tech span {
-        background: rgba(37,99,235,0.15);
-    }
-
-    .highlight::after {
-        background-color: rgba(37,99,235,0.3);
-    }
-}
