@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Projects - Portfolio</title>
+    <meta name="description" content="Check out my latest web development projects and case studies">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm fixed w-full z-10">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="text-xl font-bold text-indigo-600">MyPortfolio</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-600 hover:text-indigo-600 transition">Home</a>
+                    <a href="about.html" class="text-gray-600 hover:text-indigo-600 transition">About</a>
+                    <a href="projects.html" class="text-indigo-600 font-medium">Projects</a>
+                    <a href="contact.html" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition">Contact</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button class="mobile-menu-button">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div class="mobile-menu hidden md:hidden bg-white shadow-lg">
+            <a href="index.html" class="block px-4 py-2 text-gray-600 hover:bg-gray-100">Home</a>
+            <a href="about.html" class="block px-4 py-2 text-gray-600 hover:bg-gray-100">About</a>
+            <a href="projects.html" class="block px-4 py-2 text-indigo-600 font-medium">Projects</a>
+            <a href="contact.html" class="block px-4 py-2 text-gray-600 hover:bg-gray-100">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Projects Section -->
+    <section class="pt-32 pb-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h1 class="text-3xl md:text-4xl font-bold mb-12 text-center">My <span class="text-indigo-600">Projects</span></h1>
+            
+            <!-- Project Filters -->
+            <div class="flex flex-wrap justify-center gap-4 mb-8">
+                <button class="px-4 py-2 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-medium hover:opacity-90 transition-all duration-300 filter-btn active" data-filter="all">All</button>
+                <button class="px-4 py-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 font-medium hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-300 filter-btn" data-filter="web">Web</button>
+                <button class="px-4 py-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 font-medium hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-300 filter-btn" data-filter="bots">Bots</button>
+                <button class="px-4 py-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 font-medium hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-300 filter-btn" data-filter="tools">Tools</button>
+                <button class="px-4 py-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 font-medium hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-300 filter-btn" data-filter="restricted">Restricted Access</button>
+            </div>
+            
+            <!-- Project Items -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 project-container">
+                <!-- Portfolio v1 -->
+                <div class="project-item rounded-xl overflow-hidden shadow-lg bg-gradient-to-br from-blue-500 to-cyan-600 text-white" data-category="web">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <i class="fas fa-laptop-code text-3xl"></i>
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-xs font-semibold">Portfolio</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Portfolio v1</h3>
+                        <p class="text-sm text-blue-100 mb-4">First version of my personal portfolio website showcasing my projects and skills.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-white/20 rounded-full text-xs">HTML</span>
+                            <span class="px-2 py-1 bg-white/20 rounded-full text-xs">CSS</span>
+                            <span class="px-2 py-1 bg-white/20 rounded-full text-xs">JavaScript</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-blue-200">Public Access</span>
+                            <a href="https://v1-sejed-protfolio.pages.dev/" target="_blank" class="text-sm font-medium hover:underline flex items-center">
+                                View Live <i class="fas fa-external-link-alt ml-1 text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LPM IN STEM'S CLUB -->
+                <div class="project-item rounded-xl overflow-hidden shadow-lg bg-gradient-to-br from-purple-500 to-indigo-600 text-white" data-category="web">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <i class="fas fa-graduation-cap text-3xl"></i>
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-xs font-semibold">Education</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">LPM IN STEM'S CLUB</h3>
+                        <p class="text-sm text-purple-100 mb-4">Official website for the STEM club at LPM Institute.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-white/20 rounded-full text-xs">Web</span>
+                            <span class="px-2 py-1 bg-white/20 rounded-full text-xs">Education</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-purple-200">Public Access</span>
+                            <a href="https://lpminstemclub.pages.dev" target="_blank" class="text-sm font-medium hover:underline flex items-center">
+                                Visit Site <i class="fas fa-external-link-alt ml-1 text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Full Stack Development Book -->
+                <div class="project-item rounded-xl overflow-hidden shadow-lg bg-gradient-to-br from-green-500 to-teal-600 text-white" data-category="tools">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <i class="fas fa-book text-3xl"></i>
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-xs font-semibold">E-book</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Full Stack Development</h3>
+                        <p class="text-sm text-green-100 mb-4">Comprehensive guide to full stack web development.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-white/20 rounded-full text-xs">PDF</span>
+                            <span class="px-2 py-1 bg-white/20 rounded-full text-xs">Guide</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-green-200">Free Download</span>
+                            <a href="https://drive.google.com/uc?export=download&id=1kmWBIIJXGzGh_TxdDEvktpByZSaq1Myf" target="_blank" class="text-sm font-medium hover:underline flex items-center">
+                                Download <i class="fas fa-download ml-1 text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Arizona State Roleplay -->
+                <div class="project-item rounded-xl overflow-hidden shadow-lg bg-gradient-to-br from-red-500 to-pink-600 text-white" data-category="web">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <i class="fas fa-gamepad text-3xl"></i>
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-xs font-semibold">Gaming</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Arizona State Roleplay</h3>
+                        <p class="text-sm text-red-100 mb-4">Roleplaying platform for Arizona State community.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-white/20 rounded-full text-xs">Web</span>
+                            <span class="px-2 py-1 bg-white/20 rounded-full text-xs">Gaming</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-red-200">Public Access</span>
+                            <a href="https://arizona-state-rp.pages.dev" target="_blank" class="text-sm font-medium hover:underline flex items-center">
+                                Visit Site <i class="fas fa-external-link-alt ml-1 text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experot Comptable Platform -->
+                <div class="project-item rounded-xl overflow-hidden shadow-lg bg-gradient-to-br from-yellow-500 to-amber-600 text-white" data-category="restricted">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <i class="fas fa-calculator text-3xl"></i>
+                            <div class="flex gap-2">
+                                <span class="px-3 py-1 bg-white/20 rounded-full text-xs font-semibold">Finance</span>
+                                <span class="px-3 py-1 bg-white/20 rounded-full text-xs font-semibold">RA</span>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Experot Comptable</h3>
+                        <p class="text-sm text-yellow-100 mb-4">Accounting platform with financial management tools.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-white/20 rounded-full text-xs">Web App</span>
+                            <span class="px-2 py-1 bg-white/20 rounded-full text-xs">Finance</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-yellow-200"><i class="fas fa-lock mr-1"></i> Restricted Access</span>
+                            <a href="contact.html" class="text-sm font-medium hover:underline flex items-center">
+                                Request Access <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Florida State Roleplay -->
+                <div class="project-item rounded-xl overflow-hidden shadow-lg bg-gradient-to-br from-cyan-500 to-blue-600 text-white" data-category="web">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <i class="fas fa-gamepad text-3xl"></i>
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-xs font-semibold">Gaming</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Florida State Roleplay</h3>
+                        <p class="text-sm text-cyan-100 mb-4">Roleplaying platform for Florida State community.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-white/20 rounded-full text-xs">Web</span>
+                            <span class="px-2 py-1 bg-white/20 rounded-full text-xs">Gaming</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-cyan-200">Public Access</span>
+                            <a href="https://florida-state-roleplay.vercel.app/" target="_blank" class="text-sm font-medium hover:underline flex items-center">
+                                Visit Site <i class="fas fa-external-link-alt ml-1 text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AltForce -->
+                <div class="project-item rounded-xl overflow-hidden shadow-lg bg-gradient-to-br from-indigo-500 to-purple-600 text-white" data-category="web">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <i class="fas fa-shield-alt text-3xl"></i>
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-xs font-semibold">Security</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">AltForce</h3>
+                        <p class="text-sm text-indigo-100 mb-4">Security and management platform.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-white/20 rounded-full text-xs">Web</span>
+                            <span class="px-2 py-1 bg-white/20 rounded-full text-xs">Security</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-indigo-200">Public Access</span>
+                            <a href="https://altforce.pages.dev/" target="_blank" class="text-sm font-medium hover:underline flex items-center">
+                                Visit Site <i class="fas fa-external-link-alt ml-1 text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- QR Code Generator -->
+                <div class="project-item rounded-xl overflow-hidden shadow-lg bg-gradient-to-br from-green-500 to-teal-600 text-white" data-category="tools">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <i class="fas fa-qrcode text-3xl"></i>
+                            <span class="px-3 py-1 bg-white/20 rounded-full text-xs font-semibold">Tool</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">QR Code Generator</h3>
+                        <p class="text-sm text-green-100 mb-4">Generate custom QR codes with various customization options.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-white/20 rounded-full text-xs">JavaScript</span>
+                            <span class="px-2 py-1 bg-white/20 rounded-full text-xs">Web Tool</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-green-200">Web App</span>
+                            <a href="https://qr-gen-54z.pages.dev/" target="_blank" class="text-sm font-medium hover:underline flex items-center">
+                                Try Online <i class="fas fa-external-link-alt ml-1 text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Restricted Access Projects -->
+                <div class="project-item rounded-xl overflow-hidden shadow-lg bg-gradient-to-br from-red-500 to-pink-600 text-white" data-category="restricted">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <i class="fas fa-lock text-3xl"></i>
+                            <div class="flex gap-2">
+                                <span class="px-3 py-1 bg-white/20 rounded-full text-xs font-semibold">Restricted</span>
+                                <span class="px-3 py-1 bg-white/20 rounded-full text-xs font-semibold">RA</span>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Discord Bot</h3>
+                        <p class="text-sm text-red-100 mb-4">Advanced moderation and entertainment bot with custom commands.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-white/20 rounded-full text-xs">Node.js</span>
+                            <span class="px-2 py-1 bg-white/20 rounded-full text-xs">Discord.js</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-red-200"><i class="fas fa-lock mr-1"></i> Restricted Access</span>
+                            <a href="contact.html" class="text-sm font-medium hover:underline flex items-center">
+                                Request Access <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Management System -->
+                <div class="project-item rounded-xl overflow-hidden shadow-lg bg-gradient-to-br from-amber-500 to-orange-600 text-white" data-category="restricted">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <i class="fas fa-address-book text-3xl"></i>
+                            <div class="flex gap-2">
+                                <span class="px-3 py-1 bg-white/20 rounded-full text-xs font-semibold">CRM</span>
+                                <span class="px-3 py-1 bg-white/20 rounded-full text-xs font-semibold">RA</span>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Contact Management System</h3>
+                        <p class="text-sm text-amber-100 mb-4">Comprehensive contact and customer relationship management system.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-white/20 rounded-full text-xs">Web App</span>
+                            <span class="px-2 py-1 bg-white/20 rounded-full text-xs">Database</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-amber-200"><i class="fas fa-lock mr-1"></i> Restricted Access</span>
+                            <a href="contact.html" class="text-sm font-medium hover:underline flex items-center">
+                                Request Access <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Florida State Roleplay Staff Portal -->
+                <div class="project-item rounded-xl overflow-hidden shadow-lg bg-gradient-to-br from-blue-500 to-indigo-600 text-white" data-category="restricted">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <i class="fas fa-user-shield text-3xl"></i>
+                            <div class="flex gap-2">
+                                <span class="px-3 py-1 bg-white/20 rounded-full text-xs font-semibold">Staff</span>
+                                <span class="px-3 py-1 bg-white/20 rounded-full text-xs font-semibold">RA</span>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Florida State Roleplay Staff Portal</h3>
+                        <p class="text-sm text-blue-100 mb-4">Administrative portal for Florida State Roleplay staff members.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-white/20 rounded-full text-xs">Web App</span>
+                            <span class="px-2 py-1 bg-white/20 rounded-full text-xs">Admin</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-blue-200"><i class="fas fa-lock mr-1"></i> Restricted Access</span>
+                            <a href="contact.html" class="text-sm font-medium hover:underline flex items-center">
+                                Staff Only <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Florida State Roleplay Trainer Portal -->
+                <div class="project-item rounded-xl overflow-hidden shadow-lg bg-gradient-to-br from-purple-500 to-pink-600 text-white" data-category="restricted">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <i class="fas fa-chalkboard-teacher text-3xl"></i>
+                            <div class="flex gap-2">
+                                <span class="px-3 py-1 bg-white/20 rounded-full text-xs font-semibold">Training</span>
+                                <span class="px-3 py-1 bg-white/20 rounded-full text-xs font-semibold">RA</span>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Florida State Roleplay Trainer Portal</h3>
+                        <p class="text-sm text-purple-100 mb-4">Training management system for Florida State Roleplay trainers.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-white/20 rounded-full text-xs">Web App</span>
+                            <span class="px-2 py-1 bg-white/20 rounded-full text-xs">Training</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-purple-200"><i class="fas fa-lock mr-1"></i> Restricted Access</span>
+                            <a href="contact.html" class="text-sm font-medium hover:underline flex items-center">
+                                Trainers Only <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contact CTA -->
+            <div class="text-center mt-12">
+                <h3 class="text-2xl font-bold mb-4">Have a project in mind?</h3>
+                <p class="text-gray-600 mb-6 max-w-2xl mx-auto">Let's work together to bring your ideas to life. Get in touch to discuss your project requirements.</p>
+                <a href="contact.html" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-full font-medium hover:shadow-lg transition-all duration-300">
+                    <i class="fas fa-paper-plane mr-2"></i>
+                    Contact Me
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200 py-8">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <div class="flex justify-center space-x-6 mb-6">
+                <a href="https://facebook.com/TSSEJED" target="_blank" class="text-gray-500 hover:text-blue-600 transition-colors">
+                    <i class="fab fa-facebook text-2xl"></i>
+                </a>
+                <a href="https://www.instagram.com/http.sejed.official/" target="_blank" class="text-gray-500 hover:text-pink-600 transition-colors">
+                    <i class="fab fa-instagram text-2xl"></i>
+                </a>
+            </div>
+            <p class="text-gray-500">© 2023 Sejed Trabelsi. All rights reserved.</p>
+            <p class="text-gray-400 text-sm mt-2">
+                <i class="fas fa-phone-alt mr-1"></i> +216 94 155 000
+            </p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

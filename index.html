@@ -3,415 +3,1157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sejed TRABELSSI - Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="mobile.css">
+    <title>My Portfolio | Web Developer & Discord Bot Creator</title>
+    <meta name="description" content="Professional portfolio showcasing my Next.js applications and Discord bot development projects">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="shortcut icon" href="images/pngwing.com.png" type="image/x-icon">
+    <style>
+        /* 3D Card Styles */
+        .project-card {
+            perspective: 1000px;
+            height: 100%;
+        }
+        
+        .project-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        
+        .project-card:hover .project-card-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .project-card-front,
+        .project-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+        
+        .project-card-back {
+            transform: rotateY(180deg);
+        }
+        
+        .tech-tag {
+            display: inline-block;
+            background-color: #f3f4f6;
+            color: #4b5563;
+            padding: 2px 10px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .btn-outline-white {
+            display: inline-block;
+            border: 2px solid white;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline-white:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .btn-white {
+            display: inline-block;
+            background: white;
+            color: #4f46e5;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-white:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Tech Stack Carousel */
+        /* Tech Stack Section */
+        #tech-stack {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .marquee-container {
+            width: 100%;
+            overflow: visible;
+            position: relative;
+            padding: 40px 0;
+        }
+        
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            animation: scroll 60s linear infinite;
+            padding: 20px 0;
+            will-change: transform;
+        }
+        
+        .tech-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 25px;
+            margin: 0 15px;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            min-width: 140px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            perspective: 1000px;
+            transform-style: preserve-3d;
+            will-change: transform, box-shadow;
+        }
+        
+        .tech-item:hover {
+            transform: translateY(-15px) scale(1.05) rotateX(5deg);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+        
+        .tech-icon-wrapper {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            margin-bottom: 20px;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tech-icon-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(249,250,251,0.9) 100%);
+            border-radius: 20px;
+            z-index: -1;
+            transition: all 0.4s ease;
+        }
+        
+        .tech-item:hover .tech-icon-wrapper {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tech-item:hover .tech-icon-wrapper::before {
+            opacity: 0;
+        }
+        
+        .tech-details {
+            text-align: center;
+            width: 100%;
+            transform: translateZ(30px);
+        }
+        
+        .tech-text {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 10px;
+            display: block;
+            opacity: 1;
+            transform: none;
+            position: static;
+            transition: all 0.3s ease;
+        }
+        
+        .skill-bar {
+            width: 100%;
+            height: 6px;
+            background: #e5e7eb;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+        
+        .skill-level {
+            height: 100%;
+            border-radius: 3px;
+            position: relative;
+            transition: width 1s ease-in-out;
+        }
+        
+        .skill-level::after {
+            content: attr(data-level);
+            position: absolute;
+            right: 5px;
+            top: -20px;
+            font-size: 10px;
+            font-weight: 600;
+            color: #6b7280;
+        }
+        
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-100% / 8 * 8)); }
+        }
+        
+        /* Pause animation on hover */
+        .marquee-container:hover .marquee-track {
+            animation-play-state: paused;
+        }
+        
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-100% / 8 * 8)); }
+        }
+        
+        /* Pause animation on hover */
+        .marquee-container:hover .marquee-track {
+            animation-play-state: paused;
+        }
+        
+        /* Tooltip styles */
+        [data-tooltip] {
+            position: relative;
+            cursor: pointer;
+        }
+        
+        [data-tooltip]::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: calc(100% + 10px);
+            left: 50%;
+            transform: translateX(-50%) translateY(10px) scale(0.95);
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 100;
+            box-shadow: 0 10px 25px -5px rgba(79, 70, 229, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        [data-tooltip]::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(5px);
+            border-width: 6px;
+            border-style: solid;
+            border-color: #4f46e5 transparent transparent transparent;
+            opacity: 0;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 101;
+        }
+        
+        [data-tooltip]:hover::after {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0) scale(1);
+        }
+        
+        [data-tooltip]:hover::before {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #4f46e5, #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .gradient-text::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #4f46e5, #8b5cf6);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+        
+        .gradient-text:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+        .social-icon:hover {
+            transform: scale(1.2) rotate(5deg);
+        }
+        .skill-badge {
+            transition: all 0.3s ease;
+        }
+        .skill-badge:hover {
+            background: linear-gradient(90deg, #4f46e5, #8b5cf6);
+            color: white;
+            transform: translateY(-2px);
+        }
+    </style>
 </head>
-<body>
-    <div class="scroll-progress"></div>
-    <nav class="nav">
-        <div class="container">
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+<body class="relative bg-gradient-to-br from-gray-50 to-indigo-50 text-gray-800 overflow-x-hidden">
+    <!-- Particle Background -->
+    <div id="particles-js" class="fixed inset-0 -z-10"></div>
+    <!-- Navigation -->
+    <nav class="bg-white/80 backdrop-blur-md shadow-sm fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <a href="index.html" class="text-2xl font-extrabold gradient-text">Portfolio</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-indigo-600 font-medium relative group">
+                        Home
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-indigo-600 transition-all group-hover:w-full"></span>
+                    </a>
+                    <a href="about.html" class="text-gray-600 hover:text-indigo-600 transition font-medium relative group">
+                        About
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-indigo-600 transition-all group-hover:w-full"></span>
+                    </a>
+                    <a href="projects.html" class="text-gray-600 hover:text-indigo-600 transition font-medium relative group">
+                        Projects
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-indigo-600 transition-all group-hover:w-full"></span>
+                    </a>
+                    <a href="contact.html" class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-2.5 rounded-full font-medium hover:shadow-lg hover:shadow-indigo-200 transition-all transform hover:-translate-y-0.5">
+                        Get in Touch
+                    </a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button class="mobile-menu-button text-gray-700 hover:text-indigo-600">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div class="mobile-menu hidden md:hidden bg-white/95 backdrop-blur-md shadow-lg">
+            <a href="index.html" class="block px-6 py-3 text-indigo-600 font-medium border-b border-gray-100">Home</a>
+            <a href="about.html" class="block px-6 py-3 text-gray-600 hover:bg-gray-50 border-b border-gray-100">About</a>
+            <a href="projects.html" class="block px-6 py-3 text-gray-600 hover:bg-gray-50 border-b border-gray-100">Projects</a>
+            <a href="contact.html" class="block px-6 py-3 text-indigo-600 font-medium">Contact</a>
         </div>
     </nav>
 
-    <main>
-        <section id="about" class="hero">
-            <div class="container">
-                <div class="hero-content">
-                    <h1 class="animate-fadeInUp">Hello, I'm <span class="gradient-text">Sejed TRABELSSI</span> 👋</h1>
-                    <p class="lead animate-fadeInUp">I'm a passionate developer 💻 with over 5 years of experience crafting beautiful and functional web experiences.</p>
-                    <div class="cta-group">
-                        <a href="#contact" class="btn btn-primary">Get in Touch <i class="fas fa-arrow-right"></i></a>
-                        <a href="#projects" class="btn btn-secondary">View Projects <i class="fas fa-code"></i></a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="skills">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="gradient-text">Skills & Expertise</h2>
-                    <p class="section-description">A collection of technologies and tools I work with</p>
-                </div>
-                <div class="skills-grid">
-                    <div class="skill-card">
-                        <i class="fab fa-html5 fa-3x"></i>
-                        <h3>HTML5</h3>
-                        <p>Semantic markup and modern web standards</p>
-                    </div>
-                    <div class="skill-card">
-                        <i class="fab fa-css3-alt fa-3x"></i>
-                        <h3>CSS3</h3>
-                        <p>Responsive design and animations</p>
-                    </div>
-                    <div class="skill-card">
-                        <i class="fab fa-js fa-3x"></i>
-                        <h3>JavaScript</h3>
-                        <p>ES6+, DOM manipulation, and modern frameworks</p>
-                    </div>
-                    <div class="skill-card">
-                        <i class="fab fa-react fa-3x"></i>
-                        <h3>React</h3>
-                        <p>Component-based architecture and state management</p>
-                    </div>
-                    <div class="skill-card">
-                        <i class="fab fa-node-js fa-3x"></i>
-                        <h3>Express.js</h3>
-                        <p>RESTful APIs and server-side development</p>
-                    </div>
-                    <div class="skill-card">
-                        <i class="fas fa-code fa-3x"></i>
-                        <h3>TypeScript</h3>
-                        <p>Type-safe JavaScript development</p>
-                    </div>
-                    <div class="skill-card">
-                        <i class="fab fa-react fa-3x"></i>
-                        <h3>Next.js</h3>
-                        <p>Server-side rendering and static generation</p>
-                    </div>
-                    <div class="skill-card">
-                        <i class="fas fa-database fa-3x"></i>
-                        <h3>Databases</h3>
-                        <p>MongoDB, MySQL, PostgreSQL</p>
-                    </div>
-                    <div class="skill-card">
-                        <i class="fab fa-node-js fa-3x"></i>
-                        <h3>Node.js</h3>
-                        <p>Server-side JavaScript runtime</p>
-                    </div>
-                    <div class="skill-card">
-                        <i class="fab fa-python fa-3x"></i>
-                        <h3>Python</h3>
-                        <p>Scripting and data analysis</p>
-                    </div>
-                    <div class="skill-card">
-                        <i class="fas fa-code fa-3x"></i>
-                        <h3>C++</h3>
-                        <p>Object-oriented programming</p>
-                    </div>
-                    <div class="skill-card">
-                        <i class="fas fa-search fa-3x"></i>
-                        <h3>Search Engine Optimization</h3>
-                        <p>SEO-friendly coding practices</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="projects">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="gradient-text">Featured Projects</h2>
-                    <p class="section-description">Some of my recent work and contributions</p>
-                </div>
-                <div class="projects-grid">
-                    <article class="project-card">
-                        <div class="project-content">
-                            <h3>LPM IN STEM CLUB's WEBSITE</h3>
-                            <p>A responsive website for LPM in STEM Club, dedicated to Science, Engineering, Mathematics, and Technology. Features multiple pages including Home, About, and Contact sections.</p>
-                            <div class="project-tech">
-                                <span>HTML5</span>
-                                <span>CSS3</span>
-                                <span>JavaScript</span>
-                            </div>
-                            <ul class="project-features">
-                                <li>Responsive design</li>
-                                <li>Modern UI/UX</li>
-                                <li>Interactive elements</li>
-                            </ul>
-                            <a href="https://lpminstemclub.pages.dev/" class="project-link" target="_blank">
-                                View Live Website <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-                    </article>
-
-                    <article class="project-card">
-                        <div class="project-content">
-                            <h3>Arizona State Roleplay | ASRP</h3>
-                            <p>Developed a dynamic website for ASRP, a private ERLC Server. The site includes comprehensive Home & Applications pages, showcasing modern web development practices.</p>
-                            <div class="project-tech">
-                                <span>HTML5</span>
-                                <span>CSS3</span>
-                                <span>JavaScript</span>
-                            </div>
-                            <ul class="project-features">
-                                <li>Dynamic content</li>
-                                <li>User authentication</li>
-                                <li>Application system</li>
-                            </ul>
-                            <a href="https://arizona-state-rp.pages.dev/" class="project-link" target="_blank">
-                                View Live Website <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-                    </article>
-
-                    <article class="project-card">
-                        <div class="project-content">
-                            <h3>Full-Stack Development Book</h3>
-                            <p>A comprehensive guide for web developers covering the fundamentals of full-stack development, including detailed chapters on HTML, CSS, JavaScript, and more.</p>
-                            <div class="project-tech">
-                                <span>Technical Writing</span>
-                                <span>Web Development</span>
-                                <span>Programming</span>
-                            </div>
-                            <ul class="project-features">
-                                <li>Comprehensive guide</li>
-                                <li>Practical examples</li>
-                                <li>Best practices</li>
-                            </ul>
-                            <a href="https://drive.google.com/uc?export=download&id=1kmWBIIJXGzGh_TxdDEvktpByZSaq1Myf" class="project-link" target="_blank">
-                                Download Book <i class="fas fa-download"></i>
-                            </a>
-                        </div>
-                    </article>
-
-                    <article class="project-card">
-                        <div class="project-content">
-                            <h3>Expert Comptable Platform</h3>
-                            <p>A comprehensive platform for accounting professionals featuring advanced client management tools and a resource center.</p>
-                            <div class="project-tech">
-                                <span>Node.js</span>
-                                <span>Express</span>
-                                <span>MongoDB</span>
-                            </div>
-                            <ul class="project-features">
-                                <li>Client management</li>
-                                <li>Resource center</li>
-                                <li>Advanced analytics</li>
-                            </ul>
-                        </div>
-                    </article>
-
-                    <article class="project-card">
-                        <div class="project-content">
-                            <h3>Contact Management System</h3>
-                            <p>A full-featured web application for managing contact information with complete CRUD operations and database integration.</p>
-                            <div class="project-tech">
-                                <span>React</span>
-                                <span>Node.js</span>
-                                <span>MongoDB</span>
-                            </div>
-                            <ul class="project-features">
-                                <li>CRUD operations</li>
-                                <li>Real-time updates</li>
-                                <li>Search functionality</li>
-                            </ul>
-                        </div>
-                    </article>
-                    
-                    <article class="project-card">
-                        <div class="project-content">
-                            <h3>FSRP Staff Portal</h3>
-                            <p>Developed a dedicated portal for Florida State Roleplay staff members with administrative tools, user management, and reporting dashboards.</p>
-                            <div class="project-tech">
-                                <span>HTML5</span>
-                                <span>CSS3</span>
-                                <span>JavaScript</span>
-                            </div>
-                            <ul class="project-features">
-                                <li>Admin dashboard</li>
-                                <li>User management</li>
-                                <li>Reporting tools</li>
-                            </ul>
-                            <a href="javascript:void(0)" class="project-link" onclick="showCodeAccessPopup('fsrp1')">
-                                View Staff Portal <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-                    </article>
-                    
-                    <article class="project-card">
-                        <div class="project-content">
-                            <h3>FSRP Trainer Portal</h3>
-                            <p>Created a specialized portal for Florida State Roleplay trainers with training materials, assessment tools, and progress tracking features.</p>
-                            <div class="project-tech">
-                                <span>HTML5</span>
-                                <span>CSS3</span>
-                                <span>JavaScript</span>
-                            </div>
-                            <ul class="project-features">
-                                <li>Training modules</li>
-                                <li>Assessment tools</li>
-                                <li>Progress tracking</li>
-                            </ul>
-                            <a href="javascript:void(0)" class="project-link" onclick="showCodeAccessPopup('fsrp2')">
-                                View Trainer Portal <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="section-contact">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="gradient-text">Let's Connect 📱</h2>
-                    <p class="section-description">Feel free to reach out through any of these platforms</p>
-                </div>
-
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-24 px-4 overflow-hidden">
+        <!-- Animated background elements -->
+        <div class="absolute inset-0 -z-10">
+            <div class="absolute top-1/4 -left-4 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob"></div>
+            <div class="absolute top-1/2 -right-4 w-72 h-72 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000"></div>
+            <div class="absolute bottom-10 left-1/2 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-4000"></div>
+        </div>
         
-
-                <div class="contact-info">
-                    <a href="https://www.facebook.com/TSSEJED/" target="_blank" rel="noopener" class="btn btn-primary">
-                        <i class="fab fa-facebook"></i>
-                        <span>Facebook</span>
-                    </a>
-                    <a href="https://www.instagram.com/http.sejed.official/" target="_blank" rel="noopener" class="btn btn-primary">
-                        <i class="fab fa-instagram"></i>
-                        <span>Instagram</span>
-                    </a>
-                    <a href="https://wa.me/21694155000" target="_blank" rel="noopener" class="btn btn-primary">
-                        <i class="fab fa-whatsapp"></i>
-                        <span>WhatsApp</span>
-                    </a>
+        <div class="max-w-6xl mx-auto relative">
+            <div class="flex flex-col lg:flex-row items-center">
+                <!-- Text Content -->
+                <div class="lg:w-1/2 mb-16 lg:mb-0 lg:pr-12 text-center lg:text-left">
+                    <span class="inline-block bg-indigo-100 text-indigo-800 text-sm font-medium px-4 py-1 rounded-full mb-6">
+                        Full-Stack Developer & Discord Bot Creator
+                    </span>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                        Hi, I'm <span class="gradient-text">Sejed TRABELSSI</span>
+                    </h1>
+                    <h2 class="text-2xl md:text-3xl text-gray-600 mb-8 font-medium">
+                        Crafting <span class="font-bold text-indigo-600">Next.js</span> Applications & 
+                        <span class="font-bold text-purple-600">Discord Bots</span>
+                    </h2>
+                    <p class="text-lg text-gray-600 mb-10 max-w-2xl mx-auto lg:mx-0">
+                        I transform ideas into exceptional digital experiences. Specializing in modern web development and Discord bot creation, I build solutions that are fast, scalable, and user-friendly.
+                    </p>
+                    <div class="flex flex-wrap justify-center lg:justify-start gap-4">
+                        <a href="projects.html" class="group relative overflow-hidden bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-4 rounded-full font-medium hover:shadow-xl hover:shadow-indigo-200 transition-all duration-300 transform hover:-translate-y-1 inline-flex items-center">
+                            <span class="relative z-10">Explore My Work</span>
+                            <i class="fas fa-arrow-right ml-2 transition-transform duration-300 group-hover:translate-x-1"></i>
+                            <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </a>
+                        <a href="#services" class="group relative overflow-hidden border-2 border-indigo-600 text-indigo-600 px-8 py-4 rounded-full font-medium hover:bg-indigo-50 transition-all duration-300 transform hover:-translate-y-1 inline-flex items-center">
+                            <span class="relative z-10">My Services</span>
+                            <i class="fas fa-chevron-down ml-2 transition-transform duration-300 group-hover:translate-y-1"></i>
+                            <div class="absolute inset-0 bg-indigo-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </a>
+                    </div>
+                    
+                    <!-- Stats -->
+                    <div class="mt-16 grid grid-cols-2 md:grid-cols-3 gap-6 max-w-md mx-auto lg:mx-0">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-indigo-600 mb-1">6+</div>
+                            <div class="text-gray-500 text-sm">Years Experience</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-purple-600 mb-1">50+</div>
+                            <div class="text-gray-500 text-sm">Projects Completed</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-pink-600 mb-1">100%</div>
+                            <div class="text-gray-500 text-sm">Client Satisfaction</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Image/Graphic -->
+                <div class="lg:w-1/2 relative mt-12 lg:mt-0">
+                    <div class="relative z-0 rounded-2xl overflow-hidden shadow-2xl transform hover:scale-[1.02] transition-all duration-500 hover-scale">
+                        <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/80 via-purple-500/80 to-pink-500/80"></div>
+                        <img 
+                            src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxATDw8SEg8QFRIVEBUVEhUVFRUPFRcPFRgXGBYVFhUYHiggGBolGxcXITEhJikrLi4uFx8zODMsNygtLisBCgoKDg0OGxAQGy0lHyMrLS0tLS8tNTEtLTUuMS0tLS0tKy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIAOEA4QMBIgACEQEDEQH/xAAcAAEAAgMBAQEAAAAAAAAAAAAABAYDBQcCAQj/xABHEAABAwIDBAUJBgMGBQUAAAABAAIDBBEFEiEGEzFBIjJRYXIUU3GBkZKxwdEHFTRCobIjUmIzY3SCwvAlQ1R1kyQ1c6Kz/8QAGgEBAAIDAQAAAAAAAAAAAAAAAAEFAgQGA//EAC8RAAICAQMBBwQBBAMAAAAAAAABAgMRBBIxITJBUWFxkbEFEzNS4UKBwdEiofD/2gAMAwEAAhEDEQA/AO4IiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgGqIiAIiIAiIgCIiAIiw1dVHG0ukcGtHM8z2Ac1DeOSUm3hGZYaqrjjF3va0d5tf0dqqeKbWvddsAyt/ndYuPoHAfr6lXJpXPcXOc5x5kkk+0rUs1cV0j1LOj6ZOXWx4+S5Vm18I0jY5/f/AGbf11/Raio2sqXaNyMHcMx9rtP0WhRastTZLvLKvQUQ/pz6/wDsE+XGal3GeT1HJ+2yjurZecsp/wA7vqsCLxc5Plmwq4LhL2M4rJRwlk9931WaPF6lvCeX1uLv0KhIilJcMl1wfKRu6famqb1ix/iaB+rbLb0m2EZtvY3N72nOPZofiqai9Y6iyPea9mhon/Tj06HT6OvilF45Gu7hoR6WnUKSuUMcQQQSCOBBsfat/hm1UrLNlG8Z28HgengfX7VtV6xPpLoVt30uUetbz5d5eEUWgxCKZuaN4PaOBHcRyUpbiaayirlFxeGuoREUkBERAEREAuiXRAEREAREQBEWjx3HRG5sTLGRxAdzDWk8+/uWM5qCyz0qqlZLbE2RkJ5qNU0cchBexriNAXC+nd2KQV8UtJ8mCk08pkP7qp/MR+6E+6qfzEfuhTEUbI+CM/vWfs/ch/dVP5iP3Qn3VT+Yj90KYibI+CH3rP2fuQ/umn8xH7oT7pp/MR+6FMRNkfBD71n7P3If3TT+Yj90J900/mI/dCmImyPgh92z9n7kP7pp/MR+6E+6afzEfuhTETZHwQ+9Z+z9znn2hVLKWakyRtEb2yZw0AE2LLEd4uVDhla9oc0gtIuCF6+2P+0ovBL8WKl4PiroXWNzGT0h2f1Dv+K8L9Kpx3Q5+Td0evdcttjyvj+C9U9Q+Nwcxxa4cx/vUdyumA7RtltHJZsvI/ld6Ow9yocMrXNDmkEEXBC9rQrtlU/8Fvfpq9RHr/ZnWEVW2a2hvlhmPS4MeefY13f2Hn6eNpVrXYprKOdvolTLbIIiLM8QiIgF0S6IAiIgCIsNZUtjjfI49Foue/sA9J0UN46slJt4RrtosYEEdm23juoONhzce74lUSFxMjSSSTICSdSSTqV6r6x00jpHcSeHIN5NHcFjpuuzxt+IVVba7J+R0um0yorx3vk6QUX0r4rY5kIiIAiIgCIiAIiIAiIgOZfbF/aUXgl+LFzpdW+1PBZ5m00kMbpN3na9rRmcA7KQ4NGpHRPDtC5x9yVf/SVP/hk+i9FwYPk94PiroXWNzGT0h2f1Dv8AirjDK1zQ5pBBFwQqX9yVf/SVP/hk+i2ODw1sLrGkqjGT0hupND2t04/Famp0yn/yjz8llodc6nsn2fj+CzK77LY1vW7qQ/xGjok/mYP9Q/3zVIsRxBB7CC0j0g6he4JXMc17TZzTcHsKrqrHXLPuXWoojfXj2Z1VFCwivbPE2QaHg4djxxH++1TVbpprKOYlFxbi+UERFJiLIlkQBERAFTdtMRzPEDT0W9J/e88B6h8e5WysqBHG954NaT6bclzCaUvc5zjq5xJPedStPV2YjtXeWn0yjdN2Pu+TwslN12eNvxCxrJTddnjb8Qq5cl5LhnSSvi+lfFenHhERAEREAREQBERAEREAREQBERAUPHvxU3i+QWvU/HvxU3i+QUBUtnbfqzrKPxR9F8G72UxHdzhhPQks09z/AMp+Xr7lfVyddKwSt31PG/naz/GND9fWtzR2ZTgyq+qUYasXf0ZOREW8VAsiWRAEREBXNtqq0LIx+d2vhZr8cvsVKW+2znzVOUcGMA9Z6R/QhaFVOplusZ02hr2UR8+vv/AWSm67PG34hY1kpuuzxt+IXguTalwzpJXiQHKbGzrGxtex5ac17K+K9OPNFszW1D5K2KokY90EzGBzGboEOja/q3Pb2rTjFsRkppMQjkgEDd49lMY7l9PG4gky3uHkNJ00W/wbD5I6ivkflyzTsfHY3OVsbWm45G4K08eD1rKSWhY2Ewu3jI5zIQWU8pJOaLL0ngOIFjY6cFJBYK18slOH08jY3FrXtc9m9GQjNYtuNSO9Ydl6589FTTSWzyRhzrDKLm/AclPbABGGN4NjyN9AFgoGy9C+CipoZLZ44g12U5hmF+B5hCSJhNZU+XVFPNLG9rYGSsLY90Rne8ZTqb2DeKiGrxCokqzSzQxRwTOhYx8e8MssYGfM6/RGbQWW0gw+QYjPP0d2+lijGuudj3k6dlnBQoqOsp5KsU8cMkc8zpmOfIYjFNIBnDhlOZuYZhbXkhBPw2ufVUUUsRbHJLECCW7xrJOB6NxmAIPNYtlK+WaB5mc10jKmaIlrcgIjeWg5bm3BTMEw8U9NBADm3cYaXcLu/M63K5uVG2aw+SCKZsmXM6qnkFjfoSPLm377FARnVlSzEooXSxuhlimka0R5XM3eQAF9zm63YFirKusmq56emmjhbAyPePdHvi+WUZg0AkANDba8dVOq8PkNfSzjLkjgnY7XXNIWZbDmOiVHmoqmGsnqII45WTsjEjHSblzZYhla4HKQWltgRx0QEnZrEXzQF0rWiZkskMobfLvYnFpLb8jYH1qJtpWVUFM6ogljaIx02Oj3mbM5rRZ1xltc8jdTtnsOdBCRIWmWSWSaUtvl3sri5wbfWwuB6li2tw6Soop4Y8ud4blzHKNHtJufQCneO43BGq+L6eK+KCShY9+Km8XyCgKfj34qbxfIKAqWztv1Z1lH4o+i+ArVsNVayxdoDx6eq7/Sqqtns3Pkq4e92Q/5hYfrZZUS22JmGrr30yXl8HRURFcHLCxRNUQBERAc2x2TNVTn+8I93o/JQFnr3fxpT2yv/cVgVHJ5k2ddWsQS8kFkpuuzxt+IWNZKbrs8bfiFC5MpcM6Svi+oFenHlcqdsqZj5AY6l0Ub8kk7Yi6BjwbEOfe+h42C38kzQwvc4BgaXF19MoFyb9ltVRqDEYYcNqqSV7RUNNTGYT/aSSSOeYyxnF4dmbYhb/EcPlOEvpxrL5Du9OJkEYBA9JCnBB4oNroJZImbqpjbKbQyyRGOOV3EBrr8xwuBdWBUysxSnqqfD4Kd7XS+UUrt23rxNhc10he3izKGka8yBzVzKMGt2gxuGkgMspPGzGjrPfya368lyWu+0LEamYR0+ZpcbMigaHOP+cgucbcxYL39sOJudWGEE5YmNaB/U9okcfSQWj1KtbE7QChrWVDoy9uRzHNFg7K62rb6XFhx71kl0MW+pv27b4tSTZKgyBwsTHOwOBaeBvYOtx1BXUtk9p4q2IuaMsrbbyMm9r8HNPNp7Vxv7Qtq48QnhfHE9jIo3NG8y53FxBJIaSABYWFzzXr7NMTdDiFPYmz5GxOHa2U5QPU7KfUjXQJ9Tu+IVscEUk0rsrGNu48dOwDmb6W71rMK2limlERhqYZHNLoxPHut4wcSw3N7DW3FeNuIHOoZCGl2SSKRzQLkxxyMc8Ac+iCfUotViMFVWYd5PKyXdySTSOYQ4MhMTm9MjqlznNFjroexYmRtcRxyKGWKORk15HMaxwjLo87zla0v4A6cExzHIqVrXysmLCHEujjMjWhuXrkaNvmFr8dVB20PQof+5U37ivv2gn/hdb2bsfvagLBxRAigkoWP/ipvF8goCn49+Km8XyCgKls7b9WdZR+KPovgLJTyZXsdza9rvYQVjQrA9Ws9DrCLxAeg09rR8F7V6ccxqiX7kQBERAcurhaWUf3j/wBxWBTcbjy1M4/vXH1E3HxUJUcliTR19bzBPyCyU3XZ42/ELGslN12eNvxChcky4Z0lfOK+lQMboYpoJGSszNALgLkdJoNjoVenHk0sBN7C40vbW3ZdelpNinE4bQ/4dlz6lAwKhjhxSujiblZ5NTutcu6TnSXOpPFSC0BgubAXPEgfHtX1VbbqhjLaabL/ABW1dMxrrnRhlFxa9uZVqKgHF/thwpzazfAHLKxrgf642hjh7A0+tc6X6bx7BoaqB0MoNibtcNHNeODmnt+K5Fjv2Z1cTiYw2VhOjmFrT62OIsfQSs96S6mDi2+hQVb/ALM8LdLXwG3RY8SuPY2I5gfW/KPWs+E/ZvWyu6UYY0Wu6RzQPdaS4rrmy2zcNFEWs6T3WMkhFi4jgAPytHIfFN6aynkKLT6m7tzXljAOAA56C2vaVWNpqKMVuGzhtpHVjWOdc6xiOQgWvbiFl2sZvZsPpnE7mad++AJbnbFGXhhI/KTy7liZFiLQbXAIvcc9e1HNB0IBB5HW/qVawiiZTYlJTwDJBJRiYxgksbM2QMu0Hq5gdfCtfRYFBWmvmqA4yirniifmc0wxwnKzJY2B/N3pgF2RarZSsfNQUkjzd74GFx7Tbj6+PrW1UElCx78VN4vkFAU/HvxU3i+QUBUtnbfqzrKPxR9F8BDwRe4WZnNHMuA9pssD1zg6jTizGeEfBZEARXpx7eRdEuiEBERAUPbGDLVF387Gu9Y6J/aPatGrltxS3jjlt1XFp8LuH6j9VTVUaiO2xnT6GzfRHy6ewWSm67PG34hY1kpuuzxt+IXiuTZlwzpBXmVmZrm8iCD6CLaL2Vp9pMTkhZCyBrHTzTNiiz3yNJBcXutqQGtJsFenHk3CqFsEEMDC4tjYGAusXEDmbAC68Q4axtTLUAuzyRxxuBtlDYy4gjS9+kea1uE4hVNqjS1W5c50JmhkiDmAta4Ne1zXE2cC4H0LziOIVb6t9NSGBm6iY+aSVrn9KS+RjWtI5NJJUkG0xbDWTsYx5cA2aOUZbA5o3BwBuDpcKatXs5iT5oXGVjWzRyvhma0kt3sZ1Lb65SCCPSo0GI1IxE00u4MbqeSaMsDw8NbIxrWuJNr2dyCEm9Uet6o8XyKkKPW9UeL5Fa2q/DL0PSrto80H5vV81KWuhe4HTmtgy9hf1rx0Fide3HHtyZ3xxLJExDDWTPp3OLhuZt6y1tXBrm2dccLOPBecXwtlQxrXOewseHxyMIa9kguA5pII4EixBBuoG1uJVNPCJodwY2uaJA8PLiXvYwZMpA/NrdZdo8SljNPDTtYZ55TGwvvka1rS573AamwHDvW+a5nwzCRE+SQyyyyvDWukky3yNvlY0MAa1oJJ0HEqLVbONc+Z0dRUQtmN52RuYGPdbKXdJpLHEaEtIuvODYhUipkparcmQRCaOSIOa18RdkcC1xNnB1vavWPYjO2anpqYR76USPL5AXMjijtcloIJJLgAgNvTwNjYyNjQ1rWhrQOAaBYD2LItLgGIzukqKepEe/hyHNHcMkikBLXAHUG7SCFulBJQse/FTeL5BQFPx78VN4vkFAVLZ236s6yj8UfRfAWx2egz1UA7H5j6GdL5LXKz7D0t5JZSNGtDR6Xan9APappjumkY6qzZTJ+XyXFERXJyouiIgCIiAjYjSiWGSM/mbYdzuIPqIC5i9pBIIsQSCO8cQurqj7Y4fkmErR0JOPdIOPtGvtWlrK8rcu4tfpd22TrffwV9ZKbrs8bfiFjWSn67PG34hV65LuXDOklabaSgleKeSANdLT1DZWsccoe2zmvZm5EtcbHtC3JXxXpx5o6GnnkrBUyw7lrKd0UUZe2R5dI5rnvdkuAOg0AX7eC8VFNUQVstRFBv2TxRska17I3tkizZXDOQC0hxHG4svUO11E6VsYkddz8jHmN4idJe2VspGUm+in4vi0NMwSTF4aSRdsb5bWBJvkBsLDidFJBh2eoZIo5HS5RLNPJNIGnMGl5FmA87NDRftBWOSik+84p8v8IUUkZdcaSOkY4Ntx4A6qbUYlDHB5Q94bFkD8xv1XWtpxubjTjqouEbRU1Q9zI3PEjW5skjHwuyXtmAcBcX5hAbVR63qjxfIqPjONQUrWvnLw031bG+UDLa5dkBy8eanWDh2gryug5wcV3mcJbZJkCGJztRyWwZewv61oWbWUIl3QkcAZN3vMj90Zb2y722W99ONltMVxKOnjzyZwy9iWsfKQbE6hgJA0OvBeWm032V5/8ARlZbvZB2woZJ6KSKJuZ5fEQLhujZWOdqdOAKbR0Urn0s8DQ+Snmc7IXBmeN7Sx7Q46B1iCL6aLZ0dUyWOOSM3Y9ge02IuxwuDY6jRaiHa+idK2Jsjuk/dseWPETpOGVspGUm+i2jyPWG00z6t9VLFuv/AE4gijLmyPyl+d73lt2i5DQACeBTG6OYVNLVQRiR0bZI5IswY50UmU3Y52mYOaDY2vdTsWxSKmjEkufKXWu1j5bGxNyGAkCzTqdF7GIR+TioBcYzEJAQ1znGMjMCGAZibcrXQEHBqSXf1NTMwRulEbGR5g8tiiDrFzm6Zi57jYXsLarcKHhOKQ1EZkic4tDyw3a6Mh7bXGVwBHFTFBJQse/FTeL5BQFPx78VN4vkFAVLZ236s6yj8UfRfAXRtnaLdU0bSLOPTd4nfQWHqVO2aw/fTtuOgyzn99uA9Z/QFdDW5o6+Zsq/ql3FS9X/AICIi3inFkSyIAiIgCi4nRNmifG7mND2OHAhSkUNJrDJjJxaa5RyypgdG9zHCzmmx/32L5Tddnjb8QrrtRg29bvIx/FaNR/Mzs9I5KlU/XZ42/EKptqdc8HTafUK+vcue86SVHrmOMMrW9d0bw3xFpA/VSCvitzmChPqIX4DBCxzN8WQQsjuM4rGvaCMnEODg5x7gSrTtX+Arv8ACy/sKmtooRIZd1GJDxeGND/etdZnsDgQ4AtIsQRcEHiCDxU5IKltAP8AhtA939nHLQyTcwIGlmYnuGhUysnjlxOgMT2PLIqh8hYQ+0L2ta3MR2vtbwlWAMFrWGW1sthbLwtbstyWOlo4owRHFGwE3IY1rLntNhqmQajbv/2uu/8Agd8ltwCYrDiY7D05dFklja9pa5oc06EOAcCOwg8V67hwUEnP2VEJ2f8AJ7t3u63G6uN55ZnsG5OObPr+qumJ3FLOL6inkue/IbrL5FFvN5uo95/Pkbn9611mc0EEWBBFiDqLHtU5INHgDHOwmmazrGgYG+IxC36qvuqYXYDTwMc3fFkELYwRvBWNewEZOIcHBzj3AlXuNgaA1oAAFgALAAcgBwCxNooRIZBFHvTxeGNDz/mtdMjBgx3Skq+3yaX9jli2X/AUX+Fh/wDzatk5oIIIBBFiDqCDxFuxGMDQAAAAAAALAAcAAOCgkr+xfUrv+5VX7grCvEUTW3yta25LjYBt3Hi424k9q9oChY9+Km8XyCgtaSQACSTYAakk8Ap2PfipvF8grBslgtrTyDW38IHsP5z8lUqt2WtLxZ0zvjTp4yfgsefQ2+A4aIIQ3856Uh/q7B3DgtkiK1jFRWEc3ObnJylywiIpMRZEt3ogCIiAIiIAq1j2AXeJoh0swMje3UXc3v7Rz9PGyoVhOtTWGetN0qpbokNF9LSOIWN8zAbOe0HsLgD7Fnk80m+D2ixeUx+cZ7zfqnlMfnGe836qMonbLwMqLF5TH5xnvN+qeVR+cZ7zfqmUNsvAyosXlUfnGe836p5VH5xnvN+qZQ2y8DKixeUx+cZ7zfqnlMfnGe836plDbLwMqLF5TH5xnvN+qeUx+cZ7zfqmUNsvAyosXlMfnGe836p5TH5xnvN+qZQ2y8DKixtqGEgB7O4ZgSSsuUnkVOSGmuTS0+AbyqlmlH8PP0G/zkAan+n4+jjZV5YNAF6WEIKOcd56W3Ssxu7lhBERZnkEREA1RNUQBERAEREAREQBQsSwuKdtpG6jquGjh6D8uCmooaTWGZRk4vMXhlCxTZmaO5YN4ztaOkB3t+i0ll1hQa/CIJuvGL/zDou9o4+taVmjT6wLWj6o10sWfNf6OaorVWbHH/lSj0PFv/s36LUVGAVTP+ST3ts/9Br+i1ZUWR5RZV6umfEl8GsSyySwPb1mPb4mlvxWO68jYTzwLJZLr3HE53Brie4E/BA+h4sllsafA6p/CB48X8P91ltqTY951lla0djRmPtNgP1XpGmcuEeFmqph2pIrC2uGbPzzWOXIz+ZwtcdzeJ+HerjQYFTxWLY7uH5n9I+nsHqC2S2q9H3zZW3fVO6pf3f+jW4TgsMA6Iu/m89b0DsHoWyRFuxiorCKqc5Te6TywiIsjAIiIAiIgF+5EuiAIiIAiIgCIiAIiIAiIgCIiALw6FvNrT6gvaIMmNsDB+RvsCyAIiE5yEREICIiAIiIAiIgCIiAIiIBmRLogHNOaIgB5I5EQByFEQAIERAAgREAHFOaIgHNDyREAKOREAKIiABGoiABBzREA5pzREAPJHIiAOQoiA8oiID/2Q==" 
+                            alt="Coding workspace" 
+                            class="w-full h-auto object-cover mix-blend-overlay hover:scale-105 transition-transform duration-700"
+                            style="min-height: 500px;"
+                        >
+                    </div>
+                    <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-yellow-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
+                    <div class="absolute -top-6 -right-6 w-32 h-32 bg-purple-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
+                    <div class="absolute bottom-0 right-0 w-32 h-32 bg-pink-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+        <h1 style="color: rgba(255, 255, 255, 0);">What are you doing here ?</h1>
+        <h1 style="color: rgba(255, 255, 255, 0);">DM Me with "TSSEJED" to get a promotion on your order.</h1>
+        <h1 style="color: rgba(255, 255, 255, 0);">Bye !</h1>
+        <h1 style="color: rgba(255, 255, 255, 0);">Still here? DM me !</h1>
+        <h1 style="color: rgba(255, 255, 255, 0);">I said DM Me !</h1>
+        <h1 style="color: rgba(255, 255, 255, 0);">Bye !</h1>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Sejed TRABELSSI. All rights reserved.</p>
+    <!-- Tech Stack Section -->
+    <section id="tech-stack" class="py-20 bg-gradient-to-br from-gray-50 to-indigo-50 overflow-hidden relative">
+        <!-- Background pattern -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiM5YTYwZTAiIGZpbGwtb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMjAgMGMxMSA1LjUgMTguMTcgMTYuNSAyMCAyNy41LS4zMyAxLTguNS0yLTkuNS0yLjVzLTguNSAyLTkuNSAyLjVDMS44MyAxNi41IDkgNS41IDIwIDB6Ii8+PC9nPjwvZz48L3N2Zz4=')]"></div>
+        </div>
+        
+        <!-- Section header -->
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">
+                        Tech Stack & Skills
+                    </span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto mb-8">Technologies I work with and my proficiency level</p>
+                
+                <!-- Category Filters -->
+                <div class="flex flex-wrap justify-center gap-3 mb-8">
+                    <button class="category-filter px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-indigo-600 text-white hover:bg-indigo-700 active:scale-95" data-category="all">
+                        All
+                    </button>
+                    <button class="category-filter px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-white text-indigo-600 border border-indigo-200 hover:bg-indigo-50 active:scale-95" data-category="frontend">
+                        Frontend
+                    </button>
+                    <button class="category-filter px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-white text-indigo-600 border border-indigo-200 hover:bg-indigo-50 active:scale-95" data-category="backend">
+                        Backend
+                    </button>
+                    <button class="category-filter px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-white text-indigo-600 border border-indigo-200 hover:bg-indigo-50 active:scale-95" data-category="tools">
+                        Tools
+                    </button>
+                </div>
+                
+                <!-- Search Input -->
+                <div class="max-w-md mx-auto mb-8">
+                    <div class="relative">
+                        <input type="text" id="tech-search" placeholder="Search technologies..." class="w-full px-4 py-2 pl-10 pr-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-300" autocomplete="off">
+                        <div class="absolute left-3 top-2.5 text-gray-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tech Stack Grid -->
+        <div class="relative">
+            <div class="marquee-container">
+                <div class="marquee-track" id="tech-track">
+                    <!-- Tech items will be populated by JavaScript -->
+                    <script>
+                        // Tech stack data
+                        const techStack = [
+                            { name: 'HTML5', icon: 'fab fa-html5', color: 'orange', level: 90, category: 'frontend', desc: 'Markup language for creating web pages' },
+                            { name: 'CSS3', icon: 'fab fa-css3-alt', color: 'blue', level: 85, category: 'frontend', desc: 'Styling language for web design' },
+                            { name: 'JavaScript', icon: 'fab fa-js', color: 'yellow', level: 80, category: 'frontend', desc: 'Programming language for web interactivity' },
+                            { name: 'React', icon: 'fab fa-react', color: 'blue', level: 75, category: 'frontend', desc: 'JavaScript library for building user interfaces' },
+                            { name: 'Next.js', icon: 'fas fa-arrow-right', color: 'black', level: 78, category: 'frontend', desc: 'React framework for production' },
+                            { name: 'Node.js', icon: 'fab fa-node-js', color: 'green', level: 70, category: 'backend', desc: 'JavaScript runtime for server-side development' },
+                            { name: 'Python', icon: 'fab fa-python', color: 'blue', level: 85, category: 'backend', desc: 'Versatile programming language' },
+                            { name: 'Git', icon: 'fab fa-git-alt', color: 'orange', level: 80, category: 'tools', desc: 'Version control system' },
+                            { name: 'VS Code', icon: 'fas fa-code', color: 'blue', level: 90, category: 'tools', desc: 'Code editor' },
+                            { name: 'Figma', icon: 'fab fa-figma', color: 'purple', level: 75, category: 'tools', desc: 'Design and prototyping tool' }
+                        ];
+
+                        // Function to render tech items
+                        function renderTechItems(items = techStack) {
+                            const techTrack = document.getElementById('tech-track');
+                            if (!techTrack) return;
+                            
+                            techTrack.innerHTML = ''; // Clear existing items
+                            
+                            items.forEach(tech => {
+                                const techItem = document.createElement('div');
+                                techItem.className = 'tech-item flex flex-col items-center p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 m-2 w-48';
+                                techItem.setAttribute('data-name', tech.name);
+                                techItem.setAttribute('data-category', tech.category);
+                                techItem.setAttribute('data-desc', tech.desc);
+                                
+                                // Determine skill level color
+                                let levelColor = 'red-400';
+                                if (tech.level >= 80) levelColor = 'green-500';
+                                else if (tech.level >= 60) levelColor = 'yellow-400';
+                                else if (tech.level >= 40) levelColor = 'orange-400';
+                                
+                                techItem.innerHTML = `
+                                    <div class="text-4xl mb-3 text-${tech.color}-600">
+                                        <i class="${tech.icon}"></i>
+                                    </div>
+                                    <h4 class="font-semibold text-gray-800 mb-2">${tech.name}</h4>
+                                    <div class="w-full bg-gray-200 rounded-full h-2.5 mb-2">
+                                        <div class="skill-level bg-${levelColor} h-2.5 rounded-full transition-all duration-1000 ease-out" style="width: ${tech.level}%"></div>
+                                    </div>
+                                    <span class="text-xs text-gray-500">${tech.level}%</span>
+                                `;
+                                
+                                techTrack.appendChild(techItem);
+                            });
+                            
+                            // Reinitialize animations after rendering
+                            animateSkillBars();
+                            setup3DEffects();
+                        }
+                        
+                        // Filter tech items by category
+                        function filterByCategory(category) {
+                            if (category === 'all') {
+                                renderTechItems();
+                                return;
+                            }
+                            const filtered = techStack.filter(tech => tech.category === category);
+                            renderTechItems(filtered);
+                        }
+                        
+                        // Initialize the tech stack and event listeners
+                        function initializeTechStack() {
+                            renderTechItems();
+                            
+                            // Add event listeners to category filters
+                            document.querySelectorAll('.category-filter').forEach(button => {
+                                button.addEventListener('click', (e) => {
+                                    e.preventDefault();
+                                    // Update active state
+                                    document.querySelectorAll('.category-filter').forEach(btn => {
+                                        btn.classList.remove('bg-indigo-600', 'text-white');
+                                        btn.classList.add('bg-white', 'text-indigo-600', 'border', 'border-indigo-200');
+                                    });
+                                    
+                                    button.classList.remove('bg-white', 'text-indigo-600', 'border', 'border-indigo-200');
+                                    button.classList.add('bg-indigo-600', 'text-white');
+                                    
+                                    // Filter items
+                                    filterByCategory(button.dataset.category);
+                                    
+                                    // Clear search when changing categories
+                                    const searchInput = document.getElementById('tech-search');
+                                    if (searchInput) searchInput.value = '';
+                                });
+                            });
+                            
+                            // Add search functionality
+                            const searchInput = document.getElementById('tech-search');
+                            if (searchInput) {
+                                searchInput.addEventListener('input', (e) => {
+                                    const searchTerm = e.target.value.toLowerCase();
+                                    const currentCategory = document.querySelector('.category-filter.bg-indigo-600')?.dataset.category || 'all';
+                                    
+                                    let filteredItems = techStack;
+                                    
+                                    // Apply category filter
+                                    if (currentCategory !== 'all') {
+                                        filteredItems = filteredItems.filter(tech => tech.category === currentCategory);
+                                    }
+                                    
+                                    // Apply search term filter
+                                    if (searchTerm) {
+                                        filteredItems = filteredItems.filter(tech => 
+                                            tech.name.toLowerCase().includes(searchTerm) || 
+                                            tech.desc.toLowerCase().includes(searchTerm)
+                                        );
+                                    }
+                                    
+                                    renderTechItems(filteredItems);
+                                });
+                            }
+                        }
+                        
+                        // Initialize when DOM is loaded
+                        if (document.readyState === 'loading') {
+                            document.addEventListener('DOMContentLoaded', initializeTechStack);
+                        } else {
+                            initializeTechStack();
+                        }
+                        
+                        // Helper function to set up 3D effects
+                        function setup3DEffects() {
+                            document.querySelectorAll('.tech-item').forEach(item => {
+                                item.addEventListener('mousemove', (e) => {
+                                    const rect = item.getBoundingClientRect();
+                                    const x = e.clientX - rect.left;
+                                    const y = e.clientY - rect.top;
+                                    const centerX = rect.width / 2;
+                                    const centerY = rect.height / 2;
+                                    const angleX = (y - centerY) / 20;
+                                    const angleY = (centerX - x) / 20;
+                                    
+                                    item.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) scale3d(1.05, 1.05, 1.05)`;
+                                });
+                                
+                                item.addEventListener('mouseleave', () => {
+                                    item.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+                                });
+                            });
+                        }
+                        
+                        // Function to update pagination (placeholder)
+                        function updatePagination() {
+                            // Add pagination logic here if needed
+                        }
+                    </script>
+                </div>
+            </div>
+    <section class="py-20 bg-gradient-to-br from-white to-indigo-50 relative overflow-hidden">
+        <!-- Decorative elements -->
+        <div class="absolute -top-32 -right-32 w-64 h-64 bg-indigo-100 rounded-full opacity-30"></div>
+        <div class="absolute -bottom-20 -left-20 w-80 h-80 bg-purple-100 rounded-full opacity-30"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="text-center mb-16">
+                <span class="inline-block bg-indigo-100 text-indigo-700 text-sm font-semibold px-4 py-1 rounded-full mb-4">My Work</span>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">
+                        Featured Projects
+                    </span>
+                </h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-indigo-500 to-purple-600 mx-auto mb-6"></div>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">A selection of my recent work. Each project was built to solve specific problems and deliver exceptional user experiences.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 - Discord Bot -->
+                <div class="group relative bg-white rounded-2xl shadow-xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 h-full flex flex-col">
+                    <div class="h-48 bg-gradient-to-r from-indigo-500 to-purple-600 flex items-center justify-center relative">
+                        <i class="fas fa-robot text-6xl text-white opacity-90 group-hover:scale-110 transition-transform duration-500"></i>
+                        <span class="absolute top-3 right-3 bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full flex items-center">
+                            <i class="fas fa-lock text-xs mr-1"></i> Restricted Access
+                        </span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <div class="flex items-center mb-4">
+                            <span class="inline-block bg-indigo-100 text-indigo-700 text-xs font-semibold px-3 py-1 rounded-full">Featured</span>
+                            <span class="ml-2 text-sm text-gray-500">Bot Development</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Discord Bot</h3>
+                        <p class="text-gray-600 mb-6 flex-grow">Advanced moderation and entertainment bot with custom commands, automation, and interactive features for community management.</p>
+                        
+                        <div class="mb-6">
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-indigo-50 text-indigo-700 text-xs font-medium rounded-full">Node.js</span>
+                                <span class="px-3 py-1 bg-purple-50 text-purple-700 text-xs font-medium rounded-full">Discord.js</span>
+                                <span class="px-3 py-1 bg-blue-50 text-blue-700 text-xs font-medium rounded-full">MongoDB</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-auto pt-4 border-t border-gray-100">
+                            <div class="text-sm text-yellow-600 bg-yellow-50 p-2 rounded-md mb-3 flex items-center">
+                                <i class="fas fa-info-circle mr-2"></i> Contact for access
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 - Portfolio v1 -->
+                <div class="group relative bg-white rounded-2xl shadow-xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 h-full flex flex-col">
+                    <div class="h-48 bg-gradient-to-r from-purple-500 to-indigo-600 flex items-center justify-center">
+                        <i class="fas fa-laptop-code text-6xl text-white opacity-90 group-hover:scale-110 transition-transform duration-500"></i>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <div class="flex items-center mb-4">
+                            <span class="inline-block bg-purple-100 text-purple-700 text-xs font-semibold px-3 py-1 rounded-full">Portfolio</span>
+                            <span class="ml-2 text-sm text-gray-500">Version 1.0</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Portfolio v1</h3>
+                        <p class="text-gray-600 mb-6 flex-grow">The first version of my portfolio website, showcasing my early work and development journey.</p>
+                        
+                        <div class="mb-6">
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-indigo-50 text-indigo-700 text-xs font-medium rounded-full">HTML5</span>
+                                <span class="px-3 py-1 bg-purple-50 text-purple-700 text-xs font-medium rounded-full">CSS3</span>
+                                <span class="px-3 py-1 bg-yellow-50 text-yellow-700 text-xs font-medium rounded-full">JavaScript</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-auto pt-4 border-t border-gray-100">
+                            <a href="https://v1-sejed-protfolio.pages.dev/" target="_blank" class="w-full inline-flex justify-center items-center px-4 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg hover:shadow-md transition-all duration-300 group">
+                                Visit Live Site
+                                <i class="fas fa-external-link-alt ml-2 text-sm group-hover:translate-x-1 transition-transform"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 - LPM IN STEM'S CLUB -->
+                <div class="group relative bg-white rounded-2xl shadow-xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 h-full flex flex-col">
+                    <div class="h-48 bg-gradient-to-r from-green-500 to-teal-600 flex items-center justify-center">
+                        <i class="fas fa-graduation-cap text-6xl text-white opacity-90 group-hover:scale-110 transition-transform duration-500"></i>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <div class="flex items-center mb-4">
+                            <span class="inline-block bg-green-100 text-green-700 text-xs font-semibold px-3 py-1 rounded-full">Education</span>
+                            <span class="ml-2 text-sm text-gray-500">Club Website</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">LPM IN STEM'S CLUB</h3>
+                        <p class="text-gray-600 mb-6 flex-grow">Official website for the STEM club, featuring events, resources, and information about science and technology programs.</p>
+                        
+                        <div class="mb-6">
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-indigo-50 text-indigo-700 text-xs font-medium rounded-full">HTML5</span>
+                                <span class="px-3 py-1 bg-purple-50 text-purple-700 text-xs font-medium rounded-full">CSS3</span>
+                                <span class="px-3 py-1 bg-yellow-50 text-yellow-700 text-xs font-medium rounded-full">JavaScript</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-auto pt-4 border-t border-gray-100">
+                            <a href="https://lpminstemclub.pages.dev" target="_blank" class="w-full inline-flex justify-center items-center px-4 py-2 bg-gradient-to-r from-green-600 to-teal-600 text-white rounded-lg hover:shadow-md transition-all duration-300 group">
+                                Visit Website
+                                <i class="fas fa-external-link-alt ml-2 text-sm group-hover:translate-x-1 transition-transform"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- More Projects CTA -->
+            <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-8 mt-12 text-center">
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">Want to see more of my work?</h3>
+                <p class="text-gray-600 mb-6 max-w-2xl mx-auto">I've worked on a variety of projects including web applications, community platforms, and development tools. Check out my full portfolio for more details.</p>
+                <a href="projects.html" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-medium rounded-lg hover:shadow-lg hover:shadow-indigo-200 transition-all duration-300 transform hover:-translate-y-0.5 hover:scale-105 group">
+                    View All Projects
+                    <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+            </div>
+        </div>
+
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">What I Do</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-indigo-500 to-purple-600 mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto">I offer a range of services to help bring your digital ideas to life</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 card-hover">
+                    <div class="w-16 h-16 bg-indigo-100 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fab fa-react text-3xl text-indigo-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Next.js Development</h3>
+                    <p class="text-gray-600 mb-4">
+                        High-performance, SEO-friendly web applications built with Next.js, React, and modern JavaScript.
+                    </p>
+                    <ul class="space-y-2 text-sm text-gray-500">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            Server-side rendering
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            API routes integration
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            Optimized performance
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 card-hover">
+                    <div class="w-16 h-16 bg-purple-100 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fab fa-discord text-3xl text-purple-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Discord Bot Development</h3>
+                    <p class="text-gray-600 mb-4">
+                        Custom Discord bots to enhance your server with moderation, music, games, and more.
+                    </p>
+                    <ul class="space-y-2 text-sm text-gray-500">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            Custom commands
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            Moderation tools
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            Music & entertainment
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 card-hover">
+                    <div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-mobile-alt text-3xl text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Responsive Web Design</h3>
+                    <p class="text-gray-600 mb-4">
+                        Beautiful, responsive websites that work perfectly on all devices and screen sizes.
+                    </p>
+                    <ul class="space-y-2 text-sm text-gray-500">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            Mobile-first approach
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            Cross-browser compatibility
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            Performance optimized
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        </div>
+
+
+
+
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="md:col-span-2">
+                    <h3 class="text-2xl font-bold text-white mb-4">Portfolio</h3>
+                    <p class="mb-4">
+                        Creating amazing digital experiences with Next.js and Discord bots. Let's build something incredible together!
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-github text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-discord text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4 text-lg">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="hover:text-white transition-colors">Home</a></li>
+                        <li><a href="about.html" class="hover:text-white transition-colors">About</a></li>
+                        <li><a href="projects.html" class="hover:text-white transition-colors">Projects</a></li>
+                        <li><a href="contact.html" class="hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="text-white font-semibold text-lg">Contact Me</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-center"><i class="fas fa-phone mr-2"></i> +216 94 155 000</li>
+                        <li class="flex items-center"><i class="fab fa-facebook mr-2"></i> <a href="https://facebook.com/TSSEJED" target="_blank" class="hover:text-white transition-colors">facebook.com/TSSEJED</a></li>
+                        <li class="flex items-center"><i class="fab fa-instagram mr-2"></i> <a href="https://www.instagram.com/http.sejed.official/" target="_blank" class="hover:text-white transition-colors">instagram.com/http.sejed.official/</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="mb-4">Feel free to reach out for collaborations or just a friendly hello!</p>
+                    <div class="space-y-2">
+                        <p class="flex items-center"><i class="fas fa-phone mr-2"></i> +216 94 155 000</p>
+                        <p class="flex items-center"><i class="fab fa-facebook mr-2"></i> facebook.com/TSSEJED</p>
+                        <p class="flex items-center"><i class="fab fa-instagram mr-2"></i> instagram.com/http.sejed.official/</p>
+                    </div>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500 text-sm">
+                <p>© 2023 My Portfolio. All rights reserved.</p>
+            </div>
         </div>
     </footer>
 
-    <div class="loading-animation"></div>
-    <div class="custom-context-menu">
-        <div class="custom-context-menu-item" data-href="#about">
-            <i class="fas fa-user"></i> About
-        </div>
-        <div class="custom-context-menu-item" data-href="#skills">
-            <i class="fas fa-code"></i> Skills
-        </div>
-        <div class="custom-context-menu-item" data-href="#projects">
-            <i class="fas fa-project-diagram"></i> Projects
-        </div>
-        <div class="custom-context-menu-item" data-href="#contact">
-            <i class="fas fa-envelope"></i> Contact
-        </div>
-    </div>
+    <!-- Back to top button -->
+    <button id="backToTop" class="fixed bottom-8 right-8 bg-indigo-600 text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center opacity-0 invisible transition-all duration-300 z-50">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
-    <div class="notification"></div>
-    
-    <!-- Code Access Popup -->
-    <div class="code-access-popup" id="codeAccessPopup">
-        <div class="code-access-content">
-            <h3>Access Required</h3>
-            <p>Please enter the access code to view this content:</p>
-            <input type="password" id="accessCodeInput" placeholder="Enter access code">
-            <div class="code-access-buttons">
-                <button id="submitAccessCode" class="btn btn-primary">Submit</button>
-                <button id="cancelAccessCode" class="btn btn-secondary">Cancel</button>
-            </div>
-            <div id="accessError" class="access-error"></div>
-        </div>
-    </div>
-
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
     <script>
-        // Disable right click with custom menu
-        document.addEventListener('contextmenu', (e) => {
-            e.preventDefault();
-            const menu = document.querySelector('.custom-context-menu');
-            menu.style.top = `${e.clientY}px`;
-            menu.style.left = `${e.clientX}px`;
-            menu.classList.add('show');
-        });
-
-        // Handle custom context menu clicks
-        document.querySelectorAll('.custom-context-menu-item').forEach(item => {
-            item.addEventListener('click', function() {
-                const href = this.getAttribute('data-href');
-                document.querySelector(href).scrollIntoView({
-                    behavior: 'smooth'
+        // Add animation classes on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate elements with the 'animate-on-scroll' class
+            const animateOnScroll = function() {
+                const elements = document.querySelectorAll('.animate-on-scroll');
+                
+                elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.3;
+                    
+                    if (elementPosition < screenPosition) {
+                        element.classList.add('animate-fade-in');
+                    }
                 });
-                document.querySelector('.custom-context-menu').classList.remove('show');
-            });
-        });
-
-        // Hide custom context menu on click outside
-        document.addEventListener('click', () => {
-            document.querySelector('.custom-context-menu').classList.remove('show');
-        });
-
-        // Disable text selection
-        document.body.classList.add('context-menu-disabled');
-
-        // Smooth scroll for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Scroll progress indicator
-        window.addEventListener('scroll', () => {
-            const totalScroll = document.documentElement.scrollTop;
-            const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            document.querySelector('.scroll-progress').style.transform = `scaleX(${totalScroll / windowHeight})`;
-        });
-
-        // Intersection Observer for animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-in');
+                
+                // Back to top button
+                const backToTopButton = document.getElementById('backToTop');
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.remove('opacity-0', 'invisible');
+                    backToTopButton.classList.add('opacity-100', 'visible');
+                } else {
+                    backToTopButton.classList.remove('opacity-100', 'visible');
+                    backToTopButton.classList.add('opacity-0', 'invisible');
                 }
+            };
+            
+            window.addEventListener('scroll', animateOnScroll);
+            
+            // Initial check
+            animateOnScroll();
+            
+            // Back to top functionality
+            document.getElementById('backToTop').addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
             });
-        }, {
-            threshold: 0.1
-        });
-
-        // Observe all animated elements
-        document.querySelectorAll('.skill-card, .project-card, .section-header').forEach(el => {
-            observer.observe(el);
-            el.classList.add('animate-on-scroll');
-        });
-
-        // Add loading animation
-        window.addEventListener('load', () => {
-            document.querySelector('.loading-animation').style.display = 'none';
-            document.body.classList.add('loaded');
-        });
-
-        // Disable keyboard shortcuts
-        document.addEventListener('keydown', (e) => {
-            if (
-                (e.ctrlKey && e.key === 'u') || // View source
-                (e.ctrlKey && e.key === 's') || // Save page
-                (e.ctrlKey && e.key === 'p') || // Print
-                (e.ctrlKey && e.shiftKey && e.key === 'i') || // Dev tools
-                (e.ctrlKey && e.shiftKey && e.key === 'c') || // Dev tools
-                (e.ctrlKey && e.shiftKey && e.key === 'j') // Dev tools
-            ) {
-                e.preventDefault();
-                return false;
+            
+            // Mobile menu toggle
+            const mobileMenuButton = document.querySelector('.mobile-menu-button');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
             }
+        };
+        
+        window.addEventListener('scroll', animateOnScroll);
+        
+        // Initial check
+        animateOnScroll();
+        
+        // Back to top functionality
+        document.getElementById('backToTop').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
+        
+        // Mobile menu toggle
+        const mobileMenuButton = document.querySelector('.mobile-menu-button');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                mobileMenu.classList.toggle('active');
+            });
+        }
+    });
+</script>
+<!-- Particle.js Script -->
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Duplicate tech items for infinite scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            // Clone tech items for infinite scroll
+            const track = document.querySelector('.marquee-track');
+            if (track) {
+                // Clone all tech items
+                const items = track.querySelectorAll('.tech-item');
+                items.forEach(item => {
+                    const clone = item.cloneNode(true);
+                    // Add animation delay to clones for smoother appearance
+                    clone.style.animationDelay = `${Math.random() * 0.5}s`;
+                    track.appendChild(clone);
+                });
+                
+                // Animate skill bars on scroll into view
+                const animateSkillBars = () => {
+                    const skillBars = document.querySelectorAll('.skill-level');
+                    skillBars.forEach(bar => {
+                        const width = bar.style.width;
+                        bar.style.width = '0';
+                        setTimeout(() => {
+                            bar.style.width = width;
+                        }, 100);
+                    });
+                };
+                
+                // Run once on load
+                setTimeout(animateSkillBars, 500);
+                
+                // Run on scroll into view
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            animateSkillBars();
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.2 });
+                
+                observer.observe(document.querySelector('#tech-stack'));
+                
+                // Add 3D tilt effect
+                document.querySelectorAll('.tech-item').forEach(item => {
+                    item.addEventListener('mousemove', (e) => {
+                        const rect = item.getBoundingClientRect();
+                        const x = e.clientX - rect.left;
+                        const y = e.clientY - rect.top;
+                        const centerX = rect.width / 2;
+                        const centerY = rect.height / 2;
+                        const angleX = (y - centerY) / 20;
+                        const angleY = (centerX - x) / 20;
+                        
+                        item.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) scale3d(1.05, 1.05, 1.05)`;
+                    });
+                    
+                    item.addEventListener('mouseleave', () => {
+                        item.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+                    });
+                });
 
-        // Disable drag and drop
-        document.addEventListener('dragstart', (e) => {
-            e.preventDefault();
+                // Search functionality
+                const searchInput = document.getElementById('tech-search');
+                const techItems = document.querySelectorAll('.tech-item');
+
+                if (searchInput) {
+                    searchInput.addEventListener('input', (e) => {
+                        const searchTerm = e.target.value.toLowerCase();
+                        
+                        techItems.forEach(item => {
+                            const techName = item.getAttribute('data-name').toLowerCase();
+                            const techDesc = item.getAttribute('data-desc').toLowerCase();
+                            
+                            if (techName.includes(searchTerm) || techDesc.includes(searchTerm)) {
+                                item.style.display = 'flex';
+                            } else {
+                                item.style.display = 'none';
+                            }
+                        });
+                        
+                        // Update pagination if needed
+                        updatePagination();
+                    });
+                }
+            }
+            
+            // Initialize particles.js
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: '#4f46e5' },
+                shape: { type: 'circle' },
+                opacity: { value: 0.3, random: true },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: '#818cf8',
+                    opacity: 0.2,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: 'none',
+                    random: true,
+                    straight: false,
+                    out_mode: 'out',
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: { enable: true, mode: 'grab' },
+                    onclick: { enable: true, mode: 'push' },
+                    resize: true
+                }
+            },
+            retina_detect: true
         });
-
-        // Disable copy
-        document.addEventListener('copy', (e) => {
-            e.preventDefault();
-        });
-
-        // Add hover effect to cards
-        document.querySelectorAll('.skill-card, .project-card').forEach(card => {
+        
+        // 3D card effect
+        const cards = document.querySelectorAll('.project-card');
+        cards.forEach(card => {
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
                 const x = e.clientX - rect.left;
@@ -423,143 +1165,14 @@
                 const angleX = (y - centerY) / 20;
                 const angleY = (centerX - x) / 20;
                 
-                card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) scale3d(1.02, 1.02, 1.02)`;
+                card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) scale(1.05)`;
             });
             
             card.addEventListener('mouseleave', () => {
-                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
             });
         });
-
-        const API_BASE_URL = 'http://localhost:9999';
-
-        // Check if contactform exists before adding event listener
-        const contactForm = document.getElementById("contactform");
-        if (contactForm) {
-            contactForm.addEventListener("submit", async (e) => {
-                e.preventDefault();
-
-                const objetdata = {
-                    nom: document.getElementById("firstName").value,
-                    prenom: document.getElementById("lastName").value,
-                    phone_nummber: document.getElementById("phone").value,
-                    email: document.getElementById("email").value,
-                };
-
-                try {
-                    const response = await fetch('http://localhost:9999/contact/addcontact', {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify(objetdata)
-                    });
-
-                    const result = await response.json();
-                    console.log("Response:", result);
-
-                    if (!response.ok) {
-                        throw new Error(result.message || 'Failed to add contact');
-                    }
-
-                    showNotification('Contact added successfully!', 'success');
-                    document.getElementById("contactform").reset();
-                } catch (error) {
-                    console.error('Error:', error);
-                    showNotification('Failed to add contact: ' + error.message, 'error');
-                }
-            });
-        }
-
-        function showNotification(message, type) {
-            const notification = document.querySelector('.notification');
-            notification.textContent = message;
-            notification.className = `notification ${type} show`;
-            
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, 3000);
-        }
-
-        // Code Access Popup Functionality
-        // Make sure all elements exist before initializing the code access functionality
-        document.addEventListener('DOMContentLoaded', () => {
-            // Initialize code access popup elements
-            const codeAccessPopup = document.getElementById('codeAccessPopup');
-            const accessCodeInput = document.getElementById('accessCodeInput');
-            const submitAccessCode = document.getElementById('submitAccessCode');
-            const cancelAccessCode = document.getElementById('cancelAccessCode');
-            const accessError = document.getElementById('accessError');
-            
-            if (!codeAccessPopup || !accessCodeInput || !submitAccessCode || !cancelAccessCode || !accessError) {
-                console.error('Code access popup elements not found');
-                return;
-            }
-            
-            // Store project information with direct access codes
-            let currentProjectTarget = null;
-            
-            // Make showCodeAccessPopup available globally
-            window.showCodeAccessPopup = function(projectId) {
-                currentProjectTarget = projectId;
-                codeAccessPopup.classList.add('show');
-                accessCodeInput.focus();
-                accessError.textContent = '';
-                console.log('Showing popup for project:', projectId);
-            };
-            
-            // Function to hide the code access popup
-            function hideCodeAccessPopup() {
-                codeAccessPopup.classList.remove('show');
-                accessCodeInput.value = '';
-                accessError.textContent = '';
-                currentProjectTarget = null;
-            }
-            
-            // Handle submit button click
-            submitAccessCode.addEventListener('click', () => {
-                const enteredCode = accessCodeInput.value.trim();
-                console.log('Checking code for project:', currentProjectTarget);
-                
-                // Simple direct comparison with hardcoded values
-                if (currentProjectTarget === 'fsrp1' && enteredCode === '123456') {
-                    console.log('Valid code for Staff Portal');
-                    hideCodeAccessPopup();
-                    window.open('https://fsrp-staff-portal.pages.dev/', '_blank');
-                } 
-                else if (currentProjectTarget === 'fsrp2' && enteredCode === '654321') {
-                    console.log('Valid code for Trainer Portal');
-                    hideCodeAccessPopup();
-                    window.open('https://fsrp-trainer-portal.pages.dev/', '_blank');
-                } 
-                else {
-                    console.log('Invalid code entered');
-                    accessError.textContent = 'Invalid access code. Please try again.';
-                    accessCodeInput.value = '';
-                }
-            });
-            
-            // Handle cancel button click
-            cancelAccessCode.addEventListener('click', hideCodeAccessPopup);
-            
-            // Close popup when clicking outside
-            codeAccessPopup.addEventListener('click', (e) => {
-                if (e.target === codeAccessPopup) {
-                    hideCodeAccessPopup();
-                }
-            });
-            
-            // Handle Enter key press in the input field
-            accessCodeInput.addEventListener('keyup', (e) => {
-                if (e.key === 'Enter') {
-                    submitAccessCode.click();
-                } else if (e.key === 'Escape') {
-                    hideCodeAccessPopup();
-                }
-            });
-            
-            console.log('Code access popup functionality initialized');
-        });
-    </script>
+    });
+</script>
 </body>
 </html>

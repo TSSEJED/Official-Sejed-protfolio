@@ -1,0 +1,132 @@
+/* Custom styles for the portfolio website */
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Mobile menu animation */
+.mobile-menu {
+    transition: all 0.3s ease-in-out;
+    max-height: 0;
+    overflow: hidden;
+}
+
+.mobile-menu.active {
+    max-height: 300px;
+    padding: 1rem 0;
+}
+
+/* Project card hover effect */
+.project-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Form input focus styles */
+input:focus, textarea:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.5);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #6366f1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #4f46e5;
+}
+
+/* Animation for page load */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* Skill bar animation */
+.skill-bar {
+    position: relative;
+    height: 8px;
+    background-color: #e5e7eb;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.skill-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: #6366f1;
+    border-radius: 4px;
+    transition: width 1s ease-in-out;
+}
+
+/* Button hover effect */
+.btn-hover {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn-hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: width 0.3s ease;
+    z-index: -1;
+}
+
+.btn-hover:hover::before {
+    width: 100%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .mobile-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: white;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+    
+    .mobile-menu a {
+        display: block;
+        padding: 0.75rem 1.5rem;
+    }
+}
+
+/* Print styles */
+@media print {
+    body {
+        color: #000;
+        background: #fff;
+    }
+    
+    .no-print {
+        display: none !important;
+    }
+}

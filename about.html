@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - Sejed Trabelsi | Web Developer & Bot Creator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #4F46E5, #7C3AED);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline;
+        }
+        .skill-bar {
+            transition: width 1.5s ease-in-out;
+        }
+        .mobile-menu {
+            transition: all 0.3s ease-in-out;
+        }
+        .mobile-menu.active {
+            max-height: 500px;
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-indigo-50 text-gray-800">
+    <!-- Navigation -->
+    <nav class="bg-white/80 backdrop-blur-md shadow-sm fixed w-full z-10">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <a href="index.html" class="text-2xl font-extrabold gradient-text">Portfolio</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-600 hover:text-indigo-600 transition font-medium">Home</a>
+                    <a href="about.html" class="text-indigo-600 font-medium relative">
+                        About
+                        <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-indigo-600"></span>
+                    </a>
+                    <a href="projects.html" class="text-gray-600 hover:text-indigo-600 transition font-medium">Projects</a>
+                    <a href="contact.html" class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-2.5 rounded-full font-medium hover:shadow-lg hover:shadow-indigo-200 transition-all transform hover:-translate-y-0.5">
+                        Contact Me
+                    </a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button class="mobile-menu-button text-gray-700 hover:text-indigo-600">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div class="mobile-menu hidden md:hidden bg-white/95 backdrop-blur-md shadow-lg">
+            <a href="index.html" class="block px-6 py-3 text-gray-600 hover:bg-gray-50 border-b border-gray-100">Home</a>
+            <a href="about.html" class="block px-6 py-3 text-indigo-600 font-medium border-b border-gray-100">About</a>
+            <a href="projects.html" class="block px-6 py-3 text-gray-600 hover:bg-gray-50 border-b border-gray-100">Projects</a>
+            <a href="contact.html" class="block px-6 py-3 text-gray-600 hover:bg-gray-50">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-36 pb-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">About <span class="gradient-text">Me</span></h1>
+                <div class="w-20 h-1 bg-gradient-to-r from-indigo-500 to-purple-600 mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    I'm a passionate developer specializing in Next.js applications and Discord bot development. Let's create something amazing together!
+                </p>
+            </div>
+            
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden mb-12">
+                <div class="md:flex">
+                    <div class="md:w-1/3 bg-gradient-to-br from-indigo-500 to-purple-600 p-8 flex flex-col items-center justify-center text-center text-white">
+                            <div class="w-48 h-48 rounded-full overflow-hidden border-4 border-white shadow-lg mb-6 bg-gradient-to-br from-indigo-100 to-purple-100 flex items-center justify-center">
+                                <i class="fas fa-user text-6xl text-indigo-400"></i>
+                            </div>
+                        <h2 class="text-2xl font-bold mb-2">Sejed Trabelsi</h2>
+                        <p class="text-indigo-100 mb-4">Full Stack Developer & Discord Bot Specialist</p>
+                        <div class="flex space-x-4">
+                            <a href="https://facebook.com/TSSEJED" target="_blank" class="text-white hover:text-blue-400 transition-colors">
+                                <i class="fab fa-facebook text-2xl"></i>
+                            </a>
+                            <a href="https://www.instagram.com/http.sejed.official/" target="_blank" class="text-white hover:text-pink-500 transition-colors">
+                                <i class="fab fa-instagram text-2xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="md:w-2/3 p-8">
+                        <h3 class="text-2xl font-bold mb-6">Who Am I?</h3>
+                        <div class="prose max-w-none text-gray-600 mb-8">
+                            <p class="mb-4">
+                                Hello! I'm Sejed Trabelsi, a versatile Full Stack Developer with a passion for creating exceptional digital experiences. With expertise in both frontend and backend development, I specialize in building responsive web applications and powerful Discord bots that drive engagement and solve real-world problems.
+                            </p>
+                            <p class="mb-4">
+                                My journey in technology began with a curiosity about how things work, which evolved into a deep passion for development. I've had the privilege of working on diverse projects, from educational platforms like LPM IN STEM'S CLUB to immersive roleplaying communities like Arizona State Roleplay and Florida State Roleplay.
+                            </p>
+                            <p class="mb-4">
+                                What sets me apart is my ability to understand both the technical and creative aspects of development. I believe in writing clean, maintainable code while never losing sight of the end-user experience. Whether it's developing a complex web application or a custom Discord bot, I strive for excellence in every line of code.
+                            </p>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                            <div class="flex items-center">
+                                <div class="bg-indigo-100 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-phone-alt text-indigo-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-500 text-sm">Phone</h4>
+                                    <p class="text-gray-800">+216 94 155 000</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="bg-purple-100 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-hashtag text-purple-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-500 text-sm">Social</h4>
+                                    <div class="flex space-x-2">
+                                        <a href="https://facebook.com/TSSEJED" target="_blank" class="text-indigo-600 hover:text-indigo-800">
+                                            <i class="fab fa-facebook"></i>
+                                        </a>
+                                        <a href="https://www.instagram.com/http.sejed.official/" target="_blank" class="text-pink-600 hover:text-pink-800">
+                                            <i class="fab fa-instagram"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <a href="contact.html" class="inline-block bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-3 rounded-full font-medium hover:shadow-lg hover:shadow-indigo-200 transition-all transform hover:-translate-y-0.5">
+                            Get In Touch
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skills Section -->
+            <div class="mb-16">
+                <h2 class="text-3xl font-bold text-center mb-12">My <span class="gradient-text">Skills</span></h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Frontend Development -->
+                    <div class="bg-white rounded-2xl p-8 shadow-lg">
+                        <div class="flex items-center mb-6">
+                            <div class="bg-indigo-100 p-3 rounded-lg mr-4">
+                                <i class="fas fa-laptop-code text-indigo-600 text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">Frontend Development</h3>
+                        </div>
+                        <div class="space-y-6">
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium">React.js</span>
+                                    <span class="text-gray-500">90%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium">Next.js</span>
+                                    <span class="text-gray-500">85%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium">JavaScript/TypeScript</span>
+                                    <span class="text-gray-500">88%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 88%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium">Tailwind CSS</span>
+                                    <span class="text-gray-500">92%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 92%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Backend & Bot Development -->
+                    <div class="bg-white rounded-2xl p-8 shadow-lg">
+                        <div class="flex items-center mb-6">
+                            <div class="bg-purple-100 p-3 rounded-lg mr-4">
+                                <i class="fas fa-server text-purple-600 text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">Backend & Bot Development</h3>
+                        </div>
+                        <div class="space-y-6">
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium">Discord.js</span>
+                                    <span class="text-gray-500">88%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 88%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium">Bot Architecture</span>
+                                    <span class="text-gray-500">85%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium">API Integration</span>
+                                    <span class="text-gray-500">90%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium">Database Management</span>
+                                    <span class="text-gray-500">83%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 83%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tools & Technologies -->
+            <div class="mb-16">
+                <h2 class="text-3xl font-bold text-center mb-12">Tools & <span class="gradient-text">Technologies</span></h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Development -->
+                    <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
+                        <h3 class="text-xl font-bold mb-4 text-center text-indigo-600">Development</h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="flex flex-col items-center p-4 hover:bg-gray-50 rounded-lg transition">
+                                <i class="fab fa-js text-4xl text-yellow-500 mb-2"></i>
+                                <span class="font-medium">JavaScript</span>
+                            </div>
+                            <div class="flex flex-col items-center p-4 hover:bg-gray-50 rounded-lg transition">
+                                <i class="fab fa-node-js text-4xl text-green-500 mb-2"></i>
+                                <span class="font-medium">Node.js</span>
+                            </div>
+                            <div class="flex flex-col items-center p-4 hover:bg-gray-50 rounded-lg transition">
+                                <i class="fab fa-react text-4xl text-blue-500 mb-2"></i>
+                                <span class="font-medium">React</span>
+                            </div>
+                            <div class="flex flex-col items-center p-4 hover:bg-gray-50 rounded-lg transition">
+                                <i class="fas fa-server text-4xl text-purple-500 mb-2"></i>
+                                <span class="font-medium">Next.js</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tools -->
+                    <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
+                        <h3 class="text-xl font-bold mb-4 text-center text-indigo-600">Tools</h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="flex flex-col items-center p-4 hover:bg-gray-50 rounded-lg transition">
+                                <i class="fab fa-git-alt text-4xl text-orange-500 mb-2"></i>
+                                <span class="font-medium">Git</span>
+                            </div>
+                            <div class="flex flex-col items-center p-4 hover:bg-gray-50 rounded-lg transition">
+                                <i class="fab fa-github text-4xl text-gray-800 mb-2"></i>
+                                <span class="font-medium">GitHub</span>
+                            </div>
+                            <div class="flex flex-col items-center p-4 hover:bg-gray-50 rounded-lg transition">
+                                <i class="fas fa-terminal text-4xl text-gray-700 mb-2"></i>
+                                <span class="font-medium">CLI</span>
+                            </div>
+                            <div class="flex flex-col items-center p-4 hover:bg-gray-50 rounded-lg transition">
+                                <i class="fab fa-figma text-4xl text-purple-500 mb-2"></i>
+                                <span class="font-medium">Figma</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Database & Hosting -->
+                    <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
+                        <h3 class="text-xl font-bold mb-4 text-center text-indigo-600">Database & Hosting</h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="flex flex-col items-center p-4 hover:bg-gray-50 rounded-lg transition">
+                                <i class="fas fa-database text-4xl text-blue-400 mb-2"></i>
+                                <span class="font-medium">MongoDB</span>
+                            </div>
+                            <div class="flex flex-col items-center p-4 hover:bg-gray-50 rounded-lg transition">
+                                <i class="fab fa-aws text-4xl text-orange-500 mb-2"></i>
+                                <span class="font-medium">AWS</span>
+                            </div>
+                            <div class="flex flex-col items-center p-4 hover:bg-gray-50 rounded-lg transition">
+                                <i class="fas fa-cloud text-4xl text-blue-300 mb-2"></i>
+                                <span class="font-medium">Vercel</span>
+                            </div>
+                            <div class="flex flex-col items-center p-4 hover:bg-gray-50 rounded-lg transition">
+                                <i class="fab fa-discord text-4xl text-indigo-500 mb-2"></i>
+                                <span class="font-medium">Discord.js</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Start a Project?</h2>
+            <p class="text-xl text-indigo-100 mb-8 max-w-2xl mx-auto">
+                I'm currently taking on freelance work. Let's turn your ideas into reality!
+            </p>
+            <a href="contact.html" class="inline-block bg-white text-indigo-600 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-all transform hover:-translate-y-0.5 hover:shadow-lg">
+                Get In Touch
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="md:col-span-2">
+                    <h3 class="text-2xl font-bold text-white mb-4">Sejed Trabelsi</h3>
+                    <p class="mb-4">
+                        Full Stack Developer & Discord Bot Specialist creating powerful web applications and engaging Discord communities.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://facebook.com/TSSEJED" target="_blank" class="text-gray-400 hover:text-white transition-colors" aria-label="Facebook">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                        <a href="https://www.instagram.com/http.sejed.official/" target="_blank" class="text-gray-400 hover:text-white transition-colors" aria-label="Instagram">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4 text-lg">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-indigo-400"></i> Home</a></li>
+                        <li><a href="about.html" class="hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-indigo-400"></i> About</a></li>
+                        <li><a href="projects.html" class="hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-indigo-400"></i> Projects</a></li>
+                        <li><a href="contact.html" class="hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-indigo-400"></i> Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4 text-lg">Get In Touch</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-phone-alt mt-1 mr-3 text-indigo-400"></i>
+                            <div>
+                                <p class="text-sm text-gray-400">Phone</p>
+                                <a href="tel:+21694155000" class="hover:text-white transition-colors">+216 94 155 000</a>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fab fa-whatsapp mt-1 mr-3 text-indigo-400"></i>
+                            <div>
+                                <p class="text-sm text-gray-400">WhatsApp</p>
+                                <a href="https://wa.me/21694155000" target="_blank" class="hover:text-white transition-colors">+216 94 155 000</a>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-indigo-400"></i>
+                            <div>
+                                <p class="text-sm text-gray-400">Location</p>
+                                <span>Tunis, Tunisia</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500 text-sm">
+                <p>© 2023 Sejed Trabelsi. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <button id="backToTop" class="fixed bottom-8 right-8 bg-indigo-600 text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center opacity-0 invisible transition-all duration-300 z-50">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Initialize skill bars animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const skillBars = document.querySelectorAll('.skill-level');
+            
+            // Animate skill bars when they come into view
+            const animateSkillBars = () => {
+                skillBars.forEach(bar => {
+                    const barPosition = bar.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.3;
+                    
+                    if (barPosition < screenPosition) {
+                        // The width is already set in the style attribute
+                        bar.style.opacity = '1';
+                    }
+                });
+            };
+            
+            // Set initial state
+            skillBars.forEach(bar => {
+                bar.style.opacity = '0';
+                bar.style.transition = 'opacity 1s ease-in-out, width 1s ease-in-out';
+            });
+            
+            // Check on scroll and on load
+            window.addEventListener('scroll', animateSkillBars);
+            animateSkillBars();
+            
+            // Back to top button
+            const backToTopButton = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.remove('opacity-0', 'invisible');
+                    backToTopButton.classList.add('opacity-100', 'visible');
+                } else {
+                    backToTopButton.classList.remove('opacity-100', 'visible');
+                    backToTopButton.classList.add('opacity-0', 'invisible');
+                }
+            });
+            
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
