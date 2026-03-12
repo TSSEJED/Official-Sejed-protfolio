@@ -1,1314 +1,2227 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sejed TRABELSSI</title>
-    <meta name="description" content="Professional portfolio showcasing my Next.js applications and Discord bot development projects">
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="shortcut icon" href="images/pngwing.com.png" type="image/x-icon">
-    <style>
-        /* Text Selection Styles */
-        ::selection {
-            background: #130c9e;
-            color: white;
-            text-shadow: none;
-        }
-        
-        ::-moz-selection {
-            background: #130c9e;
-            color: white;
-            text-shadow: none;
-        }
-        
-        /* Custom Alert Styles */
-        #customAlert {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            padding: 2rem;
-            border-radius: 1rem;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            max-width: 320px;
-            width: 90%;
-            text-align: center;
-            border: 1px solid #e5e7eb;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sejed Trabelsi — Full-Stack Developer & Discord Bot Architect based in Tunis, Tunisia. Specializing in Next.js, React, and scalable Discord ecosystems." />
+  <title>Sejed Trabelsi · Full-Stack Developer</title>
+  <link rel="shortcut icon" href="images/pngwing.com.png" type="image/x-icon">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
 
-        #customAlert h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #1f2937;
-            margin-bottom: 1rem;
-            background: linear-gradient(90deg, #130c9e, #7c3aed);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+  <style>
+    /* ═══════════════════════════════════════════════
+       DESIGN SYSTEM — CSS CUSTOM PROPERTIES
+    ═══════════════════════════════════════════════ */
+    :root {
+      /* Background layers */
+      --bg-base:      #06060e;
+      --bg-surface:   #0f0f1c;
+      --bg-raised:    #16162a;
+      --bg-overlay:   #1e1e35;
 
-        #customAlert p {
-            color: #4b5563;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
+      /* Brand palette */
+      --indigo:       #818cf8;
+      --indigo-dim:   rgba(129,140,248,.12);
+      --indigo-glow:  rgba(129,140,248,.25);
+      --amber:        #fbbf24;
+      --amber-dim:    rgba(251,191,36,.1);
+      --rose:         #fb7185;
+      --rose-dim:     rgba(251,113,133,.1);
+      --emerald:      #34d399;
+      --emerald-dim:  rgba(52,211,153,.1);
 
-        #customAlert button {
-            background: linear-gradient(90deg, #130c9e, #7c3aed);
-            color: white;
-            border: none;
-            padding: 0.75rem 2rem;
-            border-radius: 9999px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            font-size: 1rem;
-            box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.1), 0 2px 4px -1px rgba(79, 70, 229, 0.06);
-        }
+      /* Typography */
+      --text-primary:   #f0f0fa;
+      --text-secondary: #a8a8c8;
+      --text-muted:     #5a5a7a;
+      --text-faint:     #32324a;
 
-        #customAlert button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.1), 0 4px 6px -2px rgba(79, 70, 229, 0.05);
-        }
+      /* Borders */
+      --border:         rgba(255,255,255,.065);
+      --border-bright:  rgba(129,140,248,.3);
 
-        #overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-            backdrop-filter: blur(4px);
-        }
+      /* Radii */
+      --r-sm:  8px;
+      --r-md:  14px;
+      --r-lg:  20px;
+      --r-xl:  28px;
+      --r-full: 9999px;
 
-        /* 3D Card Styles */
-        .project-card {
-            perspective: 1000px;
-            height: 100%;
-        }
-        
-        .project-card-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            transition: transform 0.6s;
-            transform-style: preserve-3d;
-        }
-        
-        .project-card:hover .project-card-inner {
-            transform: rotateY(180deg);
-        }
-        
-        .project-card-front,
-        .project-card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
-        }
-        
-        .project-card-back {
-            transform: rotateY(180deg);
-        }
-        
-        .tech-tag {
-            display: inline-block;
-            background-color: #f3f4f6;
-            color: #4b5563;
-            padding: 2px 10px;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-        
-        .btn-outline-white {
-            display: inline-block;
-            border: 2px solid white;
-            color: white;
-            padding: 8px 16px;
-            border-radius: 50px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-outline-white:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-        
-        .btn-white {
-            display: inline-block;
-            background: white;
-            color: #4f46e5;
-            padding: 8px 16px;
-            border-radius: 50px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-white:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        
-        /* Tech Stack Carousel */
-        /* Tech Stack Section */
-        #tech-stack {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .marquee-container {
-            width: 100%;
-            overflow: visible;
-            position: relative;
-            padding: 40px 0;
-        }
-        
-        .marquee-track {
-            display: flex;
-            width: max-content;
-            animation: scroll 60s linear infinite;
-            padding: 20px 0;
-            will-change: transform;
-        }
-        
-        .tech-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 25px;
-            margin: 0 15px;
-            position: relative;
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-            min-width: 140px;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
-            border: 1px solid rgba(0, 0, 0, 0.03);
-            perspective: 1000px;
-            transform-style: preserve-3d;
-            will-change: transform, box-shadow;
-        }
-        
-        .tech-item:hover {
-            transform: translateY(-15px) scale(1.05) rotateX(5deg);
-            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
-            z-index: 10;
-        }
-        
-        .tech-icon-wrapper {
-            width: 80px;
-            height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 20px;
-            margin-bottom: 20px;
-            transition: all 0.4s ease;
-            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.05);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .tech-icon-wrapper::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(249,250,251,0.9) 100%);
-            border-radius: 20px;
-            z-index: -1;
-            transition: all 0.4s ease;
-        }
-        
-        .tech-item:hover .tech-icon-wrapper {
-            transform: scale(1.1) translateY(-5px);
-            box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.1);
-        }
-        
-        .tech-item:hover .tech-icon-wrapper::before {
-            opacity: 0;
-        }
-        
-        .tech-details {
-            text-align: center;
-            width: 100%;
-            transform: translateZ(30px);
-        }
-        
-        .tech-text {
-            font-size: 1rem;
-            font-weight: 600;
-            color: #1f2937;
-            margin-bottom: 10px;
-            display: block;
-            opacity: 1;
-            transform: none;
-            position: static;
-            transition: all 0.3s ease;
-        }
-        
-        .skill-bar {
-            width: 100%;
-            height: 6px;
-            background: #e5e7eb;
-            border-radius: 3px;
-            overflow: hidden;
-            margin-top: 8px;
-        }
-        
-        .skill-level {
-            height: 100%;
-            border-radius: 3px;
-            position: relative;
-            transition: width 1s ease-in-out;
-        }
-        
-        .skill-level::after {
-            content: attr(data-level);
-            position: absolute;
-            right: 5px;
-            top: -20px;
-            font-size: 10px;
-            font-weight: 600;
-            color: #6b7280;
-        }
-        
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-100% / 8 * 8)); }
-        }
-        
-        /* Pause animation on hover */
-        .marquee-container:hover .marquee-track {
-            animation-play-state: paused;
-        }
-        
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-100% / 8 * 8)); }
-        }
-        
-        /* Pause animation on hover */
-        .marquee-container:hover .marquee-track {
-            animation-play-state: paused;
-        }
-        
-        /* Tooltip styles */
-        [data-tooltip] {
-            position: relative;
-            cursor: pointer;
-        }
-        
-        [data-tooltip]::after {
-            content: attr(data-tooltip);
-            position: absolute;
-            bottom: calc(100% + 10px);
-            left: 50%;
-            transform: translateX(-50%) translateY(10px) scale(0.95);
-            background: linear-gradient(135deg, #4f46e5, #7c3aed);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 500;
-            white-space: nowrap;
-            opacity: 0;
-            pointer-events: none;
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 100;
-            box-shadow: 0 10px 25px -5px rgba(79, 70, 229, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        [data-tooltip]::before {
-            content: '';
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%) translateY(5px);
-            border-width: 6px;
-            border-style: solid;
-            border-color: #4f46e5 transparent transparent transparent;
-            opacity: 0;
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 101;
-        }
-        
-        [data-tooltip]:hover::after {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0) scale(1);
-        }
-        
-        [data-tooltip]:hover::before {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
-        }
-        
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            overflow-x: hidden;
-        }
-        .gradient-text {
-            background: linear-gradient(90deg, #4f46e5, #8b5cf6);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .gradient-text::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, #4f46e5, #8b5cf6);
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 0.3s ease;
-        }
-        
-        .gradient-text:hover::after {
-            transform: scaleX(1);
-            transform-origin: left;
-        }
-        .card-hover {
-            transition: all 0.3s ease;
-        }
-        .card-hover:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-        .social-icon {
-            transition: all 0.3s ease;
-        }
-        .social-icon:hover {
-            transform: scale(1.2) rotate(5deg);
-        }
-        .skill-badge {
-            transition: all 0.3s ease;
-        }
-        .skill-badge:hover {
-            background: linear-gradient(90deg, #4f46e5, #8b5cf6);
-            color: white;
-            transform: translateY(-2px);
-        }
-    </style>
+      /* Spacing scale */
+      --sp-1: .25rem;   --sp-2: .5rem;    --sp-3: .75rem;
+      --sp-4: 1rem;     --sp-5: 1.25rem;  --sp-6: 1.5rem;
+      --sp-8: 2rem;     --sp-10: 2.5rem;  --sp-12: 3rem;
+      --sp-16: 4rem;    --sp-20: 5rem;    --sp-24: 6rem;
+
+      /* Type scale */
+      --text-xs:  .7rem;
+      --text-sm:  .825rem;
+      --text-base: 1rem;
+      --text-lg:  1.125rem;
+      --text-xl:  1.35rem;
+      --text-2xl: 1.75rem;
+      --text-3xl: 2.4rem;
+      --text-4xl: 3.2rem;
+      --text-5xl: 4.5rem;
+      --text-hero: clamp(3.8rem, 9vw, 8.5rem);
+
+      /* Easing */
+      --ease-out:   cubic-bezier(.16,1,.3,1);
+      --ease-in:    cubic-bezier(.4,0,1,1);
+      --ease-inout: cubic-bezier(.4,0,.2,1);
+
+      /* Shadows */
+      --shadow-sm:   0 2px 8px rgba(0,0,0,.4);
+      --shadow-md:   0 8px 24px rgba(0,0,0,.5);
+      --shadow-lg:   0 20px 48px rgba(0,0,0,.6);
+      --shadow-glow: 0 0 40px rgba(129,140,248,.15);
+    }
+
+    /* ═══════════════════════════════════════════════
+       RESET & BASE
+    ═══════════════════════════════════════════════ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 400;
+      background: var(--bg-base);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    ul { list-style: none; }
+
+    /* ═══════════════════════════════════════════════
+       SCROLLBAR
+    ═══════════════════════════════════════════════ */
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: var(--bg-base); }
+    ::-webkit-scrollbar-thumb {
+      background: var(--indigo);
+      border-radius: var(--r-full);
+    }
+
+    /* ═══════════════════════════════════════════════
+       CUSTOM CURSOR
+    ═══════════════════════════════════════════════ */
+    #cursor-dot {
+      position: fixed;
+      top: 0; left: 0;
+      width: 8px; height: 8px;
+      background: var(--indigo);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: width .2s, height .2s, background .2s;
+      mix-blend-mode: screen;
+    }
+
+    #cursor-ring {
+      position: fixed;
+      top: 0; left: 0;
+      width: 32px; height: 32px;
+      border: 1px solid rgba(129,140,248,.5);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: width .3s var(--ease-out),
+                  height .3s var(--ease-out),
+                  border-color .2s;
+    }
+
+    body:has(a:hover) #cursor-dot,
+    body:has(button:hover) #cursor-dot { width: 14px; height: 14px; background: var(--amber); }
+    body:has(a:hover) #cursor-ring,
+    body:has(button:hover) #cursor-ring { width: 44px; height: 44px; border-color: var(--amber); }
+
+    /* ═══════════════════════════════════════════════
+       NOISE TEXTURE OVERLAY
+    ═══════════════════════════════════════════════ */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      opacity: .025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
+
+    /* ═══════════════════════════════════════════════
+       NAVIGATION
+    ═══════════════════════════════════════════════ */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--sp-6) var(--sp-16);
+      backdrop-filter: blur(24px) saturate(1.6);
+      -webkit-backdrop-filter: blur(24px) saturate(1.6);
+      background: rgba(6, 6, 14, .75);
+      border-bottom: 1px solid var(--border);
+      transition: padding .3s var(--ease-out);
+    }
+
+    .nav.scrolled { padding: var(--sp-4) var(--sp-16); }
+
+    /* Logo */
+    .nav__logo {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.4rem;
+      font-style: italic;
+      color: var(--text-primary);
+      letter-spacing: -.01em;
+      position: relative;
+    }
+
+    .nav__logo::after {
+      content: attr(data-sub);
+      font-family: 'JetBrains Mono', monospace;
+      font-style: normal;
+      font-size: .65rem;
+      letter-spacing: .15em;
+      color: var(--indigo);
+      display: block;
+      margin-top: -2px;
+    }
+
+    /* Nav links */
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-8);
+    }
+
+    .nav__link {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: var(--text-xs);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      position: relative;
+      transition: color .2s;
+    }
+
+    .nav__link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 100%; height: 1px;
+      background: var(--indigo);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .3s var(--ease-out);
+    }
+
+    .nav__link:hover { color: var(--text-primary); }
+    .nav__link:hover::after { transform: scaleX(1); }
+
+    /* Hire CTA */
+    .nav__cta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: var(--text-xs);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--indigo);
+      border: 1px solid var(--indigo);
+      padding: .5rem 1.2rem;
+      border-radius: var(--r-full);
+      transition: background .2s, color .2s, box-shadow .2s;
+    }
+
+    .nav__cta::after { display: none; }
+    .nav__cta:hover {
+      background: var(--indigo);
+      color: var(--bg-base);
+      box-shadow: var(--shadow-glow);
+    }
+
+    /* ═══════════════════════════════════════════════
+       HERO SECTION
+    ═══════════════════════════════════════════════ */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 8rem var(--sp-16) 4rem;
+      overflow: hidden;
+    }
+
+    /* Background elements */
+    .hero__bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero__grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(129,140,248,.028) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(129,140,248,.028) 1px, transparent 1px);
+      background-size: 72px 72px;
+    }
+
+    .hero__radial {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 65% 45%, rgba(129,140,248,.07) 0%, transparent 65%),
+        radial-gradient(ellipse 45% 50% at 15% 85%, rgba(251,113,133,.05) 0%, transparent 60%),
+        radial-gradient(ellipse 55% 45% at 50% 0%, rgba(251,191,36,.04) 0%, transparent 55%);
+    }
+
+    /* Floating geometric shapes */
+    .hero__shape {
+      position: absolute;
+      border: 1px solid rgba(129,140,248,.08);
+      border-radius: var(--r-md);
+      animation: floatShape 8s ease-in-out infinite;
+    }
+
+    .hero__shape--1 {
+      width: 320px; height: 320px;
+      top: 10%; right: 8%;
+      border-radius: var(--r-xl);
+      background: radial-gradient(circle at 30% 30%, rgba(129,140,248,.04), transparent 70%);
+      animation-duration: 10s;
+    }
+
+    .hero__shape--2 {
+      width: 180px; height: 180px;
+      bottom: 25%; right: 22%;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(251,191,36,.04), transparent 70%);
+      animation-delay: -4s;
+      animation-duration: 7s;
+    }
+
+    .hero__shape--3 {
+      width: 100px; height: 100px;
+      top: 30%; right: 30%;
+      border-radius: var(--r-sm);
+      transform: rotate(45deg);
+      animation-delay: -2s;
+      animation-duration: 9s;
+    }
+
+    /* Hero content */
+    .hero__inner {
+      position: relative;
+      z-index: 2;
+      max-width: 920px;
+    }
+
+    .hero__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--sp-3);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: var(--text-xs);
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--indigo);
+      margin-bottom: var(--sp-8);
+      opacity: 0;
+      animation: slideUp .7s .15s var(--ease-out) forwards;
+    }
+
+    .hero__eyebrow-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--emerald);
+      animation: blink 2s ease-in-out infinite;
+    }
+
+    /* Main headline */
+    .hero__headline {
+      font-family: 'Instrument Serif', serif;
+      font-size: var(--text-hero);
+      line-height: .88;
+      letter-spacing: -.04em;
+      margin-bottom: var(--sp-6);
+    }
+
+    .hero__headline-line {
+      display: block;
+      overflow: hidden;
+    }
+
+    .hero__headline-inner {
+      display: block;
+      opacity: 0;
+      transform: translateY(100%);
+      animation: revealLine .9s var(--ease-out) forwards;
+    }
+
+    .hero__headline-line:nth-child(1) .hero__headline-inner {
+      animation-delay: .3s;
+      color: var(--text-primary);
+    }
+
+    .hero__headline-line:nth-child(2) .hero__headline-inner {
+      animation-delay: .45s;
+      background: linear-gradient(110deg, var(--indigo) 20%, var(--amber) 60%, var(--rose) 90%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Role line */
+    .hero__role {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-3);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+      margin: var(--sp-8) 0 var(--sp-6);
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: slideUp .7s .7s var(--ease-out) forwards;
+    }
+
+    .hero__role-sep {
+      color: var(--text-faint);
+    }
+
+    .hero__role-accent { color: var(--amber); }
+
+    /* Description */
+    .hero__desc {
+      font-size: 1.08rem;
+      line-height: 1.78;
+      color: var(--text-secondary);
+      max-width: 580px;
+      margin-bottom: var(--sp-10);
+      opacity: 0;
+      animation: slideUp .7s .85s var(--ease-out) forwards;
+    }
+
+    /* CTA buttons */
+    .hero__actions {
+      display: flex;
+      gap: var(--sp-4);
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: slideUp .7s 1s var(--ease-out) forwards;
+    }
+
+    /* Hero stats (right side) */
+    .hero__stats {
+      position: absolute;
+      right: var(--sp-16);
+      bottom: 10%;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-6);
+      text-align: right;
+      opacity: 0;
+      animation: slideLeft .9s 1.1s var(--ease-out) forwards;
+    }
+
+    .hero__stat-number {
+      font-family: 'Instrument Serif', serif;
+      font-size: 3.2rem;
+      line-height: 1;
+      background: linear-gradient(135deg, #fff, var(--indigo));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero__stat-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: var(--text-xs);
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: var(--sp-1);
+    }
+
+    /* Scroll indicator */
+    .hero__scroll {
+      position: absolute;
+      bottom: var(--sp-8);
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--sp-2);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .6rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      animation: fadeIn 1s 1.5s both;
+    }
+
+    .hero__scroll-track {
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(var(--indigo), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    /* ═══════════════════════════════════════════════
+       BUTTON SYSTEM
+    ═══════════════════════════════════════════════ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--sp-2);
+      padding: .85rem 2rem;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 700;
+      font-size: var(--text-sm);
+      border-radius: var(--r-full);
+      border: none;
+      cursor: none;
+      transition: transform .2s var(--ease-out),
+                  box-shadow .2s,
+                  background .2s,
+                  color .2s,
+                  border-color .2s;
+    }
+
+    .btn:hover { transform: translateY(-3px); }
+
+    .btn--primary {
+      background: var(--indigo);
+      color: var(--bg-base);
+    }
+    .btn--primary:hover { box-shadow: 0 12px 32px rgba(129,140,248,.4); }
+
+    .btn--ghost {
+      background: transparent;
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+    }
+    .btn--ghost:hover {
+      border-color: var(--indigo);
+      color: var(--indigo);
+    }
+
+    /* ═══════════════════════════════════════════════
+       SECTION LAYOUT
+    ═══════════════════════════════════════════════ */
+    .section {
+      padding: var(--sp-24) var(--sp-16);
+      position: relative;
+      z-index: 2;
+    }
+
+    .section--alt { background: var(--bg-surface); }
+
+    .section__label {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--sp-3);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: var(--text-xs);
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--indigo);
+      margin-bottom: var(--sp-4);
+    }
+
+    .section__label::before {
+      content: '';
+      width: 18px; height: 1px;
+      background: var(--indigo);
+    }
+
+    .section__title {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      font-weight: 400;
+      letter-spacing: -.03em;
+      line-height: 1.05;
+      color: var(--text-primary);
+      margin-bottom: var(--sp-4);
+    }
+
+    .section__sub {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--text-secondary);
+      max-width: 560px;
+    }
+
+    /* ═══════════════════════════════════════════════
+       ABOUT SECTION
+    ═══════════════════════════════════════════════ */
+    .about__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-16);
+      align-items: start;
+      margin-top: var(--sp-16);
+    }
+
+    /* Bio card */
+    .about__card {
+      background: var(--bg-raised);
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      padding: var(--sp-10);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about__card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg,
+        transparent,
+        var(--indigo),
+        var(--amber),
+        var(--rose),
+        transparent
+      );
+    }
+
+    /* Avatar */
+    .about__avatar-wrap {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-5);
+      margin-bottom: var(--sp-6);
+    }
+
+    .about__avatar {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--indigo), var(--amber));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.6rem;
+      color: var(--bg-base);
+      font-style: italic;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .about__avatar::after {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      border: 1px solid rgba(129,140,248,.3);
+    }
+
+    .about__name {
+      font-family: 'Instrument Serif', serif;
+      font-size: var(--text-2xl);
+      letter-spacing: -.02em;
+      color: var(--text-primary);
+      line-height: 1.1;
+    }
+
+    .about__role-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: var(--text-xs);
+      color: var(--indigo);
+      letter-spacing: .08em;
+      margin-top: var(--sp-1);
+    }
+
+    .about__bio {
+      font-size: .96rem;
+      line-height: 1.82;
+      color: var(--text-secondary);
+      margin-bottom: var(--sp-4);
+    }
+
+    /* Contact list */
+    .about__contacts {
+      margin-top: var(--sp-6);
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-3);
+      padding-top: var(--sp-6);
+      border-top: 1px solid var(--border);
+    }
+
+    .about__contact-item {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-3);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: var(--text-sm);
+      color: var(--text-muted);
+    }
+
+    .about__contact-icon {
+      width: 30px; height: 30px;
+      border-radius: var(--r-sm);
+      background: var(--indigo-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .9rem;
+      flex-shrink: 0;
+    }
+
+    .about__contact-value { color: var(--text-primary); }
+
+    /* Red Crescent badge */
+    .about__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--sp-3);
+      background: rgba(251,113,133,.08);
+      border: 1px solid rgba(251,113,133,.2);
+      border-radius: var(--r-full);
+      padding: .45rem var(--sp-4);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: var(--text-xs);
+      color: var(--rose);
+      letter-spacing: .06em;
+      margin-top: var(--sp-4);
+    }
+
+    /* Skills side */
+    .about__skills {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-8);
+    }
+
+    .skill-group__title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: var(--text-xs);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: var(--sp-5);
+    }
+
+    .skill-bar { margin-bottom: var(--sp-4); }
+
+    .skill-bar__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--sp-2);
+    }
+
+    .skill-bar__name {
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .skill-bar__pct {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: var(--text-xs);
+      color: var(--indigo);
+    }
+
+    .skill-bar__track {
+      height: 2px;
+      background: var(--border);
+      border-radius: var(--r-full);
+      overflow: hidden;
+    }
+
+    .skill-bar__fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--indigo), var(--amber));
+      border-radius: var(--r-full);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 1.1s var(--ease-out);
+    }
+
+    /* Tech cloud */
+    .tech-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--sp-2);
+    }
+
+    .tech-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .68rem;
+      letter-spacing: .06em;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      padding: .35rem .8rem;
+      border-radius: var(--r-full);
+      transition: border-color .2s, color .2s, background .2s;
+    }
+
+    .tech-tag:hover {
+      border-color: var(--indigo);
+      color: var(--indigo);
+      background: var(--indigo-dim);
+    }
+
+    /* ═══════════════════════════════════════════════
+       PROJECTS SECTION
+    ═══════════════════════════════════════════════ */
+    .projects__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--sp-5);
+      margin-top: var(--sp-16);
+    }
+
+    /* Project card */
+    .project-card {
+      background: var(--bg-raised);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: var(--sp-8);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      transition: transform .3s var(--ease-out),
+                  border-color .3s,
+                  box-shadow .3s;
+    }
+
+    /* Cursor light effect */
+    .project-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        300px circle at var(--mx, 50%) var(--my, 50%),
+        rgba(129,140,248,.06), transparent 50%
+      );
+      opacity: 0;
+      transition: opacity .3s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(129,140,248,.25);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .project-card:hover::after { opacity: 1; }
+
+    /* Featured variant */
+    .project-card--featured {
+      border-color: rgba(129,140,248,.15);
+    }
+
+    .project-card--featured::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--indigo), transparent);
+    }
+
+    /* Card elements */
+    .project-card__type {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--sp-2);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: var(--text-xs);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      margin-bottom: var(--sp-4);
+    }
+
+    .project-card__type-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: currentColor;
+      animation: blink 2s ease-in-out infinite;
+    }
+
+    /* Type color modifiers */
+    .project-card__type--bot   { color: var(--rose); }
+    .project-card__type--web   { color: var(--indigo); }
+    .project-card__type--platform { color: var(--amber); }
+    .project-card__type--book  { color: var(--emerald); }
+    .project-card__type--store { color: #a78bfa; }
+
+    .project-card__title {
+      font-family: 'Instrument Serif', serif;
+      font-size: var(--text-xl);
+      letter-spacing: -.02em;
+      color: var(--text-primary);
+      margin-bottom: var(--sp-3);
+      line-height: 1.2;
+    }
+
+    .project-card__desc {
+      font-size: var(--text-sm);
+      line-height: 1.72;
+      color: var(--text-secondary);
+      flex: 1;
+      margin-bottom: var(--sp-5);
+    }
+
+    .project-card__stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--sp-2);
+      margin-bottom: var(--sp-5);
+    }
+
+    .stack-pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .62rem;
+      letter-spacing: .04em;
+      color: var(--text-muted);
+      background: rgba(255,255,255,.04);
+      padding: .25rem .6rem;
+      border-radius: var(--r-full);
+    }
+
+    .project-card__link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--sp-2);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: var(--text-xs);
+      letter-spacing: .06em;
+      color: var(--indigo);
+      transition: gap .2s;
+    }
+
+    .project-card__link:hover { gap: var(--sp-3); }
+    .project-card__link--muted { color: var(--text-muted); cursor: default; }
+
+    /* ═══════════════════════════════════════════════
+       SERVICES SECTION
+    ═══════════════════════════════════════════════ */
+    .services__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--sp-5);
+      margin-top: var(--sp-12);
+    }
+
+    .service-card {
+      background: var(--bg-raised);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: var(--sp-8);
+      transition: transform .3s var(--ease-out), box-shadow .3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* Accent line on hover */
+    .service-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%; height: 2px;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .4s var(--ease-out);
+    }
+    .service-card:nth-child(1)::before { background: var(--indigo); }
+    .service-card:nth-child(2)::before { background: var(--rose); }
+    .service-card:nth-child(3)::before { background: var(--amber); }
+    .service-card:hover::before { transform: scaleX(1); }
+
+    .service-card__icon {
+      width: 50px; height: 50px;
+      border-radius: var(--r-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: var(--sp-5);
+    }
+
+    .service-card__icon--indigo { background: var(--indigo-dim); }
+    .service-card__icon--rose   { background: var(--rose-dim); }
+    .service-card__icon--amber  { background: var(--amber-dim); }
+
+    .service-card__title {
+      font-family: 'Instrument Serif', serif;
+      font-size: var(--text-xl);
+      letter-spacing: -.02em;
+      color: var(--text-primary);
+      margin-bottom: var(--sp-3);
+    }
+
+    .service-card__desc {
+      font-size: var(--text-sm);
+      line-height: 1.75;
+      color: var(--text-secondary);
+      margin-bottom: var(--sp-5);
+    }
+
+    .service-card__features {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-2);
+    }
+
+    .service-card__feature {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--sp-3);
+      font-size: var(--text-sm);
+      color: rgba(168,168,200,.65);
+      line-height: 1.5;
+    }
+
+    .service-card__feature-arrow {
+      color: var(--indigo);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .75rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ═══════════════════════════════════════════════
+       CONTACT SECTION
+    ═══════════════════════════════════════════════ */
+    .contact {
+      text-align: center;
+    }
+
+    .contact__card {
+      max-width: 680px;
+      margin: var(--sp-12) auto 0;
+      background: var(--bg-raised);
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      padding: var(--sp-16) var(--sp-12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact__card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg,
+        transparent, var(--indigo), var(--amber), var(--rose), transparent
+      );
+    }
+
+    .contact__glow {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(129,140,248,.05), transparent 65%);
+      pointer-events: none;
+    }
+
+    .contact__desc {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--text-secondary);
+      max-width: 440px;
+      margin: 0 auto var(--sp-8);
+    }
+
+    .contact__channels {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: var(--sp-3);
+      margin-top: var(--sp-8);
+    }
+
+    .channel-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--sp-2);
+      padding: .65rem 1.3rem;
+      border: 1px solid var(--border);
+      border-radius: var(--r-full);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: var(--text-xs);
+      letter-spacing: .05em;
+      color: var(--text-primary);
+      transition: border-color .2s, color .2s, background .2s, transform .2s;
+    }
+
+    .channel-btn:hover { transform: translateY(-2px); }
+
+    .channel-btn--phone:hover  { border-color: var(--indigo); color: var(--indigo); background: var(--indigo-dim); }
+    .channel-btn--fb:hover     { border-color: #1877f2; color: #1877f2; background: rgba(24,119,242,.08); }
+    .channel-btn--ig:hover     { border-color: #e1306c; color: #e1306c; background: rgba(225,48,108,.08); }
+    .channel-btn--wa:hover     { border-color: #25d366; color: #25d366; background: rgba(37,211,102,.08); }
+
+    /* ═══════════════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════════════ */
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: var(--sp-6) var(--sp-16);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer__copy {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: var(--text-xs);
+      color: var(--text-muted);
+    }
+
+    .footer__copy a {
+      color: var(--indigo);
+      transition: color .2s;
+    }
+
+    .footer__copy a:hover { color: var(--amber); }
+
+    .footer__meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .62rem;
+      color: var(--text-faint);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .footer__credit {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: var(--text-xs);
+      color: var(--text-muted);
+    }
+
+    /* ═══════════════════════════════════════════════
+       AMBIENT FLOATING ORBS
+    ═══════════════════════════════════════════════ */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .orb--indigo { background: rgba(129,140,248,.06); }
+    .orb--amber  { background: rgba(251,191,36,.05); }
+    .orb--rose   { background: rgba(251,113,133,.05); }
+
+    /* ═══════════════════════════════════════════════
+       SCROLL REVEAL
+    ═══════════════════════════════════════════════ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .75s var(--ease-out),
+                  transform .75s var(--ease-out);
+    }
+
+    .reveal--delay-1 { transition-delay: .1s; }
+    .reveal--delay-2 { transition-delay: .2s; }
+    .reveal--delay-3 { transition-delay: .3s; }
+    .reveal--delay-4 { transition-delay: .4s; }
+    .reveal--delay-5 { transition-delay: .5s; }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ═══════════════════════════════════════════════
+       DIVIDERS
+    ═══════════════════════════════════════════════ */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-4);
+      margin-bottom: var(--sp-12);
+    }
+
+    .divider__line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ═══════════════════════════════════════════════
+       ANIMATIONS
+    ═══════════════════════════════════════════════ */
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideLeft {
+      from { opacity: 0; transform: translateX(20px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes revealLine {
+      from { opacity: 0; transform: translateY(100%); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    @keyframes floatShape {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      50%       { transform: translate(20px, -20px) rotate(5deg); }
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: .3; }
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: .6; transform: scaleY(1); }
+      50%       { opacity: 1; transform: scaleY(.6); }
+    }
+
+    @keyframes drift {
+      0%, 100% { transform: translate(0, 0); }
+      50%       { transform: translate(30px, 20px); }
+    }
+
+    /* ═══════════════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .projects__grid { grid-template-columns: repeat(2, 1fr); }
+      .services__grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 900px) {
+      .nav { padding: var(--sp-4) var(--sp-6); }
+      .nav__links { display: none; }
+      .section { padding: var(--sp-16) var(--sp-6); }
+      .hero { padding: 6rem var(--sp-6) var(--sp-8); }
+      .about__grid { grid-template-columns: 1fr; }
+      .projects__grid { grid-template-columns: 1fr; }
+      .services__grid { grid-template-columns: 1fr; }
+      .hero__stats {
+        position: static;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin-top: var(--sp-10);
+        gap: var(--sp-6);
+        text-align: left;
+      }
+      .footer { flex-direction: column; gap: var(--sp-4); text-align: center; }
+    }
+
+    @media (max-width: 640px) {
+      .contact__card { padding: var(--sp-8) var(--sp-6); }
+    }
+  </style>
 </head>
-<body class="relative bg-gradient-to-br from-gray-50 to-indigo-50 text-gray-800 overflow-x-hidden">
-    <!-- Particle Background -->
-    <div id="particles-js" class="fixed inset-0 -z-10"></div>
-    <!-- Navigation -->
-    <nav class="bg-white/80 backdrop-blur-md shadow-sm fixed w-full z-50">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="flex justify-between h-20">
-                <div class="flex items-center">
-                    <a href="index.html" class="text-2xl font-extrabold gradient-text">Portfolio</a>
-                </div>
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="index.html" class="text-indigo-600 font-medium relative group">
-                        Home
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-indigo-600 transition-all group-hover:w-full"></span>
-                    </a>
-                    <a href="about.html" class="text-gray-600 hover:text-indigo-600 transition font-medium relative group">
-                        About
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-indigo-600 transition-all group-hover:w-full"></span>
-                    </a>
-                    <a href="projects.html" class="text-gray-600 hover:text-indigo-600 transition font-medium relative group">
-                        Projects
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-indigo-600 transition-all group-hover:w-full"></span>
-                    </a>
-                    <a href="contact.html" class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-2.5 rounded-full font-medium hover:shadow-lg hover:shadow-indigo-200 transition-all transform hover:-translate-y-0.5">
-                        Get in Touch
-                    </a>
-                </div>
-                <div class="md:hidden flex items-center">
-                    <button class="mobile-menu-button text-gray-700 hover:text-indigo-600">
-                        <i class="fas fa-bars text-2xl"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <!-- Mobile menu -->
-        <div class="mobile-menu hidden md:hidden bg-white/95 backdrop-blur-md shadow-lg">
-            <a href="index.html" class="block px-6 py-3 text-indigo-600 font-medium border-b border-gray-100">Home</a>
-            <a href="about.html" class="block px-6 py-3 text-gray-600 hover:bg-gray-50 border-b border-gray-100">About</a>
-            <a href="projects.html" class="block px-6 py-3 text-gray-600 hover:bg-gray-50 border-b border-gray-100">Projects</a>
-            <a href="contact.html" class="block px-6 py-3 text-indigo-600 font-medium">Contact</a>
-        </div>
-    </nav>
+<body>
 
-    <!-- Hero Section -->
-    <section class="relative pt-32 pb-24 px-4 overflow-hidden">
-        <!-- Animated background elements -->
-        <div class="absolute inset-0 -z-10">
-            <div class="absolute top-1/4 -left-4 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob"></div>
-            <div class="absolute top-1/2 -right-4 w-72 h-72 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000"></div>
-            <div class="absolute bottom-10 left-1/2 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-4000"></div>
-        </div>
-        
-        <div class="max-w-6xl mx-auto relative">
-            <div class="flex flex-col lg:flex-row items-center">
-                <!-- Text Content -->
-                <div class="lg:w-1/2 mb-16 lg:mb-0 lg:pr-12 text-center lg:text-left">
-                    <span class="inline-block bg-indigo-100 text-indigo-800 text-sm font-medium px-4 py-1 rounded-full mb-6">
-                        Full-Stack Developer & Discord Bot Creator
-                    </span>
-                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                        Hi, I'm <span class="gradient-text">Sejed TRABELSSI</span>
-                    </h1>
-                    <h2 class="text-2xl md:text-3xl text-gray-600 mb-8 font-medium">
-                        Crafting <span class="font-bold text-indigo-600">Next.js</span> Applications & 
-                        <span class="font-bold text-purple-600">Discord Bots</span>
-                    </h2>
-                    <p class="text-lg text-gray-600 mb-10 max-w-2xl mx-auto lg:mx-0">
-                        I transform ideas into exceptional digital experiences. Specializing in modern web development and Discord bot creation, I build solutions that are fast, scalable, and user-friendly.
-                    </p>
-                    <div class="flex flex-wrap justify-center lg:justify-start gap-4">
-                        <a href="projects.html" class="group relative overflow-hidden bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-4 rounded-full font-medium hover:shadow-xl hover:shadow-indigo-200 transition-all duration-300 transform hover:-translate-y-1 inline-flex items-center">
-                            <span class="relative z-10">Explore My Work</span>
-                            <i class="fas fa-arrow-right ml-2 transition-transform duration-300 group-hover:translate-x-1"></i>
-                            <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        </a>
-                        <a href="#services" class="group relative overflow-hidden border-2 border-indigo-600 text-indigo-600 px-8 py-4 rounded-full font-medium hover:bg-indigo-50 transition-all duration-300 transform hover:-translate-y-1 inline-flex items-center">
-                            <span class="relative z-10">My Services</span>
-                            <i class="fas fa-chevron-down ml-2 transition-transform duration-300 group-hover:translate-y-1"></i>
-                            <div class="absolute inset-0 bg-indigo-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        </a>
-                    </div>
-                    
-                    <!-- Stats -->
-                    <div class="mt-16 grid grid-cols-2 md:grid-cols-3 gap-6 max-w-md mx-auto lg:mx-0">
-                        <div class="text-center">
-                            <div class="text-3xl font-bold text-indigo-600 mb-1">6+</div>
-                            <div class="text-gray-500 text-sm">Years Experience</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-3xl font-bold text-purple-600 mb-1">50+</div>
-                            <div class="text-gray-500 text-sm">Projects Completed</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-3xl font-bold text-pink-600 mb-1">100%</div>
-                            <div class="text-gray-500 text-sm">Client Satisfaction</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Image/Graphic -->
-                <div class="lg:w-1/2 relative mt-12 lg:mt-0">
-                    <div class="relative z-0 rounded-2xl overflow-hidden shadow-2xl transform hover:scale-[1.02] transition-all duration-500 hover-scale">
-                        <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/80 via-purple-500/80 to-pink-500/80"></div>
-                        <img 
-                            src="images/Design sans titre.png" 
-                            alt="Coding workspace" 
-                            class="w-full h-auto object-cover mix-blend-overlay hover:scale-105 transition-transform duration-700"
-                            style="min-height: 500px;"
-                        >
-                    </div>
-                    <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-yellow-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
-                    <div class="absolute -top-6 -right-6 w-32 h-32 bg-purple-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
-                    <div class="absolute bottom-0 right-0 w-32 h-32 bg-pink-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
-                </div>
-            </div>
-        </div>
-        <h1 style="color: rgba(255, 255, 255, 0);">What are you doing here ?</h1>
-        <h1 style="color: rgba(255, 255, 255, 0);">DM Me with "TSSEJED" to get a promotion on your order.</h1>
-        <h1 style="color: rgba(255, 255, 255, 0);">Bye !</h1>
-        <h1 style="color: rgba(255, 255, 255, 0);">Still here? DM me !</h1>
-        <h1 style="color: rgba(255, 255, 255, 0);">I said DM Me !</h1>
-        <h1 style="color: rgba(255, 255, 255, 0);">Bye !</h1>
+  <!-- ─── CUSTOM CURSOR ─── -->
+  <div id="cursor-dot" aria-hidden="true"></div>
+  <div id="cursor-ring" aria-hidden="true"></div>
 
-    <!-- Tech Stack Section -->
-    <section id="tech-stack" class="py-20 bg-gradient-to-br from-gray-50 to-indigo-50 overflow-hidden relative">
-        <!-- Background pattern -->
-        <div class="absolute inset-0 opacity-10">
-            <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiM5YTYwZTAiIGZpbGwtb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMjAgMGMxMSA1LjUgMTguMTcgMTYuNSAyMCAyNy41LS4zMyAxLTguNS0yLTkuNS0yLjVzLTguNSAyLTkuNSAyLjVDMS44MyAxNi41IDkgNS41IDIwIDB6Ii8+PC9nPjwvZz48L3N2Zz4=')]"></div>
-        </div>
-        
-        <!-- Section header -->
-        <div class="container mx-auto px-6 relative z-10">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">
-                        Tech Stack & Skills
-                    </span>
-                </h2>
-                <p class="text-xl text-gray-600 max-w-2xl mx-auto mb-8">Technologies I work with and my proficiency level</p>
-                
-                <!-- Category Filters -->
-                <div class="flex flex-wrap justify-center gap-3 mb-8">
-                    <button class="category-filter px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-indigo-600 text-white hover:bg-indigo-700 active:scale-95" data-category="all">
-                        All
-                    </button>
-                    <button class="category-filter px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-white text-indigo-600 border border-indigo-200 hover:bg-indigo-50 active:scale-95" data-category="frontend">
-                        Frontend
-                    </button>
-                    <button class="category-filter px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-white text-indigo-600 border border-indigo-200 hover:bg-indigo-50 active:scale-95" data-category="backend">
-                        Backend
-                    </button>
-                    <button class="category-filter px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-white text-indigo-600 border border-indigo-200 hover:bg-indigo-50 active:scale-95" data-category="tools">
-                        Tools
-                    </button>
-                </div>
-                
-                <!-- Search Input -->
-                <div class="max-w-md mx-auto mb-8">
-                    <div class="relative">
-                        <input type="text" id="tech-search" placeholder="Search technologies..." class="w-full px-4 py-2 pl-10 pr-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-300" autocomplete="off">
-                        <div class="absolute left-3 top-2.5 text-gray-400">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <!-- ═══════════════════════════════════════════════
+       NAVIGATION
+  ═══════════════════════════════════════════════ -->
+  <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
+    <a href="#home" class="nav__logo" data-sub="// full-stack developer">Sejed</a>
+
+    <ul class="nav__links" role="list">
+      <li><a href="#home"     class="nav__link">Home</a></li>
+      <li><a href="#about"    class="nav__link">About</a></li>
+      <li><a href="#projects" class="nav__link">Work</a></li>
+      <li><a href="#services" class="nav__link">Services</a></li>
+      <li><a href="#contact"  class="nav__link nav__cta">Hire Me</a></li>
+    </ul>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════════════ -->
+  <section id="home" class="hero" aria-label="Introduction">
+
+    <div class="hero__bg" aria-hidden="true">
+      <div class="hero__grid"></div>
+      <div class="hero__radial"></div>
+      <div class="hero__shape hero__shape--1"></div>
+      <div class="hero__shape hero__shape--2"></div>
+      <div class="hero__shape hero__shape--3"></div>
+    </div>
+
+    <div class="hero__inner">
+
+      <div class="hero__eyebrow">
+        <div class="hero__eyebrow-dot" aria-hidden="true"></div>
+        Available for freelance work
+      </div>
+
+      <h1 class="hero__headline">
+        <span class="hero__headline-line">
+          <span class="hero__headline-inner">Sejed</span>
+        </span>
+        <span class="hero__headline-line">
+          <span class="hero__headline-inner">Trabelsi</span>
+        </span>
+      </h1>
+
+      <p class="hero__role">
+        Full-Stack Developer
+        <span class="hero__role-sep">·</span>
+        <span class="hero__role-accent">Discord Bot Architect</span>
+        <span class="hero__role-sep">·</span>
+        Next.js Specialist
+      </p>
+
+      <p class="hero__desc">
+        I transform ideas into exceptional digital experiences — building fast, scalable web applications
+        with Next.js and powerful Discord ecosystems that communities love.
+      </p>
+
+      <div class="hero__actions">
+        <a href="#projects" class="btn btn--primary">Explore My Work</a>
+        <a href="#contact"  class="btn btn--ghost">Let's Talk</a>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="hero__stats" aria-label="Key statistics">
+      <div class="hero__stat">
+        <div class="hero__stat-number">6+</div>
+        <div class="hero__stat-label">Years Exp.</div>
+      </div>
+      <div class="hero__stat">
+        <div class="hero__stat-number">50+</div>
+        <div class="hero__stat-label">Projects</div>
+      </div>
+      <div class="hero__stat">
+        <div class="hero__stat-number">100%</div>
+        <div class="hero__stat-label">Satisfaction</div>
+      </div>
+    </div>
+
+    <!-- Scroll hint -->
+    <div class="hero__scroll" aria-hidden="true">
+      <div class="hero__scroll-track"></div>
+      Scroll
+    </div>
+
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       ABOUT
+  ═══════════════════════════════════════════════ -->
+  <section id="about" class="section section--alt" aria-label="About me">
+
+    <div class="orb orb--indigo" style="width:500px;height:500px;top:-100px;right:-150px;animation:drift 12s ease-in-out infinite alternate;" aria-hidden="true"></div>
+    <div class="orb orb--rose"   style="width:300px;height:300px;bottom:10%;left:-80px;animation:drift 9s ease-in-out infinite alternate;" aria-hidden="true"></div>
+
+    <div class="section__label reveal">About Me</div>
+    <h2 class="section__title reveal">The developer<br><em>behind the code</em></h2>
+    <p class="section__sub reveal">Passionate about crafting solutions that are as elegant as they are effective.</p>
+
+    <div class="about__grid">
+
+      <!-- ── Bio Card ── -->
+      <div class="about__card reveal">
+        <div class="about__avatar-wrap">
+          <div class="about__avatar" aria-label="ST initials">ST</div>
+          <div>
+            <div class="about__name">Sejed Trabelsi</div>
+            <div class="about__role-tag">// Full-Stack Developer & Bot Architect</div>
+          </div>
         </div>
 
-        <!-- Tech Stack Grid -->
-        <div class="relative">
-            <div class="marquee-container">
-                <div class="marquee-track" id="tech-track">
-                    <!-- Tech items will be populated by JavaScript -->
-                    <script>
-                        // Tech stack data
-                        const techStack = [
-                            { name: 'HTML5', icon: 'fab fa-html5', color: 'orange', level: 90, category: 'frontend', desc: 'Markup language for creating web pages' },
-                            { name: 'CSS3', icon: 'fab fa-css3-alt', color: 'blue', level: 85, category: 'frontend', desc: 'Styling language for web design' },
-                            { name: 'JavaScript', icon: 'fab fa-js', color: 'yellow', level: 80, category: 'frontend', desc: 'Programming language for web interactivity' },
-                            { name: 'React', icon: 'fab fa-react', color: 'blue', level: 75, category: 'frontend', desc: 'JavaScript library for building user interfaces' },
-                            { name: 'Next.js', icon: 'fas fa-arrow-right', color: 'black', level: 78, category: 'frontend', desc: 'React framework for production' },
-                            { name: 'Node.js', icon: 'fab fa-node-js', color: 'green', level: 70, category: 'backend', desc: 'JavaScript runtime for server-side development' },
-                            { name: 'Python', icon: 'fab fa-python', color: 'blue', level: 85, category: 'backend', desc: 'Versatile programming language' },
-                            { name: 'Git', icon: 'fab fa-git-alt', color: 'orange', level: 80, category: 'tools', desc: 'Version control system' },
-                            { name: 'VS Code', icon: 'fas fa-code', color: 'blue', level: 90, category: 'tools', desc: 'Code editor' },
-                            { name: 'Figma', icon: 'fab fa-figma', color: 'purple', level: 75, category: 'tools', desc: 'Design and prototyping tool' }
-                        ];
+        <p class="about__bio">
+          Hello! I'm Sejed Trabelsi, a versatile Full Stack Developer with a passion for creating exceptional
+          digital experiences. With expertise spanning both frontend and backend development, I specialize in
+          building responsive web applications and powerful Discord bots that drive engagement and solve real-world problems.
+        </p>
+        <p class="about__bio">
+          My journey in technology began with a curiosity about how things work, which evolved into a deep passion
+          for software development. I've had the privilege of working on diverse projects — from educational
+          platforms like LPM IN STEM'S CLUB to immersive roleplaying communities like Arizona State Roleplay
+          and Florida State Roleplay.
+        </p>
+        <p class="about__bio">
+          What sets me apart is my ability to bridge the technical and creative aspects of development — writing
+          clean, maintainable code while never losing sight of the end-user experience.
+        </p>
 
-                        // Function to render tech items
-                        function renderTechItems(items = techStack) {
-                            const techTrack = document.getElementById('tech-track');
-                            if (!techTrack) return;
-                            
-                            techTrack.innerHTML = ''; // Clear existing items
-                            
-                            items.forEach(tech => {
-                                const techItem = document.createElement('div');
-                                techItem.className = 'tech-item flex flex-col items-center p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 m-2 w-48';
-                                techItem.setAttribute('data-name', tech.name);
-                                techItem.setAttribute('data-category', tech.category);
-                                techItem.setAttribute('data-desc', tech.desc);
-                                
-                                // Determine skill level color
-                                let levelColor = 'red-400';
-                                if (tech.level >= 80) levelColor = 'green-500';
-                                else if (tech.level >= 60) levelColor = 'yellow-400';
-                                else if (tech.level >= 40) levelColor = 'orange-400';
-                                
-                                techItem.innerHTML = `
-                                    <div class="text-4xl mb-3 text-${tech.color}-600">
-                                        <i class="${tech.icon}"></i>
-                                    </div>
-                                    <h4 class="font-semibold text-gray-800 mb-2">${tech.name}</h4>
-                                    <div class="w-full bg-gray-200 rounded-full h-2.5 mb-2">
-                                        <div class="skill-level bg-${levelColor} h-2.5 rounded-full transition-all duration-1000 ease-out" style="width: ${tech.level}%"></div>
-                                    </div>
-                                    <span class="text-xs text-gray-500">${tech.level}%</span>
-                                `;
-                                
-                                techTrack.appendChild(techItem);
-                            });
-                            
-                            // Reinitialize animations after rendering
-                            animateSkillBars();
-                            setup3DEffects();
-                        }
-                        
-                        // Filter tech items by category
-                        function filterByCategory(category) {
-                            if (category === 'all') {
-                                renderTechItems();
-                                return;
-                            }
-                            const filtered = techStack.filter(tech => tech.category === category);
-                            renderTechItems(filtered);
-                        }
-                        
-                        // Initialize the tech stack and event listeners
-                        function initializeTechStack() {
-                            renderTechItems();
-                            
-                            // Add event listeners to category filters
-                            document.querySelectorAll('.category-filter').forEach(button => {
-                                button.addEventListener('click', (e) => {
-                                    e.preventDefault();
-                                    // Update active state
-                                    document.querySelectorAll('.category-filter').forEach(btn => {
-                                        btn.classList.remove('bg-indigo-600', 'text-white');
-                                        btn.classList.add('bg-white', 'text-indigo-600', 'border', 'border-indigo-200');
-                                    });
-                                    
-                                    button.classList.remove('bg-white', 'text-indigo-600', 'border', 'border-indigo-200');
-                                    button.classList.add('bg-indigo-600', 'text-white');
-                                    
-                                    // Filter items
-                                    filterByCategory(button.dataset.category);
-                                    
-                                    // Clear search when changing categories
-                                    const searchInput = document.getElementById('tech-search');
-                                    if (searchInput) searchInput.value = '';
-                                });
-                            });
-                            
-                            // Add search functionality
-                            const searchInput = document.getElementById('tech-search');
-                            if (searchInput) {
-                                searchInput.addEventListener('input', (e) => {
-                                    const searchTerm = e.target.value.toLowerCase();
-                                    const currentCategory = document.querySelector('.category-filter.bg-indigo-600')?.dataset.category || 'all';
-                                    
-                                    let filteredItems = techStack;
-                                    
-                                    // Apply category filter
-                                    if (currentCategory !== 'all') {
-                                        filteredItems = filteredItems.filter(tech => tech.category === currentCategory);
-                                    }
-                                    
-                                    // Apply search term filter
-                                    if (searchTerm) {
-                                        filteredItems = filteredItems.filter(tech => 
-                                            tech.name.toLowerCase().includes(searchTerm) || 
-                                            tech.desc.toLowerCase().includes(searchTerm)
-                                        );
-                                    }
-                                    
-                                    renderTechItems(filteredItems);
-                                });
-                            }
-                        }
-                        
-                        // Initialize when DOM is loaded
-                        if (document.readyState === 'loading') {
-                            document.addEventListener('DOMContentLoaded', initializeTechStack);
-                        } else {
-                            initializeTechStack();
-                        }
-                        
-                        // Helper function to set up 3D effects
-                        function setup3DEffects() {
-                            document.querySelectorAll('.tech-item').forEach(item => {
-                                item.addEventListener('mousemove', (e) => {
-                                    const rect = item.getBoundingClientRect();
-                                    const x = e.clientX - rect.left;
-                                    const y = e.clientY - rect.top;
-                                    const centerX = rect.width / 2;
-                                    const centerY = rect.height / 2;
-                                    const angleX = (y - centerY) / 20;
-                                    const angleY = (centerX - x) / 20;
-                                    
-                                    item.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) scale3d(1.05, 1.05, 1.05)`;
-                                });
-                                
-                                item.addEventListener('mouseleave', () => {
-                                    item.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
-                                });
-                            });
-                        }
-                        
-                        // Function to update pagination (placeholder)
-                        function updatePagination() {
-                            // Add pagination logic here if needed
-                        }
-                    </script>
-                </div>
-            </div>
-    <section class="py-20 bg-gradient-to-br from-white to-indigo-50 relative overflow-hidden">
-        <!-- Decorative elements -->
-        <div class="absolute -top-32 -right-32 w-64 h-64 bg-indigo-100 rounded-full opacity-30"></div>
-        <div class="absolute -bottom-20 -left-20 w-80 h-80 bg-purple-100 rounded-full opacity-30"></div>
-        
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-            <div class="text-center mb-16">
-                <span class="inline-block bg-indigo-100 text-indigo-700 text-sm font-semibold px-4 py-1 rounded-full mb-4">My Work</span>
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">
-                        Featured Projects
-                    </span>
-                </h2>
-                <div class="w-20 h-1 bg-gradient-to-r from-indigo-500 to-purple-600 mx-auto mb-6"></div>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">A selection of my recent work. Each project was built to solve specific problems and deliver exceptional user experiences.</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project 1 - Discord Bot -->
-                <div class="group relative bg-white rounded-2xl shadow-xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 h-full flex flex-col">
-                    <div class="h-48 bg-gradient-to-r from-indigo-500 to-purple-600 flex items-center justify-center relative">
-                        <i class="fas fa-robot text-6xl text-white opacity-90 group-hover:scale-110 transition-transform duration-500"></i>
-                        <span class="absolute top-3 right-3 bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full flex items-center">
-                            <i class="fas fa-lock text-xs mr-1"></i> Restricted Access
-                        </span>
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col">
-                        <div class="flex items-center mb-4">
-                            <span class="inline-block bg-indigo-100 text-indigo-700 text-xs font-semibold px-3 py-1 rounded-full">Featured</span>
-                            <span class="ml-2 text-sm text-gray-500">Bot Development</span>
-                        </div>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Discord Bot</h3>
-                        <p class="text-gray-600 mb-6 flex-grow">Advanced moderation and entertainment bot with custom commands, automation, and interactive features for community management.</p>
-                        
-                        <div class="mb-6">
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-3 py-1 bg-indigo-50 text-indigo-700 text-xs font-medium rounded-full">Node.js</span>
-                                <span class="px-3 py-1 bg-purple-50 text-purple-700 text-xs font-medium rounded-full">Discord.js</span>
-                                <span class="px-3 py-1 bg-blue-50 text-blue-700 text-xs font-medium rounded-full">MongoDB</span>
-                            </div>
-                        </div>
-                        
-                        <div class="mt-auto pt-4 border-t border-gray-100">
-                            <div class="text-sm text-yellow-600 bg-yellow-50 p-2 rounded-md mb-3 flex items-center">
-                                <i class="fas fa-info-circle mr-2"></i> Contact for access
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <ul class="about__contacts">
+          <li class="about__contact-item">
+            <div class="about__contact-icon" aria-hidden="true">📍</div>
+            <span class="about__contact-value">Tunis, Tunisia</span>
+          </li>
+          <li class="about__contact-item">
+            <div class="about__contact-icon" aria-hidden="true">📞</div>
+            <a href="tel:+21694155000" class="about__contact-value">+216 94 155 000</a>
+          </li>
+          <li class="about__contact-item">
+            <div class="about__contact-icon" aria-hidden="true">✅</div>
+            <span class="about__contact-value">Open to freelance &amp; contract work</span>
+          </li>
+        </ul>
 
-                <!-- Project 2 - Portfolio v1 -->
-                <div class="group relative bg-white rounded-2xl shadow-xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 h-full flex flex-col">
-                    <div class="h-48 bg-gradient-to-r from-purple-500 to-indigo-600 flex items-center justify-center">
-                        <i class="fas fa-laptop-code text-6xl text-white opacity-90 group-hover:scale-110 transition-transform duration-500"></i>
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col">
-                        <div class="flex items-center mb-4">
-                            <span class="inline-block bg-purple-100 text-purple-700 text-xs font-semibold px-3 py-1 rounded-full">Portfolio</span>
-                            <span class="ml-2 text-sm text-gray-500">Version 1.0</span>
-                        </div>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Portfolio v1</h3>
-                        <p class="text-gray-600 mb-6 flex-grow">The first version of my portfolio website, showcasing my early work and development journey.</p>
-                        
-                        <div class="mb-6">
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-3 py-1 bg-indigo-50 text-indigo-700 text-xs font-medium rounded-full">HTML5</span>
-                                <span class="px-3 py-1 bg-purple-50 text-purple-700 text-xs font-medium rounded-full">CSS3</span>
-                                <span class="px-3 py-1 bg-yellow-50 text-yellow-700 text-xs font-medium rounded-full">JavaScript</span>
-                            </div>
-                        </div>
-                        
-                        <div class="mt-auto pt-4 border-t border-gray-100">
-                            <a href="https://v1-sejed-protfolio.pages.dev/" target="_blank" class="w-full inline-flex justify-center items-center px-4 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg hover:shadow-md transition-all duration-300 group">
-                                Visit Live Site
-                                <i class="fas fa-external-link-alt ml-2 text-sm group-hover:translate-x-1 transition-transform"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+        <div class="about__badge" aria-label="Humanitarian volunteer">
+          🌙 Member — Tunisian Red Crescent
+        </div>
+      </div>
 
-                <!-- Project 3 - LPM IN STEM'S CLUB -->
-                <div class="group relative bg-white rounded-2xl shadow-xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 h-full flex flex-col">
-                    <div class="h-48 bg-gradient-to-r from-green-500 to-teal-600 flex items-center justify-center">
-                        <i class="fas fa-graduation-cap text-6xl text-white opacity-90 group-hover:scale-110 transition-transform duration-500"></i>
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col">
-                        <div class="flex items-center mb-4">
-                            <span class="inline-block bg-green-100 text-green-700 text-xs font-semibold px-3 py-1 rounded-full">Education</span>
-                            <span class="ml-2 text-sm text-gray-500">Club Website</span>
-                        </div>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-3">LPM IN STEM'S CLUB</h3>
-                        <p class="text-gray-600 mb-6 flex-grow">Official website for the STEM club, featuring events, resources, and information about science and technology programs.</p>
-                        
-                        <div class="mb-6">
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-3 py-1 bg-indigo-50 text-indigo-700 text-xs font-medium rounded-full">HTML5</span>
-                                <span class="px-3 py-1 bg-purple-50 text-purple-700 text-xs font-medium rounded-full">CSS3</span>
-                                <span class="px-3 py-1 bg-yellow-50 text-yellow-700 text-xs font-medium rounded-full">JavaScript</span>
-                            </div>
-                        </div>
-                        
-                        <div class="mt-auto pt-4 border-t border-gray-100">
-                            <a href="https://lpminstemclub.pages.dev" target="_blank" class="w-full inline-flex justify-center items-center px-4 py-2 bg-gradient-to-r from-green-600 to-teal-600 text-white rounded-lg hover:shadow-md transition-all duration-300 group">
-                                Visit Website
-                                <i class="fas fa-external-link-alt ml-2 text-sm group-hover:translate-x-1 transition-transform"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+      <!-- ── Skills Side ── -->
+      <div class="about__skills">
+
+        <!-- Frontend -->
+        <div class="reveal reveal--delay-1">
+          <div class="skill-group__title">Frontend Development</div>
+          <div class="skill-bar" data-width=".92">
+            <div class="skill-bar__header">
+              <span class="skill-bar__name">Tailwind CSS</span>
+              <span class="skill-bar__pct">92%</span>
             </div>
-            
-            <!-- More Projects CTA -->
-            <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-8 mt-12 text-center">
-                <h3 class="text-2xl font-bold text-gray-900 mb-3">Want to see more of my work?</h3>
-                <p class="text-gray-600 mb-6 max-w-2xl mx-auto">I've worked on a variety of projects including web applications, community platforms, and development tools. Check out my full portfolio for more details.</p>
-                <a href="projects.html" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-medium rounded-lg hover:shadow-lg hover:shadow-indigo-200 transition-all duration-300 transform hover:-translate-y-0.5 hover:scale-105 group">
-                    View All Projects
-                    <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
-                </a>
+            <div class="skill-bar__track"><div class="skill-bar__fill"></div></div>
+          </div>
+          <div class="skill-bar" data-width=".90">
+            <div class="skill-bar__header">
+              <span class="skill-bar__name">React.js</span>
+              <span class="skill-bar__pct">90%</span>
             </div>
+            <div class="skill-bar__track"><div class="skill-bar__fill"></div></div>
+          </div>
+          <div class="skill-bar" data-width=".88">
+            <div class="skill-bar__header">
+              <span class="skill-bar__name">JavaScript / TypeScript</span>
+              <span class="skill-bar__pct">88%</span>
+            </div>
+            <div class="skill-bar__track"><div class="skill-bar__fill"></div></div>
+          </div>
+          <div class="skill-bar" data-width=".85">
+            <div class="skill-bar__header">
+              <span class="skill-bar__name">Next.js</span>
+              <span class="skill-bar__pct">85%</span>
+            </div>
+            <div class="skill-bar__track"><div class="skill-bar__fill"></div></div>
+          </div>
         </div>
 
-
-    <!-- Services Section -->
-    <section id="services" class="py-20 bg-white">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">What I Do</h2>
-                <div class="w-20 h-1 bg-gradient-to-r from-indigo-500 to-purple-600 mx-auto mb-6"></div>
-                <p class="text-gray-600 max-w-2xl mx-auto">I offer a range of services to help bring your digital ideas to life</p>
+        <!-- Backend -->
+        <div class="reveal reveal--delay-2">
+          <div class="skill-group__title">Backend &amp; Bot Development</div>
+          <div class="skill-bar" data-width=".90">
+            <div class="skill-bar__header">
+              <span class="skill-bar__name">API Integration</span>
+              <span class="skill-bar__pct">90%</span>
             </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Service 1 -->
-                <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 card-hover">
-                    <div class="w-16 h-16 bg-indigo-100 rounded-lg flex items-center justify-center mb-6">
-                        <i class="fab fa-react text-3xl text-indigo-600"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Next.js Development</h3>
-                    <p class="text-gray-600 mb-4">
-                        High-performance, SEO-friendly web applications built with Next.js, React, and modern JavaScript.
-                    </p>
-                    <ul class="space-y-2 text-sm text-gray-500">
-                        <li class="flex items-center">
-                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
-                            Server-side rendering
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
-                            API routes integration
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
-                            Optimized performance
-                        </li>
-                    </ul>
-                </div>
-                
-                <!-- Service 2 -->
-                <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 card-hover">
-                    <div class="w-16 h-16 bg-purple-100 rounded-lg flex items-center justify-center mb-6">
-                        <i class="fab fa-discord text-3xl text-purple-600"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Discord Bot Development</h3>
-                    <p class="text-gray-600 mb-4">
-                        Custom Discord bots to enhance your server with moderation, music, games, and more.
-                    </p>
-                    <ul class="space-y-2 text-sm text-gray-500">
-                        <li class="flex items-center">
-                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
-                            Custom commands
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
-                            Moderation tools
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
-                            Music & entertainment
-                        </li>
-                    </ul>
-                </div>
-                
-                <!-- Service 3 -->
-                <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 card-hover">
-                    <div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
-                        <i class="fas fa-mobile-alt text-3xl text-blue-600"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Responsive Web Design</h3>
-                    <p class="text-gray-600 mb-4">
-                        Beautiful, responsive websites that work perfectly on all devices and screen sizes.
-                    </p>
-                    <ul class="space-y-2 text-sm text-gray-500">
-                        <li class="flex items-center">
-                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
-                            Mobile-first approach
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
-                            Cross-browser compatibility
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
-                            Performance optimized
-                        </li>
-                    </ul>
-                </div>
+            <div class="skill-bar__track"><div class="skill-bar__fill"></div></div>
+          </div>
+          <div class="skill-bar" data-width=".88">
+            <div class="skill-bar__header">
+              <span class="skill-bar__name">Discord.js</span>
+              <span class="skill-bar__pct">88%</span>
             </div>
+            <div class="skill-bar__track"><div class="skill-bar__fill"></div></div>
+          </div>
+          <div class="skill-bar" data-width=".85">
+            <div class="skill-bar__header">
+              <span class="skill-bar__name">Node.js / Express</span>
+              <span class="skill-bar__pct">85%</span>
+            </div>
+            <div class="skill-bar__track"><div class="skill-bar__fill"></div></div>
+          </div>
+          <div class="skill-bar" data-width=".83">
+            <div class="skill-bar__header">
+              <span class="skill-bar__name">Database Management</span>
+              <span class="skill-bar__pct">83%</span>
+            </div>
+            <div class="skill-bar__track"><div class="skill-bar__fill"></div></div>
+          </div>
         </div>
 
-
-
-
+        <!-- Tech cloud -->
+        <div class="reveal reveal--delay-3">
+          <div class="skill-group__title" style="margin-bottom:var(--sp-4)">Tech Stack</div>
+          <div class="tech-cloud">
+            <span class="tech-tag">HTML5</span>
+            <span class="tech-tag">CSS3</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">TypeScript</span>
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">Next.js</span>
+            <span class="tech-tag">Node.js</span>
+            <span class="tech-tag">Express.js</span>
+            <span class="tech-tag">Discord.js</span>
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Lua</span>
+            <span class="tech-tag">C++</span>
+            <span class="tech-tag">MongoDB</span>
+            <span class="tech-tag">MySQL</span>
+            <span class="tech-tag">PostgreSQL</span>
+            <span class="tech-tag">Docker</span>
+            <span class="tech-tag">AWS</span>
+            <span class="tech-tag">Vercel</span>
+            <span class="tech-tag">Git</span>
+            <span class="tech-tag">Figma</span>
+          </div>
         </div>
 
+      </div>
+    </div>
+  </section>
 
+  <!-- ═══════════════════════════════════════════════
+       PROJECTS
+  ═══════════════════════════════════════════════ -->
+  <section id="projects" class="section" aria-label="Projects">
 
+    <div class="section__label reveal">My Work</div>
+    <h2 class="section__title reveal">Selected Projects</h2>
+    <p class="section__sub reveal">A curated selection of work built to solve real problems and deliver outstanding experiences.</p>
 
+    <div class="projects__grid">
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-300 py-12">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div class="md:col-span-2">
-                    <h3 class="text-2xl font-bold text-white mb-4">Portfolio</h3>
-                    <p class="mb-4">
-                        Creating amazing digital experiences with Next.js and Discord bots. Let's build something incredible together!
-                    </p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                            <i class="fab fa-github text-xl"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                            <i class="fab fa-discord text-xl"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                            <i class="fab fa-instagram text-xl"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                            <i class="fab fa-facebook text-xl"></i>
-                        </a>
-                    </div>
-                </div>
-                <div>
-                    <h4 class="text-white font-semibold mb-4 text-lg">Quick Links</h4>
-                    <ul class="space-y-2">
-                        <li><a href="index.html" class="hover:text-white transition-colors">Home</a></li>
-                        <li><a href="about.html" class="hover:text-white transition-colors">About</a></li>
-                        <li><a href="projects.html" class="hover:text-white transition-colors">Projects</a></li>
-                        <li><a href="contact.html" class="hover:text-white transition-colors">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="space-y-4">
-                    <h4 class="text-white font-semibold text-lg">Contact Me</h4>
-                    <ul class="space-y-2">
-                        <li class="flex items-center"><i class="fas fa-phone mr-2"></i> +216 94 155 000</li>
-                        <li class="flex items-center"><i class="fab fa-facebook mr-2"></i> <a href="https://facebook.com/TSSEJED" target="_blank" class="hover:text-white transition-colors">facebook.com/TSSEJED</a></li>
-                        <li class="flex items-center"><i class="fab fa-instagram mr-2"></i> <a href="https://www.instagram.com/http.sejed.official/" target="_blank" class="hover:text-white transition-colors">instagram.com/http.sejed.official/</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <p class="mb-4">Feel free to reach out for collaborations or just a friendly hello!</p>
-                    <div class="space-y-2">
-                        <p class="flex items-center"><i class="fas fa-phone mr-2"></i> +216 94 155 000</p>
-                        <p class="flex items-center"><i class="fab fa-facebook mr-2"></i> facebook.com/TSSEJED</p>
-                        <p class="flex items-center"><i class="fab fa-instagram mr-2"></i> instagram.com/http.sejed.official/</p>
-                    </div>
-                    </ul>
-                </div>
-            </div>
-            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500 text-sm">
-                <p>© 2023 My Portfolio. All rights reserved.</p>
-            </div>
+      <!-- 1 · Advanced Discord Bot -->
+      <div class="project-card project-card--featured reveal">
+        <div class="project-card__type project-card__type--bot">
+          <div class="project-card__type-dot" aria-hidden="true"></div>
+          Bot Development
         </div>
-    </footer>
+        <h3 class="project-card__title">Advanced Discord Bot</h3>
+        <p class="project-card__desc">
+          A powerful moderation and entertainment bot with custom commands, automation, and interactive features.
+          Built for large community management with robust anti-abuse systems and database-backed persistence.
+        </p>
+        <div class="project-card__stack">
+          <span class="stack-pill">Node.js</span>
+          <span class="stack-pill">Discord.js</span>
+          <span class="stack-pill">MongoDB</span>
+        </div>
+        <span class="project-card__link project-card__link--muted">
+          Restricted Access →
+        </span>
+      </div>
 
-    <!-- Back to top button -->
-    <button id="backToTop" class="fixed bottom-8 right-8 bg-indigo-600 text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center opacity-0 invisible transition-all duration-300 z-50">
-        <i class="fas fa-arrow-up"></i>
+      <!-- 2 · Bots Store (VOKRIS) -->
+      <div class="project-card project-card--featured reveal reveal--delay-1">
+        <div class="project-card__type project-card__type--store">
+          <div class="project-card__type-dot" aria-hidden="true"></div>
+          Marketplace
+        </div>
+        <h3 class="project-card__title">VOKRIS Bots Store</h3>
+        <p class="project-card__desc">
+          A production-grade marketplace for Discord bot source code. Hand-written, human-reviewed packages
+          sold as complete, readable source — no subscriptions, no AI comments. Buy once, own forever.
+        </p>
+        <div class="project-card__stack">
+          <span class="stack-pill">Next.js</span>
+          <span class="stack-pill">Discord.js</span>
+          <span class="stack-pill">PostgreSQL</span>
+          <span class="stack-pill">Node.js</span>
+        </div>
+        <a href="https://bots-store.vercel.app" target="_blank" rel="noopener noreferrer" class="project-card__link">
+          Visit Store <span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <!-- 3 · LPM STEM Club -->
+      <div class="project-card reveal reveal--delay-2">
+        <div class="project-card__type project-card__type--web">
+          <div class="project-card__type-dot" aria-hidden="true"></div>
+          Education
+        </div>
+        <h3 class="project-card__title">LPM IN STEM'S Club</h3>
+        <p class="project-card__desc">
+          Official website for the STEM club, featuring events, resources, and information about science and
+          technology programs. Mobile-first with fully responsive design.
+        </p>
+        <div class="project-card__stack">
+          <span class="stack-pill">HTML5</span>
+          <span class="stack-pill">CSS3</span>
+          <span class="stack-pill">JavaScript</span>
+        </div>
+        <a href="https://lpminstemclub.pages.dev" target="_blank" rel="noopener noreferrer" class="project-card__link">
+          Visit Site <span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <!-- 4 · Arizona State Roleplay -->
+      <div class="project-card reveal">
+        <div class="project-card__type project-card__type--web">
+          <div class="project-card__type-dot" aria-hidden="true"></div>
+          Community
+        </div>
+        <h3 class="project-card__title">Arizona State Roleplay</h3>
+        <p class="project-card__desc">
+          Dynamic website for ASRP, a private ERLC server. Includes comprehensive Home &amp; Applications pages
+          with modern web development practices and user authentication flows.
+        </p>
+        <div class="project-card__stack">
+          <span class="stack-pill">HTML5</span>
+          <span class="stack-pill">CSS3</span>
+          <span class="stack-pill">JavaScript</span>
+        </div>
+        <a href="https://arizona-state-rp.pages.dev/" target="_blank" rel="noopener noreferrer" class="project-card__link">
+          Visit Site <span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <!-- 5 · Expert Comptable Platform -->
+      <div class="project-card reveal reveal--delay-1">
+        <div class="project-card__type project-card__type--platform">
+          <div class="project-card__type-dot" aria-hidden="true"></div>
+          Platform
+        </div>
+        <h3 class="project-card__title">Expert Comptable Platform</h3>
+        <p class="project-card__desc">
+          A comprehensive platform for accounting professionals featuring advanced client management tools,
+          resource center, and detailed analytics dashboards built with a Node.js backend.
+        </p>
+        <div class="project-card__stack">
+          <span class="stack-pill">Node.js</span>
+          <span class="stack-pill">Express</span>
+          <span class="stack-pill">MongoDB</span>
+        </div>
+        <span class="project-card__link project-card__link--muted">Private Project</span>
+      </div>
+
+      <!-- 6 · Contact Management System -->
+      <div class="project-card reveal reveal--delay-2">
+        <div class="project-card__type project-card__type--web">
+          <div class="project-card__type-dot" aria-hidden="true"></div>
+          Full-Stack App
+        </div>
+        <h3 class="project-card__title">Contact Management System</h3>
+        <p class="project-card__desc">
+          A full-featured web application with complete CRUD operations, real-time updates, and advanced search
+          functionality for managing large contact databases efficiently.
+        </p>
+        <div class="project-card__stack">
+          <span class="stack-pill">React</span>
+          <span class="stack-pill">Node.js</span>
+          <span class="stack-pill">MongoDB</span>
+        </div>
+        <span class="project-card__link project-card__link--muted">Private Project</span>
+      </div>
+
+      <!-- 7 · Full-Stack Book -->
+      <div class="project-card reveal">
+        <div class="project-card__type project-card__type--book">
+          <div class="project-card__type-dot" aria-hidden="true"></div>
+          Technical Writing
+        </div>
+        <h3 class="project-card__title">Full-Stack Dev Book</h3>
+        <p class="project-card__desc">
+          A comprehensive developer guide covering fundamentals of full-stack development — detailed chapters on
+          HTML, CSS, JavaScript, and modern frameworks with practical, real-world examples.
+        </p>
+        <div class="project-card__stack">
+          <span class="stack-pill">Technical Writing</span>
+          <span class="stack-pill">Web Dev</span>
+        </div>
+        <a href="https://drive.google.com/uc?export=download&id=1kmWBIIJXGzGh_TxdDEvktpByZSaq1Myf" target="_blank" rel="noopener noreferrer" class="project-card__link">
+          Download PDF <span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <!-- 8 · FSRP Staff Portal -->
+      <div class="project-card reveal reveal--delay-1">
+        <div class="project-card__type project-card__type--platform">
+          <div class="project-card__type-dot" aria-hidden="true"></div>
+          Admin Portal
+        </div>
+        <h3 class="project-card__title">FSRP Staff Portal</h3>
+        <p class="project-card__desc">
+          Dedicated portal for Florida State Roleplay staff members with administrative tools, user management
+          system, and comprehensive reporting dashboards for team coordination.
+        </p>
+        <div class="project-card__stack">
+          <span class="stack-pill">HTML5</span>
+          <span class="stack-pill">CSS3</span>
+          <span class="stack-pill">JavaScript</span>
+        </div>
+        <span class="project-card__link project-card__link--muted">Internal Portal</span>
+      </div>
+
+      <!-- 9 · Portfolio v1 -->
+      <div class="project-card reveal reveal--delay-2">
+        <div class="project-card__type project-card__type--web">
+          <div class="project-card__type-dot" aria-hidden="true"></div>
+          Portfolio
+        </div>
+        <h3 class="project-card__title">Portfolio v1</h3>
+        <p class="project-card__desc">
+          The first version of my personal portfolio — a milestone showcasing my early development journey,
+          foundational skills, and passion for clean, performant web experiences.
+        </p>
+        <div class="project-card__stack">
+          <span class="stack-pill">HTML5</span>
+          <span class="stack-pill">CSS3</span>
+          <span class="stack-pill">JavaScript</span>
+        </div>
+        <a href="https://v1-sejed-protfolio.pages.dev/" target="_blank" rel="noopener noreferrer" class="project-card__link">
+          Visit Site <span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       SERVICES
+  ═══════════════════════════════════════════════ -->
+  <section id="services" class="section section--alt" aria-label="Services">
+
+    <div class="section__label reveal">What I Offer</div>
+    <h2 class="section__title reveal">Services</h2>
+    <p class="section__sub reveal">End-to-end digital solutions tailored precisely to your goals.</p>
+
+    <div class="services__grid">
+
+      <!-- Next.js -->
+      <div class="service-card reveal">
+        <div class="service-card__icon service-card__icon--indigo" aria-hidden="true">⚡</div>
+        <h3 class="service-card__title">Next.js Development</h3>
+        <p class="service-card__desc">
+          High-performance, SEO-friendly web applications built with Next.js, React, and modern JavaScript ecosystems.
+        </p>
+        <ul class="service-card__features">
+          <li class="service-card__feature">
+            <span class="service-card__feature-arrow" aria-hidden="true">→</span>
+            Server-side rendering &amp; static generation
+          </li>
+          <li class="service-card__feature">
+            <span class="service-card__feature-arrow" aria-hidden="true">→</span>
+            API routes &amp; full-stack integration
+          </li>
+          <li class="service-card__feature">
+            <span class="service-card__feature-arrow" aria-hidden="true">→</span>
+            Performance optimization &amp; Core Web Vitals
+          </li>
+          <li class="service-card__feature">
+            <span class="service-card__feature-arrow" aria-hidden="true">→</span>
+            TypeScript-first codebase
+          </li>
+        </ul>
+      </div>
+
+      <!-- Discord Bot -->
+      <div class="service-card reveal reveal--delay-1">
+        <div class="service-card__icon service-card__icon--rose" aria-hidden="true">🤖</div>
+        <h3 class="service-card__title">Discord Bot Development</h3>
+        <p class="service-card__desc">
+          Custom Discord bots to enhance your server with powerful moderation, entertainment, and automation capabilities.
+        </p>
+        <ul class="service-card__features">
+          <li class="service-card__feature">
+            <span class="service-card__feature-arrow" aria-hidden="true">→</span>
+            Custom slash commands &amp; events
+          </li>
+          <li class="service-card__feature">
+            <span class="service-card__feature-arrow" aria-hidden="true">→</span>
+            Advanced moderation systems
+          </li>
+          <li class="service-card__feature">
+            <span class="service-card__feature-arrow" aria-hidden="true">→</span>
+            Music, games &amp; entertainment
+          </li>
+          <li class="service-card__feature">
+            <span class="service-card__feature-arrow" aria-hidden="true">→</span>
+            Database-backed persistence
+          </li>
+        </ul>
+      </div>
+
+      <!-- Web Design -->
+      <div class="service-card reveal reveal--delay-2">
+        <div class="service-card__icon service-card__icon--amber" aria-hidden="true">🎨</div>
+        <h3 class="service-card__title">Responsive Web Design</h3>
+        <p class="service-card__desc">
+          Beautiful, pixel-perfect websites that work flawlessly on every device, built with modern CSS and best practices.
+        </p>
+        <ul class="service-card__features">
+          <li class="service-card__feature">
+            <span class="service-card__feature-arrow" aria-hidden="true">→</span>
+            Mobile-first approach
+          </li>
+          <li class="service-card__feature">
+            <span class="service-card__feature-arrow" aria-hidden="true">→</span>
+            Cross-browser compatibility
+          </li>
+          <li class="service-card__feature">
+            <span class="service-card__feature-arrow" aria-hidden="true">→</span>
+            Accessibility &amp; SEO best practices
+          </li>
+          <li class="service-card__feature">
+            <span class="service-card__feature-arrow" aria-hidden="true">→</span>
+            Smooth animations &amp; micro-interactions
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       CONTACT
+  ═══════════════════════════════════════════════ -->
+  <section id="contact" class="section contact" aria-label="Contact">
+
+    <div class="section__label reveal" style="justify-content:center">Let's Connect</div>
+    <h2 class="section__title reveal" style="text-align:center">Have a project<br><em>in mind?</em></h2>
+
+    <div class="contact__card reveal">
+      <div class="contact__glow" aria-hidden="true"></div>
+      <p class="contact__desc">
+        I'm currently available for freelance work and exciting collaborations. Whether it's a web application,
+        a Discord bot, or something entirely new — let's build it together.
+      </p>
+
+      <a href="tel:+21694155000" class="btn btn--primary" style="position:relative;z-index:1">
+        +216 94 155 000
+      </a>
+
+      <nav class="contact__channels" aria-label="Contact channels">
+        <a href="tel:+21694155000" class="channel-btn channel-btn--phone">📞 Call Me</a>
+        <a href="https://www.facebook.com/TSSEJED/" target="_blank" rel="noopener noreferrer" class="channel-btn channel-btn--fb">Facebook</a>
+        <a href="https://www.instagram.com/http.sejed.official/" target="_blank" rel="noopener noreferrer" class="channel-btn channel-btn--ig">Instagram</a>
+        <a href="https://wa.me/21694155000" target="_blank" rel="noopener noreferrer" class="channel-btn channel-btn--wa">💬 WhatsApp</a>
+      </nav>
+    </div>
+
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════════ -->
+  <footer class="footer" role="contentinfo">
+    <p class="footer__copy">
+      © 2025 <a href="#">Sejed Trabelsi</a>. All rights reserved.
+    </p>
+    <p class="footer__meta">Tunis, Tunisia · Full-Stack Developer</p>
+    <p class="footer__credit">
+      Crafted with <span style="color:var(--rose)" aria-label="love">♥</span> &amp; lots of ☕
+    </p>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════════
+       JAVASCRIPT
+  ═══════════════════════════════════════════════ -->
+  <script>
+    /* ─────────────────────────────────────────────
+       CURSOR TRACKING
+    ───────────────────────────────────────────── */
+    const dot  = document.getElementById('cursor-dot');
+    const ring = document.getElementById('cursor-ring');
+    let dotX = 0, dotY = 0, ringX = 0, ringY = 0;
+    let animFrame;
+
+    document.addEventListener('mousemove', e => {
+      dotX = e.clientX;
+      dotY = e.clientY;
+      dot.style.left = dotX + 'px';
+      dot.style.top  = dotY + 'px';
+    });
+
+    (function animateRing() {
+      ringX += (dotX - ringX) * .14;
+      ringY += (dotY - ringY) * .14;
+      ring.style.left = ringX + 'px';
+      ring.style.top  = ringY + 'px';
+      requestAnimationFrame(animateRing);
+    })();
+
+    /* ─────────────────────────────────────────────
+       CARD CURSOR-LIGHT EFFECT
+    ───────────────────────────────────────────── */
+    document.querySelectorAll('.project-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width  * 100).toFixed(1) + '%';
+        const y = ((e.clientY - rect.top)  / rect.height * 100).toFixed(1) + '%';
+        card.style.setProperty('--mx', x);
+        card.style.setProperty('--my', y);
+      });
+    });
+
+    /* ─────────────────────────────────────────────
+       SCROLL REVEAL (IntersectionObserver)
+    ───────────────────────────────────────────── */
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        revealObserver.unobserve(entry.target);
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    /* ─────────────────────────────────────────────
+       SKILL BARS ANIMATION
+    ───────────────────────────────────────────── */
+    const skillObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.querySelectorAll('.skill-bar').forEach(bar => {
+          const fill  = bar.querySelector('.skill-bar__fill');
+          const width = bar.dataset.width || '0';
+          fill.style.transform = `scaleX(${width})`;
+        });
+        skillObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.25 });
+
+    document.querySelectorAll('.about__skills > div').forEach(el => skillObserver.observe(el));
+
+    /* ─────────────────────────────────────────────
+       NAV SHRINK ON SCROLL
+    ───────────────────────────────────────────── */
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+    }, { passive: true });
+
+    /* ─────────────────────────────────────────────
+       ACTIVE NAV LINK (highlight on scroll)
+    ───────────────────────────────────────────── */
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav__link');
+
+    const sectionObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(link => {
+            link.classList.toggle(
+              'nav__link--active',
+              link.getAttribute('href') === '#' + entry.target.id
+            );
+          });
+        }
+      });
+    }, { threshold: 0.4 });
+
+    sections.forEach(section => sectionObserver.observe(section));
+
+    /* ─────────────────────────────────────────────
+       DISABLE RIGHT-CLICK
+    ───────────────────────────────────────────── */
+    document.addEventListener('contextmenu', e => e.preventDefault());
+
+    /* ─────────────────────────────────────────────
+       INSTAGRAM TOAST — fires 10 s after load
+    ───────────────────────────────────────────── */
+    function showIGToast() {
+      const toast = document.getElementById('ig-toast');
+      // Slide in
+      toast.classList.add('ig-toast--visible');
+
+      // Auto-dismiss after 8 s
+      const autoDismiss = setTimeout(() => dismissToast(), 8000);
+
+      // Manual close
+      document.getElementById('ig-toast-close').addEventListener('click', () => {
+        clearTimeout(autoDismiss);
+        dismissToast();
+      });
+
+      function dismissToast() {
+        toast.classList.remove('ig-toast--visible');
+        toast.classList.add('ig-toast--hidden');
+      }
+    }
+
+    window.addEventListener('load', () => {
+      setTimeout(showIGToast, 10000);
+    });
+  </script>
+
+  <!-- ═══════════════════════════════════════════════
+       INSTAGRAM TOAST NOTIFICATION
+  ═══════════════════════════════════════════════ -->
+  <div id="ig-toast" class="ig-toast" role="alert" aria-live="polite" aria-atomic="true">
+
+    <!-- Animated background shimmer -->
+    <div class="ig-toast__shimmer" aria-hidden="true"></div>
+
+    <!-- Left: gradient Instagram icon -->
+    <div class="ig-toast__icon" aria-hidden="true">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="ig-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%"   stop-color="#f09433"/>
+            <stop offset="25%"  stop-color="#e6683c"/>
+            <stop offset="50%"  stop-color="#dc2743"/>
+            <stop offset="75%"  stop-color="#cc2366"/>
+            <stop offset="100%" stop-color="#bc1888"/>
+          </linearGradient>
+        </defs>
+        <rect x="2" y="2" width="20" height="20" rx="5.5" ry="5.5" stroke="url(#ig-grad)" stroke-width="2"/>
+        <circle cx="12" cy="12" r="4.5" stroke="url(#ig-grad)" stroke-width="2"/>
+        <circle cx="17.5" cy="6.5" r="1.2" fill="url(#ig-grad)"/>
+      </svg>
+    </div>
+
+    <!-- Content -->
+    <div class="ig-toast__body">
+      <p class="ig-toast__title">Stay in the loop ✦</p>
+      <p class="ig-toast__sub">Follow Sejed for updates &amp; behind-the-scenes.</p>
+      <a
+        href="https://www.instagram.com/http.sejed.official/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="ig-toast__cta"
+      >
+        @http.sejed.official
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+          <path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Progress bar (counts down 8 s) -->
+    <div class="ig-toast__progress" aria-hidden="true">
+      <div class="ig-toast__progress-bar"></div>
+    </div>
+
+    <!-- Close button -->
+    <button id="ig-toast-close" class="ig-toast__close" aria-label="Dismiss notification">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
     </button>
 
-    <!-- JavaScript -->
-    <script src="js/main.js"></script>
-    <script>
-        // Add animation classes on scroll
-        document.addEventListener('DOMContentLoaded', function() {
-            // Animate elements with the 'animate-on-scroll' class
-            const animateOnScroll = function() {
-                const elements = document.querySelectorAll('.animate-on-scroll');
-                
-                elements.forEach(element => {
-                    const elementPosition = element.getBoundingClientRect().top;
-                    const screenPosition = window.innerHeight / 1.3;
-                    
-                    if (elementPosition < screenPosition) {
-                        element.classList.add('animate-fade-in');
-                    }
-                });
-                
-                // Back to top button
-                const backToTopButton = document.getElementById('backToTop');
-                if (window.pageYOffset > 300) {
-                    backToTopButton.classList.remove('opacity-0', 'invisible');
-                    backToTopButton.classList.add('opacity-100', 'visible');
-                } else {
-                    backToTopButton.classList.remove('opacity-100', 'visible');
-                    backToTopButton.classList.add('opacity-0', 'invisible');
-                }
-            };
-            
-            window.addEventListener('scroll', animateOnScroll);
-            
-            // Initial check
-            animateOnScroll();
-            
-            // Back to top functionality
-            document.getElementById('backToTop').addEventListener('click', function() {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-            
-            // Mobile menu toggle
-            const mobileMenuButton = document.querySelector('.mobile-menu-button');
-            const mobileMenu = document.querySelector('.mobile-menu');
-            
-            if (mobileMenuButton && mobileMenu) {
-                mobileMenuButton.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('hidden');
-            }
-        };
-        
-        window.addEventListener('scroll', animateOnScroll);
-        
-        // Initial check
-        animateOnScroll();
-        
-        // Back to top functionality
-        document.getElementById('backToTop').addEventListener('click', function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-        
-        // Mobile menu toggle
-        const mobileMenuButton = document.querySelector('.mobile-menu-button');
-        const mobileMenu = document.querySelector('.mobile-menu');
-        
-        if (mobileMenuButton && mobileMenu) {
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-                
-                // Toggle between menu and close icon
-                const icon = mobileMenuButton.querySelector('i');
-                if (icon) {
-                    if (icon.classList.contains('fa-bars')) {
-                        icon.classList.remove('fa-bars');
-                        icon.classList.add('fa-times');
-                    } else {
-                        icon.classList.remove('fa-times');
-                        icon.classList.add('fa-bars');
-                    }
-                }
-            });
-            
-            // Close menu when clicking on a link
-            const mobileLinks = mobileMenu.querySelectorAll('a');
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
-                    const icon = mobileMenuButton.querySelector('i');
-                    if (icon) {
-                        icon.classList.remove('fa-times');
-                        icon.classList.add('fa-bars');
-                    }
-                });
-            });
-        }
-    });
-</script>
-<!-- Custom Alert HTML -->
-<div id="overlay"></div>
-<div id="customAlert">
-    <h3>Right-Click Disabled</h3>
-    <p>Right-clicking is disabled on this page to protect the content.</p>
-    <button onclick="hideCustomAlert()">Got it!</button>
-</div>
+  </div>
 
-<!-- Particle.js Script -->
-<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-<script>
-    // Show custom alert function
-    function showCustomAlert() {
-        document.getElementById('customAlert').style.display = 'block';
-        document.getElementById('overlay').style.display = 'block';
-        document.body.style.overflow = 'hidden';
+  <style>
+    /* ── Toast base ── */
+    .ig-toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 9990;
+
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+
+      width: 340px;
+      background: #16162a;
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 18px;
+      padding: 1.2rem 1.4rem 1.4rem;
+
+      box-shadow:
+        0 24px 56px rgba(0,0,0,.6),
+        0 0 0 1px rgba(129,140,248,.12),
+        inset 0 1px 0 rgba(255,255,255,.06);
+
+      overflow: hidden;
+      cursor: default;
+
+      /* Hidden by default */
+      opacity: 0;
+      transform: translateY(20px) scale(.96);
+      pointer-events: none;
+      transition:
+        opacity .45s cubic-bezier(.16,1,.3,1),
+        transform .45s cubic-bezier(.16,1,.3,1);
     }
 
-    // Hide custom alert function
-    function hideCustomAlert() {
-        document.getElementById('customAlert').style.display = 'none';
-        document.getElementById('overlay').style.display = 'none';
-        document.body.style.overflow = 'auto';
+    /* Visible state */
+    .ig-toast--visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
     }
 
-        // Close alert when clicking outside
-        document.getElementById('overlay').addEventListener('click', hideCustomAlert);
+    /* Dismiss state */
+    .ig-toast--hidden {
+      opacity: 0;
+      transform: translateY(16px) scale(.95);
+      pointer-events: none;
+    }
 
-        // Disable right-click and show custom notification
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-            showCustomAlert();
-            return false;
-        });
-    </script>
-    <script src="js/main.js"></script>
-    <script>
-        // Duplicate tech items for infinite scroll
-        document.addEventListener('DOMContentLoaded', function() {
-            // Clone tech items for infinite scroll
-            const track = document.querySelector('.marquee-track');
-            if (track) {
-                // Clone all tech items
-                const items = track.querySelectorAll('.tech-item');
-                items.forEach(item => {
-                    const clone = item.cloneNode(true);
-                    // Add animation delay to clones for smoother appearance
-                    clone.style.animationDelay = `${Math.random() * 0.5}s`;
-                    track.appendChild(clone);
-                });
-                
-                // Animate skill bars on scroll into view
-                const animateSkillBars = () => {
-                    const skillBars = document.querySelectorAll('.skill-level');
-                    skillBars.forEach(bar => {
-                        const width = bar.style.width;
-                        bar.style.width = '0';
-                        setTimeout(() => {
-                            bar.style.width = width;
-                        }, 100);
-                    });
-                };
-                
-                // Run once on load
-                setTimeout(animateSkillBars, 500);
-                
-                // Run on scroll into view
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            animateSkillBars();
-                            observer.unobserve(entry.target);
-                        }
-                    });
-                }, { threshold: 0.2 });
-                
-                observer.observe(document.querySelector('#tech-stack'));
-                
-                // Add 3D tilt effect
-                document.querySelectorAll('.tech-item').forEach(item => {
-                    item.addEventListener('mousemove', (e) => {
-                        const rect = item.getBoundingClientRect();
-                        const x = e.clientX - rect.left;
-                        const y = e.clientY - rect.top;
-                        const centerX = rect.width / 2;
-                        const centerY = rect.height / 2;
-                        const angleX = (y - centerY) / 20;
-                        const angleY = (centerX - x) / 20;
-                        
-                        item.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) scale3d(1.05, 1.05, 1.05)`;
-                    });
-                    
-                    item.addEventListener('mouseleave', () => {
-                        item.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
-                    });
-                });
+    /* Shimmer sweep across background */
+    .ig-toast__shimmer {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        110deg,
+        transparent 30%,
+        rgba(129,140,248,.05) 50%,
+        transparent 70%
+      );
+      background-size: 200% 100%;
+      animation: shimmerSweep 3.5s ease-in-out infinite;
+      pointer-events: none;
+    }
 
-                // Search functionality
-                const searchInput = document.getElementById('tech-search');
-                const techItems = document.querySelectorAll('.tech-item');
+    @keyframes shimmerSweep {
+      0%   { background-position: 200% center; }
+      100% { background-position: -200% center; }
+    }
 
-                if (searchInput) {
-                    searchInput.addEventListener('input', (e) => {
-                        const searchTerm = e.target.value.toLowerCase();
-                        
-                        techItems.forEach(item => {
-                            const techName = item.getAttribute('data-name').toLowerCase();
-                            const techDesc = item.getAttribute('data-desc').toLowerCase();
-                            
-                            if (techName.includes(searchTerm) || techDesc.includes(searchTerm)) {
-                                item.style.display = 'flex';
-                            } else {
-                                item.style.display = 'none';
-                            }
-                        });
-                        
-                        // Update pagination if needed
-                        updatePagination();
-                    });
-                }
-            }
-            
-            // Initialize particles.js
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 80, density: { enable: true, value_area: 800 } },
-                color: { value: '#4f46e5' },
-                shape: { type: 'circle' },
-                opacity: { value: 0.3, random: true },
-                size: { value: 3, random: true },
-                line_linked: {
-                    enable: true,
-                    distance: 150,
-                    color: '#818cf8',
-                    opacity: 0.2,
-                    width: 1
-                },
-                move: {
-                    enable: true,
-                    speed: 2,
-                    direction: 'none',
-                    random: true,
-                    straight: false,
-                    out_mode: 'out',
-                    bounce: false
-                }
-            },
-            interactivity: {
-                detect_on: 'canvas',
-                events: {
-                    onhover: { enable: true, mode: 'grab' },
-                    onclick: { enable: true, mode: 'push' },
-                    resize: true
-                }
-            },
-            retina_detect: true
-        });
-        
-        // 3D card effect
-        const cards = document.querySelectorAll('.project-card');
-        cards.forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                
-                const angleX = (y - centerY) / 20;
-                const angleY = (centerX - x) / 20;
-                
-                card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) scale(1.05)`;
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
-            });
-        });
-    });
-</script>
+    /* Instagram icon wrapper */
+    .ig-toast__icon {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.07);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+    }
+
+    /* Body text */
+    .ig-toast__body {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .ig-toast__title {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 700;
+      font-size: .92rem;
+      color: #f0f0fa;
+      margin-bottom: .2rem;
+      letter-spacing: -.01em;
+    }
+
+    .ig-toast__sub {
+      font-family: 'Manrope', sans-serif;
+      font-size: .78rem;
+      color: rgba(168,168,200,.75);
+      line-height: 1.5;
+      margin-bottom: .65rem;
+    }
+
+    /* CTA link */
+    .ig-toast__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .72rem;
+      letter-spacing: .04em;
+      color: #e1306c;
+      text-decoration: none;
+      border: 1px solid rgba(225,48,108,.25);
+      border-radius: 50px;
+      padding: .3rem .75rem;
+      background: rgba(225,48,108,.07);
+      transition: background .2s, border-color .2s, gap .2s;
+    }
+
+    .ig-toast__cta:hover {
+      background: rgba(225,48,108,.14);
+      border-color: rgba(225,48,108,.5);
+      gap: .55rem;
+    }
+
+    /* Progress bar */
+    .ig-toast__progress {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: rgba(255,255,255,.06);
+    }
+
+    .ig-toast__progress-bar {
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(90deg, #bc1888, #e6683c, #f09433);
+      transform-origin: left;
+      animation: none;
+    }
+
+    /* Trigger progress animation only when toast is visible */
+    .ig-toast--visible .ig-toast__progress-bar {
+      animation: countDown 8s linear forwards;
+    }
+
+    @keyframes countDown {
+      from { transform: scaleX(1); }
+      to   { transform: scaleX(0); }
+    }
+
+    /* Close button */
+    .ig-toast__close {
+      position: absolute;
+      top: .85rem;
+      right: .85rem;
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255,255,255,.06);
+      color: rgba(168,168,200,.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background .2s, color .2s;
+      flex-shrink: 0;
+    }
+
+    .ig-toast__close:hover {
+      background: rgba(255,255,255,.12);
+      color: #f0f0fa;
+    }
+
+    /* Mobile */
+    @media (max-width: 480px) {
+      .ig-toast {
+        bottom: 1rem;
+        right: 1rem;
+        left: 1rem;
+        width: auto;
+      }
+    }
+  </style>
+
 </body>
 </html>
