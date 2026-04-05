@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cheappickle Bot | Infrastructure Manual v1.0</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #050505;
+            --sidebar-bg: #0a0a0a;
+            --surface: #111111;
+            --surface-accent: #1a1a1a;
+            --accent: #6d28d9;
+            --accent-glow: rgba(109, 40, 217, 0.3);
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --border: rgba(255, 255, 255, 0.08);
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            display: flex;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* --- Sidebar --- */
+        aside {
+            width: 300px;
+            background: var(--sidebar-bg);
+            border-right: 1px solid var(--border);
+            height: 100vh;
+            position: fixed;
+            padding: 2rem 1.5rem;
+            overflow-y: auto;
+            z-index: 100;
+        }
+
+        .logo { font-weight: 800; font-size: 1.5rem; letter-spacing: -1px; margin-bottom: 2rem; display: flex; align-items: center; gap: 0.5rem; }
+        .logo-icon { width: 20px; height: 20px; background: var(--accent); border-radius: 4px; box-shadow: 0 0 15px var(--accent-glow); }
+
+        .nav-section { margin-bottom: 2rem; }
+        .nav-header { font-size: 0.75rem; text-transform: uppercase; color: var(--text-secondary); letter-spacing: 0.1rem; margin-bottom: 0.75rem; font-weight: 600; }
+        .nav-item { 
+            display: block; 
+            padding: 0.5rem 0.75rem; 
+            color: var(--text-secondary); 
+            text-decoration: none; 
+            font-size: 0.9rem; 
+            border-radius: 6px; 
+            transition: 0.2s; 
+            margin-bottom: 0.2rem;
+        }
+        .nav-item:hover { color: var(--text-primary); background: var(--surface-accent); }
+        .nav-item.active { color: var(--text-primary); background: rgba(109, 40, 217, 0.15); border: 1px solid rgba(109, 40, 217, 0.3); }
+
+        /* --- Main Content --- */
+        main { flex: 1; margin-left: 300px; padding: 4rem 6rem; max-width: 1300px; }
+        
+        .hero { margin-bottom: 5rem; max-width: 800px; }
+        h1 { font-size: 4rem; font-weight: 800; letter-spacing: -3px; margin-bottom: 1rem; line-height: 0.9; }
+        .badge-ver { font-size: 0.8rem; background: var(--surface-accent); padding: 0.3rem 0.6rem; border-radius: 100px; border: 1px solid var(--border); color: var(--text-secondary); }
+
+        section { margin-bottom: 8rem; animation: slideUp 0.6s ease-out; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        h2 { font-size: 2.5rem; font-weight: 700; letter-spacing: -1.5px; margin-bottom: 2rem; position: relative; }
+        h2::after { content: ''; display: block; width: 40px; height: 3px; background: var(--accent); margin-top: 0.5rem; border-radius: 2px; }
+
+        h3 { font-size: 1.25rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem; color: var(--text-primary); }
+        p { color: var(--text-secondary); font-size: 1.05rem; margin-bottom: 1.5rem; }
+
+        /* --- Components --- */
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+        .feature-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: 0.3s;
+        }
+        .feature-card:hover { border-color: var(--accent); background: var(--surface-accent); transform: translateY(-2px); }
+        .feature-icon { font-size: 1.5rem; margin-bottom: 1rem; display: block; }
+
+        .code-container {
+            background: #000;
+            border-radius: 10px;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            margin: 1.5rem 0;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .code-header { position: absolute; top: 0; right: 2rem; font-size: 0.65rem; padding: 0.2rem 0.5rem; background: var(--border); border-radius: 0 0 4px 4px; color: var(--text-secondary); text-transform: uppercase; }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+        th { text-align: left; padding: 1rem; color: var(--text-secondary); font-size: 0.75rem; text-transform: uppercase; border-bottom: 1px solid var(--border); }
+        td { padding: 1.2rem 1rem; border-bottom: 1px solid var(--border); vertical-align: top; font-size: 0.9rem; }
+        tr:hover { background: rgba(255,255,255,0.01); }
+
+        .perm-badge { padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: 700; font-size: 0.65rem; text-transform: uppercase; }
+        .perm-admin { color: #f87171; background: rgba(248, 113, 113, 0.1); border: 1px solid rgba(248, 113, 113, 0.2); }
+        .perm-staff { color: #60a5fa; background: rgba(96, 165, 250, 0.1); border: 1px solid rgba(96, 165, 250, 0.2); }
+        .perm-user { color: #34d399; background: rgba(52, 211, 153, 0.1); border: 1px solid rgba(52, 211, 153, 0.2); }
+
+        .diagram {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            background: var(--surface);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 1px dashed var(--border);
+            margin: 2rem 0;
+        }
+        .node { background: var(--surface-accent); border: 1px solid var(--border); padding: 0.8rem 1.2rem; border-radius: 8px; font-size: 0.8rem; font-weight: 600; text-align: center; }
+        .arrow { color: var(--accent); animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { opacity: 0.3; } 50% { opacity: 1; } 100% { opacity: 0.3; } }
+
+        /* Responsive */
+        @media (max-width: 1100px) {
+            aside { width: 0; display: none; }
+            main { margin-left: 0; padding: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <aside>
+        <div class="logo">
+            <div class="logo-icon"></div>
+            Pickle Infra
+        </div>
+        
+        <div class="nav-section">
+            <div class="nav-header">Deployment</div>
+            <a href="#quickstart" class="nav-item">Quickstart</a>
+            <a href="#env" class="nav-item">Environment Variables</a>
+            <a href="#hosting" class="nav-item">Hosting Guide</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-header">Configuration</div>
+            <a href="#setup" class="nav-item">/setup Command</a>
+            <a href="#json" class="nav-item">JSON Database Manual</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-header">Systems</div>
+            <a href="#modmail" class="nav-item">ModMail V2</a>
+            <a href="#giveaway" class="nav-item">Giveaway Engine</a>
+            <a href="#welcome" class="nav-item">Welcome System</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-header">Reference</div>
+            <a href="#commands" class="nav-item">Full Command Codex</a>
+            <a href="#faq" class="nav-item">Technical FAQ</a>
+            <a href="#license" class="nav-item">Compliance & License</a>
+        </div>
+    </aside>
+
+    <main>
+        <div class="hero">
+            <span class="badge-ver">Stable Build v1.0.4</span>
+            <h1>Infrastructure Documentation.</h1>
+            <p>The definitive guide to hosting, configuring, and maintaining the Cheappickle Discord Bot. Built for high-frequency communities with advanced gateway resilience.</p>
+        </div>
+
+        <!-- Getting Started -->
+        <section id="quickstart">
+            <h2>Quickstart Guide</h2>
+            <p>Deploy the bot to your server in less than 5 minutes using these optimized steps.</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">📦</span>
+                    <h3>1. Install Node</h3>
+                    <p>Ensure you have Node.js 18.0.0 or higher. Version 20 LTS is recommended for security.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🧬</span>
+                    <h3>2. Dependencies</h3>
+                    <p>Run <code>npm install</code> to fetch the required Discord.js v14 libraries and dotenv.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🔑</span>
+                    <h3>3. Secrets</h3>
+                    <p>Create a <code>.env</code> file and populate it with your Token and Client ID.</p>
+                </div>
+            </div>
+
+            <div class="code-container">
+                <div class="code-header">Terminal</div>
+                git clone https://github.com/ts_122/sold.git<br>
+                cd sold<br>
+                npm install<br>
+                node index.js
+            </div>
+        </section>
+
+        <!-- Configuration Mastery -->
+        <section id="json">
+            <h2>JSON Database Manual</h2>
+            <p>The bot utilizes flat-file JSON databases for zero-latency lookups and maximum portability between hosting providers.</p>
+            
+            <div class="code-container">
+                <div class="code-header">config.json</div>
+                {<br>
+                &nbsp;&nbsp;"welcome": { "enabled": true, "channelId": "...", "color": "#HEX" },<br>
+                &nbsp;&nbsp;"modmail": { "guildId": "...", "staffRoleId": "...", "categoryId": "..." }<br>
+                }
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Property</th>
+                        <th>Type</th>
+                        <th>Utility Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>modmail.guildId</code></td>
+                        <td>Snowflake</td>
+                        <td>The exact server ID where ticket channels will be created.</td>
+                    </tr>
+                    <tr>
+                        <td><code>modmail.staffRoleId</code></td>
+                        <td>Snowflake</td>
+                        <td>The role allowed to view, claim, and reply to ModMail tickets.</td>
+                    </tr>
+                    <tr>
+                        <td><code>modmail.categoryId</code></td>
+                        <td>Snowflake</td>
+                        <td>The category ID where incoming ModMail channels will be nested.</td>
+                    </tr>
+                    <tr>
+                        <td><code>welcome.enabled</code></td>
+                        <td>Boolean</td>
+                        <td>Global toggle for the automated welcome system.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Command Codex -->
+        <section id="commands">
+            <h2>Command Atlas</h2>
+            <p>Every slash command is listed below with its required permissions and operational behavior.</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Command Group</th>
+                        <th>Subcommand</th>
+                        <th>Access</th>
+                        <th>Operational Result</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>/setup</code></td>
+                        <td><code>modmail</code></td>
+                        <td><span class="badge-ver">Admin</span></td>
+                        <td>Initializes the support engine database.</td>
+                    </tr>
+                    <tr>
+                        <td><code>/setup</code></td>
+                        <td><code>welcome</code></td>
+                        <td><span class="badge-ver">Admin</span></td>
+                        <td>Configures join messages and hex colors.</td>
+                    </tr>
+                    <tr>
+                        <td><code>/modmail</code></td>
+                        <td><code>reply</code></td>
+                        <td><span class="badge-ver">Staff</span></td>
+                        <td>Safe-tunnel reply to user DM.</td>
+                    </tr>
+                    <tr>
+                        <td><code>/modmail</code></td>
+                        <td><code>close</code></td>
+                        <td><span class="badge-ver">Staff</span></td>
+                        <td>Archive & Wipe ticket channel.</td>
+                    </tr>
+                    <tr>
+                        <td><code>/giveaway</code></td>
+                        <td><code>start</code></td>
+                        <td><span class="badge-ver">Manager</span></td>
+                        <td>Launch prize pools with real-time timers.</td>
+                    </tr>
+                    <tr>
+                        <td><code>!reply</code></td>
+                        <td>-</td>
+                        <td><span class="badge-ver">Staff</span></td>
+                        <td>High-speed prefix reply (hardcoded legacy support).</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Systems -->
+        <section id="modmail">
+            <h2>ModMail Architecture</h2>
+            <p>The bot features a custom <strong>Gateway Bridge</strong> that bypasses internal Discord.js filters to guarantee message delivery.</p>
+            
+            <div class="diagram">
+                <div class="node">User DM</div>
+                <div class="arrow">➜</div>
+                <div class="node">Raw Packet</div>
+                <div class="arrow">➜</div>
+                <div class="node">Fallback Filter</div>
+                <div class="arrow">➜</div>
+                <div class="node">Staff Channel</div>
+            </div>
+
+            <div class="callout">
+                <strong>Raw Packet Logic:</strong> Even if Discord API latency causes regular event emission to fail, the bot's direct WebSocket listener catches <code>MESSAGE_CREATE</code> packets directly from the stream.
+            </div>
+        </section>
+
+        <!-- Hosting Mastery -->
+        <section id="hosting">
+            <h2>Comprehensive Hosting Guide</h2>
+            
+            <h3>Professional VPS Setup (Linux)</h3>
+            <p>For the most stable hosting environment, use Ubuntu 22.04 LTS and the PM2 process manager.</p>
+            <div class="code-container">
+                <div class="code-header">Bash (Ubuntu)</div>
+                # Install Node 20<br>
+                curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -<br>
+                sudo apt-get install -y nodejs<br><br>
+                # Install PM2 Global<br>
+                npm install pm2 -g<br><br>
+                # Start Bot<br>
+                pm2 start index.js --name "pickle-infra"<br>
+                pm2 save
+            </div>
+
+            <h3>Home Server (Windows)</h3>
+            <p>Ideal for low-cost setups. Use a <code>.bat</code> file to manage the process.</p>
+            <div class="code-container">
+                <div class="code-header">run.bat</div>
+                :loop<br>
+                node index.js<br>
+                goto loop
+            </div>
+        </section>
+
+        <!-- Maintenance -->
+        <section id="faq">
+            <h2>Technical FAQ & Recovery</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Slash commands not showing?</h3>
+                    <p>Invite the bot via the link in the terminal. Discord takes time to sync global commands; re-inviting forces a fast refresh.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>"License Verification Error"</h3>
+                    <p>The host machine blocked the outgoing HTTPS request to GitHub. Disable local firewalls or anti-virus during verification.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Failed to DM user?</h3>
+                    <p>The user has DMs disabled in their Privacy settings for this server. This is a Discord limitation.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- License Footer -->
+        <footer style="margin-top: 10rem; border-top: 1px solid var(--border); padding-top: 3rem; text-align: center;">
+            <p style="font-size: 0.8rem; color: var(--text-secondary);">
+                &copy; 2026 Cheappickle Infrastructure Systems.<br>
+                Licensed under Non-Commercial / Not For Resale (NFR) Protocols.<br>
+                Developer: @ts_122
+            </p>
+        </footer>
+    </main>
+
+</body>
+</html>
