@@ -1,41 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cheappickle Bot | Infrastructure Manual v1.0</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <title>Cheappickle Bot | Mega Documentation</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet">
     <style>
         :root {
-            --bg: #050505;
-            --sidebar-bg: #0a0a0a;
-            --surface: #111111;
-            --surface-accent: #1a1a1a;
-            --accent: #6d28d9;
-            --accent-glow: rgba(109, 40, 217, 0.3);
-            --text-primary: #ffffff;
-            --text-secondary: #a1a1aa;
-            --border: rgba(255, 255, 255, 0.08);
-            --success: #10b981;
-            --warning: #f59e0b;
+            --bg-color: #020617;
+            --sidebar-bg: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.4);
+            --accent-primary: #6366f1;
+            --accent-secondary: #0ea5e9;
+            --accent-success: #10b981;
+            --accent-danger: #ef4444;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --glass-border: rgba(255, 255, 255, 0.08);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--sidebar-bg);
+            border-radius: 10px;
+        }
+
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background: var(--bg);
-            color: var(--text-primary);
-            line-height: 1.6;
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-color);
+            color: var(--text-main);
             display: flex;
             min-height: 100vh;
-            overflow-x: hidden;
         }
 
         /* --- Sidebar --- */
-        aside {
-            width: 300px;
+        nav {
+            width: 280px;
             background: var(--sidebar-bg);
-            border-right: 1px solid var(--border);
+            border-right: 1px solid var(--glass-border);
             height: 100vh;
             position: fixed;
             padding: 2rem 1.5rem;
@@ -43,349 +62,552 @@
             z-index: 100;
         }
 
-        .logo { font-weight: 800; font-size: 1.5rem; letter-spacing: -1px; margin-bottom: 2rem; display: flex; align-items: center; gap: 0.5rem; }
-        .logo-icon { width: 20px; height: 20px; background: var(--accent); border-radius: 4px; box-shadow: 0 0 15px var(--accent-glow); }
-
-        .nav-section { margin-bottom: 2rem; }
-        .nav-header { font-size: 0.75rem; text-transform: uppercase; color: var(--text-secondary); letter-spacing: 0.1rem; margin-bottom: 0.75rem; font-weight: 600; }
-        .nav-item { 
-            display: block; 
-            padding: 0.5rem 0.75rem; 
-            color: var(--text-secondary); 
-            text-decoration: none; 
-            font-size: 0.9rem; 
-            border-radius: 6px; 
-            transition: 0.2s; 
-            margin-bottom: 0.2rem;
+        .nav-brand {
+            font-weight: 800;
+            font-size: 1.5rem;
+            margin-bottom: 2.5rem;
+            color: var(--accent-primary);
         }
-        .nav-item:hover { color: var(--text-primary); background: var(--surface-accent); }
-        .nav-item.active { color: var(--text-primary); background: rgba(109, 40, 217, 0.15); border: 1px solid rgba(109, 40, 217, 0.3); }
+
+        .nav-group {
+            margin-bottom: 2rem;
+        }
+
+        .nav-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            letter-spacing: 0.1rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 0.6rem 0;
+            color: var(--text-dim);
+            text-decoration: none;
+            transition: 0.2s;
+            font-size: 0.9rem;
+            border-left: 2px solid transparent;
+            padding-left: 1rem;
+        }
+
+        .nav-link:hover {
+            color: var(--text-main);
+            border-left-color: var(--accent-primary);
+            background: rgba(255, 255, 255, 0.03);
+        }
 
         /* --- Main Content --- */
-        main { flex: 1; margin-left: 300px; padding: 4rem 6rem; max-width: 1300px; }
-        
-        .hero { margin-bottom: 5rem; max-width: 800px; }
-        h1 { font-size: 4rem; font-weight: 800; letter-spacing: -3px; margin-bottom: 1rem; line-height: 0.9; }
-        .badge-ver { font-size: 0.8rem; background: var(--surface-accent); padding: 0.3rem 0.6rem; border-radius: 100px; border: 1px solid var(--border); color: var(--text-secondary); }
+        main {
+            flex: 1;
+            margin-left: 280px;
+            padding: 4rem;
+            max-width: 1200px;
+        }
 
-        section { margin-bottom: 8rem; animation: slideUp 0.6s ease-out; }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        section {
+            margin-bottom: 6rem;
+            animation: fadeIn 0.8s ease-out;
+        }
 
-        h2 { font-size: 2.5rem; font-weight: 700; letter-spacing: -1.5px; margin-bottom: 2rem; position: relative; }
-        h2::after { content: ''; display: block; width: 40px; height: 3px; background: var(--accent); margin-top: 0.5rem; border-radius: 2px; }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
 
-        h3 { font-size: 1.25rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem; color: var(--text-primary); }
-        p { color: var(--text-secondary); font-size: 1.05rem; margin-bottom: 1.5rem; }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -2px;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 1rem;
+            color: var(--accent-secondary);
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+            margin-top: 2rem;
+        }
+
+        p {
+            color: var(--text-dim);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
 
         /* --- Components --- */
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
-        .feature-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1.5rem;
-            transition: 0.3s;
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
         }
-        .feature-card:hover { border-color: var(--accent); background: var(--surface-accent); transform: translateY(-2px); }
-        .feature-icon { font-size: 1.5rem; margin-bottom: 1rem; display: block; }
 
-        .code-container {
-            background: #000;
-            border-radius: 10px;
-            padding: 1.5rem;
-            border: 1px solid var(--border);
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem;
-            margin: 1.5rem 0;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
         }
-        .code-header { position: absolute; top: 0; right: 2rem; font-size: 0.65rem; padding: 0.2rem 0.5rem; background: var(--border); border-radius: 0 0 4px 4px; color: var(--text-secondary); text-transform: uppercase; }
 
-        table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
-        th { text-align: left; padding: 1rem; color: var(--text-secondary); font-size: 0.75rem; text-transform: uppercase; border-bottom: 1px solid var(--border); }
-        td { padding: 1.2rem 1rem; border-bottom: 1px solid var(--border); vertical-align: top; font-size: 0.9rem; }
-        tr:hover { background: rgba(255,255,255,0.01); }
-
-        .perm-badge { padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: 700; font-size: 0.65rem; text-transform: uppercase; }
-        .perm-admin { color: #f87171; background: rgba(248, 113, 113, 0.1); border: 1px solid rgba(248, 113, 113, 0.2); }
-        .perm-staff { color: #60a5fa; background: rgba(96, 165, 250, 0.1); border: 1px solid rgba(96, 165, 250, 0.2); }
-        .perm-user { color: #34d399; background: rgba(52, 211, 153, 0.1); border: 1px solid rgba(52, 211, 153, 0.2); }
-
-        .diagram {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1.5rem;
-            background: var(--surface);
-            padding: 2.5rem;
-            border-radius: 12px;
-            border: 1px dashed var(--border);
+        .callout {
+            background: rgba(99, 102, 241, 0.08);
+            border-left: 4px solid var(--accent-primary);
+            padding: 1.5rem;
+            border-radius: 0 12px 12px 0;
             margin: 2rem 0;
         }
-        .node { background: var(--surface-accent); border: 1px solid var(--border); padding: 0.8rem 1.2rem; border-radius: 8px; font-size: 0.8rem; font-weight: 600; text-align: center; }
-        .arrow { color: var(--accent); animation: pulse 2s infinite; }
-        @keyframes pulse { 0% { opacity: 0.3; } 50% { opacity: 1; } 100% { opacity: 0.3; } }
 
-        /* Responsive */
-        @media (max-width: 1100px) {
-            aside { width: 0; display: none; }
-            main { margin-left: 0; padding: 2rem; }
+        .code-block {
+            background: #000;
+            border-radius: 12px;
+            padding: 1.5rem;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+            overflow-x: auto;
+            border: 1px solid var(--glass-border);
+            margin: 1rem 0;
+            position: relative;
+        }
+
+        .code-lang {
+            position: absolute;
+            top: 0.5rem;
+            right: 1rem;
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+        }
+
+        /* --- Tables --- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+        }
+
+        th {
+            text-align: left;
+            padding: 1rem;
+            color: var(--text-dim);
+            border-bottom: 2px solid var(--glass-border);
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            vertical-align: top;
+        }
+
+        .badge {
+            padding: 0.3rem 0.7rem;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+        }
+
+        .bg-red {
+            background: rgba(239, 44, 44, 0.15);
+            color: #f87171;
+        }
+
+        .bg-blue {
+            background: rgba(14, 165, 233, 0.15);
+            color: #38bdf8;
+        }
+
+        .bg-green {
+            background: rgba(16, 185, 129, 0.15);
+            color: #34d399;
+        }
+
+        /* --- Diagrams --- */
+        .system-flow {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .flow-node {
+            background: var(--sidebar-bg);
+            border: 1px solid var(--glass-border);
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            text-align: center;
+            min-width: 120px;
+        }
+
+        .flow-arrow {
+            color: var(--accent-primary);
+            font-weight: 800;
+        }
+
+        @media (max-width: 1024px) {
+            nav {
+                width: 0;
+                display: none;
+            }
+
+            main {
+                margin-left: 0;
+                padding: 2rem;
+            }
         }
     </style>
 </head>
+
 <body>
 
-    <aside>
-        <div class="logo">
-            <div class="logo-icon"></div>
-            Pickle Infra
-        </div>
-        
-        <div class="nav-section">
-            <div class="nav-header">Deployment</div>
-            <a href="#quickstart" class="nav-item">Quickstart</a>
-            <a href="#env" class="nav-item">Environment Variables</a>
-            <a href="#hosting" class="nav-item">Hosting Guide</a>
+    <nav>
+        <div class="nav-brand">Cheappickle v1.0</div>
+
+        <div class="nav-group">
+            <span class="nav-label">General</span>
+            <a href="#welcome" class="nav-link">Welcome</a>
+            <a href="#getting-started" class="nav-link">Getting Started</a>
+            <a href="#architecture" class="nav-link">Architecture</a>
         </div>
 
-        <div class="nav-section">
-            <div class="nav-header">Configuration</div>
-            <a href="#setup" class="nav-item">/setup Command</a>
-            <a href="#json" class="nav-item">JSON Database Manual</a>
+        <div class="nav-group">
+            <span class="nav-label">Command Codex</span>
+            <a href="#cmd-admin" class="nav-link">Administrator</a>
+            <a href="#cmd-support" class="nav-link">Support & Tickets</a>
+            <a href="#cmd-giveaway" class="nav-link">Giveaway Engine</a>
+            <a href="#cmd-utility" class="nav-link">Economy & Utility</a>
         </div>
 
-        <div class="nav-section">
-            <div class="nav-header">Systems</div>
-            <a href="#modmail" class="nav-item">ModMail V2</a>
-            <a href="#giveaway" class="nav-item">Giveaway Engine</a>
-            <a href="#welcome" class="nav-item">Welcome System</a>
+        <div class="nav-group">
+            <span class="nav-label">Core Systems</span>
+            <a href="#sys-modmail" class="nav-link">ModMail Internal</a>
+            <a href="#sys-gateway" class="nav-link">Raw Gateway Fallback</a>
+            <a href="#sys-persistence" class="nav-link">Data Persistence</a>
         </div>
 
-        <div class="nav-section">
-            <div class="nav-header">Reference</div>
-            <a href="#commands" class="nav-item">Full Command Codex</a>
-            <a href="#faq" class="nav-item">Technical FAQ</a>
-            <a href="#license" class="nav-item">Compliance & License</a>
+        <div class="nav-group">
+            <span class="nav-label">Hosting Mastery</span>
+            <a href="#host-vps" class="nav-link">Linux VPS (PM2)</a>
+            <a href="#host-windows" class="nav-link">Windows Hosting</a>
+            <a href="#host-panel" class="nav-link">Game Panels (Ptero)</a>
         </div>
-    </aside>
+
+        <div class="nav-group">
+            <span class="nav-label">Maintenance</span>
+            <a href="#faq" class="nav-link">FAQ & Errors</a>
+            <a href="#license" class="nav-link">License Terms</a>
+        </div>
+    </nav>
 
     <main>
-        <div class="hero">
-            <span class="badge-ver">Stable Build v1.0.4</span>
-            <h1>Infrastructure Documentation.</h1>
-            <p>The definitive guide to hosting, configuring, and maintaining the Cheappickle Discord Bot. Built for high-frequency communities with advanced gateway resilience.</p>
-        </div>
+        <!-- Welcome -->
+        <section id="welcome">
+            <h1>The Definitive Guide</h1>
+            <p>Welcome to the official Cheappickle Bot manual. This bot is a high-performance infrastructure designed
+                with <strong>Advanced Gateway Recovery</strong> to ensure your community management remains online, even
+                when standard Discord libraries fail. This guide is curated for Bot Owners and Developers who intend to
+                host and scale the application themselves.</p>
 
-        <!-- Getting Started -->
-        <section id="quickstart">
-            <h2>Quickstart Guide</h2>
-            <p>Deploy the bot to your server in less than 5 minutes using these optimized steps.</p>
-            
-            <div class="features-grid">
-                <div class="feature-card">
-                    <span class="feature-icon">📦</span>
-                    <h3>1. Install Node</h3>
-                    <p>Ensure you have Node.js 18.0.0 or higher. Version 20 LTS is recommended for security.</p>
+            <div class="card">
+                <h3>System Status Overview</h3>
+                <div class="system-flow">
+                    <div class="flow-node">License Ping</div>
+                    <div class="flow-arrow">➜</div>
+                    <div class="flow-node">Raw Socket Link</div>
+                    <div class="flow-arrow">➜</div>
+                    <div class="flow-node">JSON Load</div>
+                    <div class="flow-arrow">➜</div>
+                    <div class="flow-node">Slash Ready</div>
                 </div>
-                <div class="feature-card">
-                    <span class="feature-icon">🧬</span>
-                    <h3>2. Dependencies</h3>
-                    <p>Run <code>npm install</code> to fetch the required Discord.js v14 libraries and dotenv.</p>
-                </div>
-                <div class="feature-card">
-                    <span class="feature-icon">🔑</span>
-                    <h3>3. Secrets</h3>
-                    <p>Create a <code>.env</code> file and populate it with your Token and Client ID.</p>
-                </div>
-            </div>
-
-            <div class="code-container">
-                <div class="code-header">Terminal</div>
-                git clone https://github.com/ts_122/sold.git<br>
-                cd sold<br>
-                npm install<br>
-                node index.js
             </div>
         </section>
 
-        <!-- Configuration Mastery -->
-        <section id="json">
-            <h2>JSON Database Manual</h2>
-            <p>The bot utilizes flat-file JSON databases for zero-latency lookups and maximum portability between hosting providers.</p>
-            
-            <div class="code-container">
-                <div class="code-header">config.json</div>
-                {<br>
-                &nbsp;&nbsp;"welcome": { "enabled": true, "channelId": "...", "color": "#HEX" },<br>
-                &nbsp;&nbsp;"modmail": { "guildId": "...", "staffRoleId": "...", "categoryId": "..." }<br>
-                }
+        <!-- Getting Started -->
+        <section id="getting-started">
+            <h2>Getting Started</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Minimum Requirements</h3>
+                    <ul>
+                        <li>Node.js 20.0.0 (LTS) or higher</li>
+                        <li>NPM 9.0+</li>
+                        <li>Operating System: Linux (Ubuntu/Debian) or Windows 10/11</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Environment Secrets (.env)</h3>
+                    <p>Create a <code>.env</code> file in your root folder with these exact keys:</p>
+                    <div class="code-block">
+                        <span class="code-lang">.env</span>
+                        DISCORD_TOKEN=your_bot_token<br>
+                        CLIENT_ID=your_application_id<br>
+                        ORDER_LOG_CHANNEL_ID=log_channel_id
+                    </div>
+                </div>
             </div>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>Property</th>
-                        <th>Type</th>
-                        <th>Utility Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><code>modmail.guildId</code></td>
-                        <td>Snowflake</td>
-                        <td>The exact server ID where ticket channels will be created.</td>
-                    </tr>
-                    <tr>
-                        <td><code>modmail.staffRoleId</code></td>
-                        <td>Snowflake</td>
-                        <td>The role allowed to view, claim, and reply to ModMail tickets.</td>
-                    </tr>
-                    <tr>
-                        <td><code>modmail.categoryId</code></td>
-                        <td>Snowflake</td>
-                        <td>The category ID where incoming ModMail channels will be nested.</td>
-                    </tr>
-                    <tr>
-                        <td><code>welcome.enabled</code></td>
-                        <td>Boolean</td>
-                        <td>Global toggle for the automated welcome system.</td>
-                    </tr>
-                </tbody>
-            </table>
         </section>
 
         <!-- Command Codex -->
-        <section id="commands">
-            <h2>Command Atlas</h2>
-            <p>Every slash command is listed below with its required permissions and operational behavior.</p>
-            
-            <table>
-                <thead>
-                    <tr>
-                        <th>Command Group</th>
-                        <th>Subcommand</th>
-                        <th>Access</th>
-                        <th>Operational Result</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><code>/setup</code></td>
-                        <td><code>modmail</code></td>
-                        <td><span class="badge-ver">Admin</span></td>
-                        <td>Initializes the support engine database.</td>
-                    </tr>
-                    <tr>
-                        <td><code>/setup</code></td>
-                        <td><code>welcome</code></td>
-                        <td><span class="badge-ver">Admin</span></td>
-                        <td>Configures join messages and hex colors.</td>
-                    </tr>
-                    <tr>
-                        <td><code>/modmail</code></td>
-                        <td><code>reply</code></td>
-                        <td><span class="badge-ver">Staff</span></td>
-                        <td>Safe-tunnel reply to user DM.</td>
-                    </tr>
-                    <tr>
-                        <td><code>/modmail</code></td>
-                        <td><code>close</code></td>
-                        <td><span class="badge-ver">Staff</span></td>
-                        <td>Archive & Wipe ticket channel.</td>
-                    </tr>
-                    <tr>
-                        <td><code>/giveaway</code></td>
-                        <td><code>start</code></td>
-                        <td><span class="badge-ver">Manager</span></td>
-                        <td>Launch prize pools with real-time timers.</td>
-                    </tr>
-                    <tr>
-                        <td><code>!reply</code></td>
-                        <td>-</td>
-                        <td><span class="badge-ver">Staff</span></td>
-                        <td>High-speed prefix reply (hardcoded legacy support).</td>
-                    </tr>
-                </tbody>
-            </table>
+        <section id="cmd-admin">
+            <h2>Administrator Commands</h2>
+            <div class="card">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Command</th>
+                            <th>Subcommand</th>
+                            <th>Options</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>/setup</code></td>
+                            <td><code>welcome</code></td>
+                            <td>channel, message, color, enabled</td>
+                            <td>Configures the join/leave system.</td>
+                        </tr>
+                        <tr>
+                            <td><code>/setup</code></td>
+                            <td><code>modmail</code></td>
+                            <td>guild_id, category, log_channel, staff_role</td>
+                            <td>Initializes the support ticket system.</td>
+                        </tr>
+                        <tr>
+                            <td><code>/setup</code></td>
+                            <td><code>giveaway</code></td>
+                            <td>color</td>
+                            <td>Sets the aesthetic theme for prizes.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </section>
 
-        <!-- Systems -->
-        <section id="modmail">
-            <h2>ModMail Architecture</h2>
-            <p>The bot features a custom <strong>Gateway Bridge</strong> that bypasses internal Discord.js filters to guarantee message delivery.</p>
-            
-            <div class="diagram">
-                <div class="node">User DM</div>
-                <div class="arrow">➜</div>
-                <div class="node">Raw Packet</div>
-                <div class="arrow">➜</div>
-                <div class="node">Fallback Filter</div>
-                <div class="arrow">➜</div>
-                <div class="node">Staff Channel</div>
+        <section id="cmd-support">
+            <h2>Support & Ticket Commands</h2>
+            <div class="card">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Command</th>
+                            <th>Options</th>
+                            <th>Role Required</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>/modmail reply</code></td>
+                            <td>message, anonymous</td>
+                            <td><span class="badge bg-blue">Staff Role</span></td>
+                            <td>DMs the user through the ticket.</td>
+                        </tr>
+                        <tr>
+                            <td><code>!reply</code></td>
+                            <td>message</td>
+                            <td><span class="badge bg-blue">Staff Role</span></td>
+                            <td>Quick-reply (no slash required).</td>
+                        </tr>
+                        <tr>
+                            <td><code>/modmail close</code></td>
+                            <td>reason</td>
+                            <td><span class="badge bg-blue">Staff Role</span></td>
+                            <td>Closes ticket & generates transcript.</td>
+                        </tr>
+                        <tr>
+                            <td><code>/modmail claim</code></td>
+                            <td>-</td>
+                            <td><span class="badge bg-blue">Staff Role</span></td>
+                            <td>Assigns the ticket to yourself.</td>
+                        </tr>
+                        <tr>
+                            <td><code>/modmail blacklist</code></td>
+                            <td>user</td>
+                            <td><span class="badge bg-red">Alt Admin</span></td>
+                            <td>Bans a user from using support.</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
+        </section>
 
-            <div class="callout">
-                <strong>Raw Packet Logic:</strong> Even if Discord API latency causes regular event emission to fail, the bot's direct WebSocket listener catches <code>MESSAGE_CREATE</code> packets directly from the stream.
+        <section id="cmd-giveaway">
+            <h2>Giveaway Engine</h2>
+            <div class="card">
+                <h3>Mastery of Prizes</h3>
+                <p>The giveaway system uses persistent JSON storage and dynamic Discord timestamps
+                    <code>&lt;t:time:R&gt;</code> to show real-time countdowns regardless of the user's timezone.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Subcommand</th>
+                            <th>Usage</th>
+                            <th>Perms</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>start</code></td>
+                            <td><code>/giveaway start (time) (winners) (prize)</code></td>
+                            <td>ManageGuild</td>
+                        </tr>
+                        <tr>
+                            <td><code>end</code></td>
+                            <td><code>/giveaway end (msg_id)</code></td>
+                            <td>ManageGuild</td>
+                        </tr>
+                        <tr>
+                            <td><code>reroll</code></td>
+                            <td><code>/giveaway reroll (msg_id)</code></td>
+                            <td>ManageGuild</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Core Systems -->
+        <section id="sys-gateway">
+            <h2>Raw Gateway Fallback</h2>
+            <div class="card">
+                <h3>How It Works</h3>
+                <p>Most Discord bots fail because the library (discord.js) discards DM packets when the "Message Content
+                    Intent" is slow to sync. We solved this with a <strong>Low-Level Packet Interceptor</strong>.</p>
+                <div class="code-block">
+                    <span class="code-lang">index.js [Internal]</span>
+                    client.on('raw', packet => {<br>
+                    &nbsp;&nbsp;if (packet.t === 'MESSAGE_CREATE') {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;// Manual packet extraction logic...<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;// Bypasses event filter...<br>
+                    &nbsp;&nbsp;}<br>
+                    });
+                </div>
+                <div class="callout">
+                    <strong>Technical Benefit:</strong> 100% Message Delivery. Even if the user is not cached, the bot
+                    fetches the profile manually from the API.
+                </div>
             </div>
         </section>
 
         <!-- Hosting Mastery -->
-        <section id="hosting">
-            <h2>Comprehensive Hosting Guide</h2>
-            
-            <h3>Professional VPS Setup (Linux)</h3>
-            <p>For the most stable hosting environment, use Ubuntu 22.04 LTS and the PM2 process manager.</p>
-            <div class="code-container">
-                <div class="code-header">Bash (Ubuntu)</div>
-                # Install Node 20<br>
-                curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -<br>
-                sudo apt-get install -y nodejs<br><br>
-                # Install PM2 Global<br>
-                npm install pm2 -g<br><br>
-                # Start Bot<br>
-                pm2 start index.js --name "pickle-infra"<br>
-                pm2 save
-            </div>
+        <section id="host-vps">
+            <h2>Linux VPS (Ubuntu / Debian) Guide</h2>
+            <div class="card">
+                <p>This is the <strong>Recommended</strong> way to host for 24/7 uptime.</p>
+                <h3>1. System Prep</h3>
+                <pre>sudo apt update && sudo apt upgrade -y
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt install -y nodejs</pre>
 
-            <h3>Home Server (Windows)</h3>
-            <p>Ideal for low-cost setups. Use a <code>.bat</code> file to manage the process.</p>
-            <div class="code-container">
-                <div class="code-header">run.bat</div>
-                :loop<br>
-                node index.js<br>
-                goto loop
+                <h3>2. Bot Setup</h3>
+                <pre>git clone {your_repo_link} bot
+cd bot
+npm install</pre>
+
+                <h3>3. Process Management (PM2)</h3>
+                <p>PM2 keeps your bot alive if it crashes or the server reboots.</p>
+                <pre>npm install pm2 -g
+pm2 start index.js --name "Cheappickle"
+pm2 save
+pm2 startup</pre>
+            </div>
+        </section>
+
+        <section id="host-windows">
+            <h2>Windows Hosting Guide</h2>
+            <div class="card">
+                <p>Suitable for Home Servers or Windows Dedicated Servers (RDP).</p>
+                <ol style="margin-left: 2rem;">
+                    <li>Download & Install <strong>Node.js v20+ Windows Installer</strong>.</li>
+                    <li>Open PowerShell or CMD in the bot folder.</li>
+                    <li>Run <code>npm install</code>.</li>
+                    <li>Launch with <code>node index.js</code>.</li>
+                </ol>
+                <div class="callout">
+                    <strong>Tip:</strong> Create a <code>run.bat</code> file with the content
+                    <code>node index.js --pause</code> to easily restart.
+                </div>
+            </div>
+        </section>
+
+        <section id="host-panel">
+            <h2>Game Panel Hosting (Pterodactyl)</h2>
+            <div class="card">
+                <p>If you are using a hosting service like <strong>Wisp</strong> or <strong>Pterodactyl</strong>:</p>
+                <ul>
+                    <li><strong>Node.js Version:</strong> Select the <code>Node.js 20</code> (or latest) egg.</li>
+                    <li><strong>Start Command:</strong> Ensure it points to <code>node index.js</code>.</li>
+                    <li><strong>Files:</strong> Upload all files except <code>node_modules</code> and run the panel's
+                        "Install" task.</li>
+                    <li><strong>Env:</strong> Most panels have a "Startup" tab where you can put your token.</li>
+                </ul>
             </div>
         </section>
 
         <!-- Maintenance -->
         <section id="faq">
-            <h2>Technical FAQ & Recovery</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <h3>Slash commands not showing?</h3>
-                    <p>Invite the bot via the link in the terminal. Discord takes time to sync global commands; re-inviting forces a fast refresh.</p>
+            <h2>FAQ: Expert Troubleshooting</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>"Cannot read property 'id' of null"</h3>
+                    <p>Occurs if the <code>config.json</code> is missing the <code>modmail</code> object. Run
+                        <code>/setup modmail</code> immediately after startup.</p>
                 </div>
-                <div class="feature-card">
-                    <h3>"License Verification Error"</h3>
-                    <p>The host machine blocked the outgoing HTTPS request to GitHub. Disable local firewalls or anti-virus during verification.</p>
+                <div class="card">
+                    <h3>"User is not receiving replies"</h3>
+                    <p>The user may have their <strong>DMs turned OFF</strong> for the server. The bot will log "Failed
+                        to DM user" in the console.</p>
                 </div>
-                <div class="feature-card">
-                    <h3>Failed to DM user?</h3>
-                    <p>The user has DMs disabled in their Privacy settings for this server. This is a Discord limitation.</p>
+                <div class="card">
+                    <h3>"Rate Limit (429)"</h3>
+                    <p>Discord has blocked your IP. If hosting on a VPS, try a different data center or wait 15 minutes.
+                    </p>
+                </div>
+                <div class="card">
+                    <h3>"License Error"</h3>
+                    <p>Ensure the machine can reach GitHub Raw. Firewalls or corporate proxies are the usual cause.</p>
                 </div>
             </div>
         </section>
 
-        <!-- License Footer -->
-        <footer style="margin-top: 10rem; border-top: 1px solid var(--border); padding-top: 3rem; text-align: center;">
-            <p style="font-size: 0.8rem; color: var(--text-secondary);">
-                &copy; 2026 Cheappickle Infrastructure Systems.<br>
-                Licensed under Non-Commercial / Not For Resale (NFR) Protocols.<br>
-                Developer: @ts_122
-            </p>
-        </footer>
+        <!-- License -->
+        <section id="license">
+            <h2>Legal & License</h2>
+            <div class="card">
+                <p>This software is provided under the <strong>Non-Commercial (NC) / Not For Resale (NFR)</strong>
+                    license.</p>
+                <ul>
+                    <li>You may host and modify the bot for personal/server use.</li>
+                    <li>You <strong>MAY NOT</strong> resell the source code or hosting access.</li>
+                    <li>Verification server: <code>raw.githubusercontent.com/TSSEJED/...</code></li>
+                </ul>
+            </div>
+        </section>
+
     </main>
 
 </body>
+
 </html>
